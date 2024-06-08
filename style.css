@@ -1,23 +1,24 @@
-header{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.247),rgba(0, 0, 0, 0.144)), url(https://cdnb.artstation.com/p/assets/images/images/068/438/799/original/akiro-art-gun-shoot.gif?1697803115);
-    background-position: center;
-    min-height: 1000px;
-    min-width: 1200px;
-    max-height: 1200px;
-}
 header #MainTitle{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: large;
-    color: rgb(253, 255, 223);
+    font-size: 2em;
+    color: rgb(255, 150, 12);
+    text-shadow: 5em;
+    font-weight: 900;
     font-weight: bold;
+    text-align: center;
     padding: 3em;
-    background-color: rgba(0, 167, 97, 0.493);
+    background-image: url(https://itaku.ee/api/media_2/gallery_imgs/Orange_wood_planks_QcKMvTH/lg.jpg);
 }
 nav{
-    border: 2px solid black
+    background-image: url(https://as1.ftcdn.net/v2/jpg/04/93/15/10/1000_F_493151022_FF61vE6JVKl445UiWeJAzxnJYN2YIHkf.jpg);
+    border: 2px solid black;
 }
 main{
-    border: 2px solid rgb(255, 238, 0)
+    border: 2px solid rgb(0, 0, 0)
+}
+#game{
+    padding-left: 10%;
+    padding-right: 10%;
 }
 footer{
     border: 2px solid black
