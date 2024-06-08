@@ -67,8 +67,9 @@ footer{
     background-image: url(https://i.pinimg.com/474x/93/04/20/93042048067c5d3ca5c33ea93c8c931b.jpg);
 }
 .NombrePersonaContacto{
+    margin: 0;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 1.4em;
+    font-size: 1em;
     color: rgb(255, 159, 32);
     font-weight: bold;
     padding: 1em;
@@ -76,14 +77,17 @@ footer{
     background-color: rgba(0, 0, 0, 0.733);
 }
 .CorreoPersonaContacto{
+    margin: 0;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 1em;
+    font-size: 0.7em;
     color: rgb(255, 240, 23);
     background-color: rgba(0, 0, 0, 0.411);
 }
 .GitPersonaContacto{
+    margin: 0;
+    padding-top: 0.3em;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 1em;
+    font-size: 0.7em;
     color: rgb(255, 197, 5);
     background-color: rgba(0, 0, 0, 0.411);
 }
