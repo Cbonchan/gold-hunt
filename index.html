@@ -20,8 +20,16 @@
     </header>
     <main>
         <div id="game">
-            <img src="https://j.gifs.com/vbOqXB.gif" id ="Background">
-            <!-- Aquí estaría el juego y etc , la imagen es un placeholder-->
+            <audio id="fireSound" src="gunFire.MP3" style="display: none;"></audio>
+            <audio id="fireSoundLastBullet" src="gunLastBullet.MP3" style="display: none;"></audio>
+            <audio id="theme" src="theme.MP3" style="display: none;"></audio>
+            <img src="https://j.gifs.com/vbOqXB.gif" 
+            id ="Background" 
+            onclick="reproducir_disparo()" 
+            draggable="false"
+            onmouseover="theme.play()"
+            onmouseout="theme.pause()">
+            <!-- Aquí estaría el juego y etc , la imagen es un placeholder, aunque podría ser tmbn una tabla-->
         </div>
     </main>
     <footer>
@@ -35,6 +43,7 @@
         <h3 class = "CorreoPersonaContacto">gaby.com</h3>
         <p class = "GitPersonaContacto">gabi.com</p>   
     </footer>
+    <script src="script.js"></script>
 </body>
     
 </html>

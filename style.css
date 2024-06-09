@@ -17,14 +17,13 @@ html{
     background-color: rgba(0, 0, 0, 0.438);
 }
 nav{
-    padding-top: 0.5em;
     background-image: url(https://as1.ftcdn.net/v2/jpg/04/93/15/10/1000_F_493151022_FF61vE6JVKl445UiWeJAzxnJYN2YIHkf.jpg);
     padding-bottom: 0.5em;
+    padding-top: 0.5em;
 }
 #NavBar{
     padding-top: 0.8em;
     padding-bottom: 0.8em;
-    list-style-type: none;
     background-color: rgba(32, 32, 32, 0.411);
 }
 #NavBar li{
@@ -34,7 +33,6 @@ nav{
     display: inline;
     padding-bottom: 1em;
     padding-top: 1em;
-    margin-bottom: 1em;
     padding-inline: 13%;
 }
 #NavBar li:hover{
@@ -54,7 +52,7 @@ nav{
 
 main{
     background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4cac659968f1cfbaer1-480-480v2_uhq.jpg);
-    border: 2px solid rgb(0, 0, 0)
+    border: 10px solid rgb(0, 0, 0)
 }
 #Background{
     display: block;
@@ -62,6 +60,10 @@ main{
     width: 800px;
     height: 600px;
 }
+#Background:hover{
+    cursor:crosshair;
+}
+
 footer{
     border: 2px solid black;
     background-image: url(https://i.pinimg.com/474x/93/04/20/93042048067c5d3ca5c33ea93c8c931b.jpg);
