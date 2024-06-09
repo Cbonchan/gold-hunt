@@ -8,6 +8,8 @@ function reproducirDisparo() {
     let audio = document.getElementById('fireSound');
     let audio2 = document.getElementById('fireSoundLastBullet');
     if (balas_disparadas < BALAS_ANTES_DE_RECARGAR){
+        audio.pause();
+        audio.currentTime = 0;
         audio.play();
         balas_disparadas++;
     }else{
@@ -41,7 +43,7 @@ function animarZonaDisparada(fila, columna){
     zonaParaAnimar.classList.add('zonaEsDisparada')
     setTimeout(() => {
         zonaParaAnimar.classList.remove('zonaEsDisparada');
-    }, 200);
+    }, 50);
 }
 
 function disparar( fila , columna) {

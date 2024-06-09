@@ -62,15 +62,17 @@ main{
     height: 600px;
 }
 #gameZone tbody tr{
+    padding:0;
+    border: 3px;
     border-color: black;
-    border: 2px;
+    text-align: center;
 }
 #gameZone:hover{
     cursor: crosshair;
 }
 
 .zonaEsDisparada{
-    transition: 0.5s;
+    transition: 0.1s;
     background-color: rgba(242, 255, 126, 0.836);
     color: aliceblue;
     text-decoration: line-through;
