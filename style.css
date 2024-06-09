@@ -54,14 +54,26 @@ main{
     background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4cac659968f1cfbaer1-480-480v2_uhq.jpg);
     border: 10px solid rgb(0, 0, 0)
 }
-#Background{
-    display: block;
+#gameZone{
+    background-image: url(https://j.gifs.com/vbOqXB.gif);
+    background-size: 800px 600px;
     margin: auto;
     width: 800px;
     height: 600px;
 }
-#Background:hover{
-    cursor:crosshair;
+#gameZone tbody tr{
+    border-color: black;
+    border: 2px;
+}
+#gameZone:hover{
+    cursor: crosshair;
+}
+
+.zonaEsDisparada{
+    transition: 0.5s;
+    background-color: rgba(242, 255, 126, 0.836);
+    color: aliceblue;
+    text-decoration: line-through;
 }
 
 footer{

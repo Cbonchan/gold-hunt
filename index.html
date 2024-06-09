@@ -19,18 +19,12 @@
         </nav>
     </header>
     <main>
-        <div id="game">
-            <audio id="fireSound" src="gunFire.MP3" style="display: none;"></audio>
-            <audio id="fireSoundLastBullet" src="gunLastBullet.MP3" style="display: none;"></audio>
-            <audio id="theme" src="theme.MP3" style="display: none;"></audio>
-            <img src="https://j.gifs.com/vbOqXB.gif" 
-            id ="Background" 
-            onclick="reproducir_disparo()" 
-            draggable="false"
-            onmouseover="theme.play()"
-            onmouseout="theme.pause()">
-            <!-- Aquí estaría el juego y etc , la imagen es un placeholder, aunque podría ser tmbn una tabla-->
+        <div id="game"  onmouseover="theme.play()">
+
         </div>
+        <audio id="fireSound" src="sounds/gunFire.MP3" style="display: none;"></audio>
+        <audio id="fireSoundLastBullet" src="sounds/gunLastBullet.MP3" style="display: none;"></audio>
+        <audio id="theme" src="sounds/theme.MP3" style="display: none;"></audio>
     </main>
     <footer>
         <h2 class="NombrePersonaContacto">Daniel Pérez.</h2>
