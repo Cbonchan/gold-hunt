@@ -3,6 +3,7 @@ let bulletsShooted = 0;
 let totalShotsFired = 0;
 let totalPoints = 0;
 let shotsMissed = 0;
+let diffTimer = 800;
 
 function playGunShot() {
     let audio = document.getElementById('fireSound');
@@ -49,6 +50,7 @@ function shotLandsOnAValidTarget(fila,columna){
     /*
     evaluar los otros tipos de moneda aquí, en caso de existir.
     */
+   diffTimer--;
 }
 
 //Pre:Debe haber algún tipo de variante de moneda en esa fila y columna.
@@ -109,5 +111,5 @@ function createTable() {
     }     
     table += '</table>';    
     document.getElementById('game').innerHTML = table;
-    setInterval(updateRandomNumber, 800);
+    setInterval(updateRandomNumber, diffTimer);
 }

@@ -53,7 +53,9 @@ nav{
 
 main{
     background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4cac659968f1cfbaer1-480-480v2_uhq.jpg);
-    border: 10px solid rgb(0, 0, 0)
+    border: 10px solid rgb(0, 0, 0);
+    min-width: 800px;
+    min-height: 600px;
 }
 #gameZone{
     background-image: url(https://i.pinimg.com/originals/c9/e8/ef/c9e8efca356e9fd2263493d78ab3737d.gif);
