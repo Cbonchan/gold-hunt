@@ -1,5 +1,5 @@
 *{
-    max-width: 1500px;
+    max-width: 1000px;
     margin: 0 auto; /* Esto lo uso para centrar todos los elementos */
     padding: 0 auto;
 }
@@ -64,7 +64,7 @@ nav{
 
 main{
     background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4cac659968f1cfbaer1-480-480v2_uhq.jpg);
-    border: 10px solid rgb(0, 0, 0);
+    
     min-width: 800px;
     min-height: 600px;
 }
@@ -150,3 +150,15 @@ footer{
     width: 50px;
     height:auto;
 }
+
+#score{
+    font-family: 'Press Start 2P', cursive;
+}
+
+img.gun{
+    position: absolute;
+    width: 175px;
+    height: auto;
+    bottom: 0;
+}
+
