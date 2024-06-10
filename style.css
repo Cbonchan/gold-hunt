@@ -6,6 +6,7 @@ html{
 }
 #MainTitle{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
     font-size: 2em;
     color: rgb(255, 150, 12);
     font-weight: bold;
@@ -122,6 +123,7 @@ footer{
     -ms-user-select: none;
 }
 #botonJugar{
+    font-family: 'Press Start 2P', cursive;
     background-color: rgba(0, 0, 0, 0.411);
     color: rgb(255, 255, 255);
     font-size: 1.5em;
@@ -134,4 +136,10 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#botonJugar:hover{
+    background-color: rgba(0, 0, 0, 0.733);
+    transition: 0.5s;
+    cursor: pointer;
 }
