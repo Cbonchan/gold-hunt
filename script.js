@@ -5,6 +5,7 @@ let totalPoints = 0;
 let shotsMissed = 0;
 let diffTimer = 800;
 let count = 1;
+let disTimer = 3000;
 
 function playGunShot() {
     let audio = document.getElementById('fireSound');
@@ -94,11 +95,23 @@ function getRandomPos() {
     return Math.floor(Math.random() * 49) + 1;
 }
 
+function eliminateInTime(time, id){
+    setTimeout(() => {
+        let removed = document.getElementById(id.toString());
+        removed.classList.remove("goldenCoinBase");
+        removed.innerHTML = id;
+    }, time);
+
+}
+
+
 function updateRandomNumber() {
     let randNumber = getRandomPos();
     item = document.getElementById(randNumber.toString());
     item.classList.add("goldenCoinBase");
     item.innerHTML = '<img src="https://i.gifer.com/Fw3P.gif" style="width: 15px;">';
+    eliminateInTime(disTimer,randNumber)
+    disTimer--;
 }
 
 function createTable() {
