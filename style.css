@@ -1,21 +1,27 @@
 *{
     max-width: 1500px;
+    margin: 0 auto; /* Esto lo uso para centrar todos los elementos */
+    padding: 0 auto;
 }
 html{
-    background-image: url(https://media.istockphoto.com/id/1219022871/vector/pixel-art-star-sky-at-night.jpg?s=612x612&w=0&k=20&c=dXrWrsAbcIWJnLdkJP1YDW7OjTPfPxmrrtPkoh9HFXw=);
+    background-image: url("images/background.jpg");
+    background-size: cover; /* Hace que la imagen de fondo cubra todo el fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center center; /* Centra la imagen de fondo */
+    height: 100%; /* Asegura que el html ocupe toda la altura de la ventana */
 }
 #MainTitle{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    
-    font-size: 2em;
-    color: rgb(255, 150, 12);
-    font-weight: bold;
-    text-align: center;
-    padding: 1em;
     background-image: url(https://itaku.ee/api/media_2/gallery_imgs/Orange_wood_planks_QcKMvTH/lg.jpg);
 }
 #MainTitle h1{
+    
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2em;
+    color: rgb(255, 150, 12);
+    
     background-color: rgba(0, 0, 0, 0.438);
+    padding: 1em;
+    text-align: center;
 }
 nav{
     background-image: url(https://as1.ftcdn.net/v2/jpg/04/93/15/10/1000_F_493151022_FF61vE6JVKl445UiWeJAzxnJYN2YIHkf.jpg);
@@ -26,29 +32,33 @@ nav{
     padding-top: 0.8em;
     padding-bottom: 0.8em;
     background-color: rgba(32, 32, 32, 0.411);
+
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
     
 }
 #NavBar li{
-    width: 10%;
-    box-sizing: content-box;
-    transition: 0.7s;
-    display: inline;
-    padding-bottom: 1em;
-    padding-top: 1em;
-    padding-inline: 13%;
+    flex: 1;
+    transition: background-color 0.7s;
 }
 #NavBar li:hover{
-    transition: 0.7s;
+    
     background-color: rgba(7, 4, 0, 0.945);
 }
 #NavBar li a{
-    font-size: 1.3em;
+    font-family: 'Press Start 2P', cursive;
+    display: block;
     text-align: center;
-    text-decoration: dashed;
-    color:rgb(206, 206, 206);
+    text-decoration: none;
+    color: rgb(206, 206, 206);
+    padding: 1em;
+    transition: color 1s;
 }
 #NavBar li a:hover{
-    transition: 1s;
+    
     color: rgb(255, 217, 0);
 }
 
@@ -58,12 +68,21 @@ main{
     min-width: 800px;
     min-height: 600px;
 }
+
+#game{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 700px;
+    position: relative;
+}
+
 #gameZone{
     background-image: url(https://i.pinimg.com/originals/c9/e8/ef/c9e8efca356e9fd2263493d78ab3737d.gif);
     background-size: 800px 600px;
     margin: auto;
     width: 800px;
-    height: 600px;
+    height: 600px; 
 }
 #gameZone tbody tr{
     padding:0;
@@ -87,41 +106,12 @@ footer{
     background-image: url(https://i.pinimg.com/474x/93/04/20/93042048067c5d3ca5c33ea93c8c931b.jpg);
 }
 
-.developer{
-    display:inline-block;
-    text-align: center;
-    width: 33%;
-}
 
 .goldenCoinBase{
     border-color: black;
 }
 
-.developerName{
-    margin: 0;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 1em;
-    color: rgb(255, 159, 32);
-    font-weight: bold;
-    padding: 1em;
-    font-style: italic;
-    background-color: rgba(0, 0, 0, 0.733);
-}
-.developerEmail{
-    margin: 0;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 0.7em;
-    color: rgb(255, 240, 23);
-    background-color: rgba(0, 0, 0, 0.411);
-}
-.developerUsername{
-    margin: 0;
-    padding-top: 0.3em;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 0.7em;
-    color: rgb(255, 197, 5);
-    background-color: rgba(0, 0, 0, 0.411);
-}
+
 
 .no-select{
     user-select: none;
@@ -135,18 +125,28 @@ footer{
     color: rgb(255, 255, 255);
     font-size: 1.5em;
     font-weight: bold;
-    padding: 1em;
-    border: 2px solid black;
     border-radius: 10px;
-    margin: 5em auto; 
+    border: 2px solid black;
+
+    padding: 1em;
+    margin: auto; 
     transition: 0.5s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 #botonJugar:hover{
     background-color: rgba(0, 0, 0, 0.733);
     transition: 0.5s;
     cursor: pointer;
+}
+
+#menuMusicButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#menuMusicImage {
+    width: 50px;
+    height:auto;
 }

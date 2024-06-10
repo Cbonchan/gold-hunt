@@ -20,35 +20,23 @@
         </nav>
     </header>
     <main>
-        <div id="game" onmouseover="theme.play()">
-        <button onclick="createTable()" id="botonJugar">PLAY</button>
+        
+        <div id="game">
+
+            <div id="volumeContainer">
+                <button id="menuMusicButton" onclick="playPauseMenuTheme()"> <img id="menuMusicImage" src="images/volumeOn.png"></button>
+            </div>
+            
+            <button onclick="startGame()" id="botonJugar" onclick="theme.play()" >PLAY</button>
         </div>
+
         <audio id="fireSound" src="sounds/gunFire.MP3" style="display: none;"></audio>
         <audio id="fireSoundLastBullet" src="sounds/gunLastBullet.MP3" style="display: none;"></audio>
         <audio id="theme" src="sounds/theme.MP3" style="display: none;"></audio>
+        <audio id= "menuTheme" src="sounds/menuTheme.mp3" style="display: none;"></audio>
     </main>
-    <span class="developerName" id = "score">0</span>
-    <footer>
-        <div class="developer">
-            <h2 class="developerName"> Daniel Pérez </h2>
-            <h3 class="developerEmail"> dperezc@fi.uba.ar </h3>
-            <p class="developerUsername"> ubermasterdp </p>
-        </div>
-        
-        <div class="developer">
-            <h2 class="developerName"> Sebastián Basterra </h2>
-            <h3 class="developerEmail"> sebacorreo@fi.uba.ar </h3>
-            <p class="developerUsername"> Cbonchan </p>
-        </div>
-
-        <div class="developer">
-            <h2 class="developerName"> Franco Boggia </h2>
-            <h3 class="developerEmail"> fboggia@fi.uba.ar </h3>
-            <p class="developerUsername"> Gabynose </p> 
-            
-        </div>
-        
-    </footer>
+    <span id = "score">0</span>
+    
     <script src="script.js"></script>
 </body>
     

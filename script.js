@@ -4,6 +4,7 @@ let totalShotsFired = 0;
 let totalPoints = 0;
 let shotsMissed = 0;
 let diffTimer = 800;
+let count = 1;
 
 function playGunShot() {
     let audio = document.getElementById('fireSound');
@@ -117,4 +118,24 @@ function createTable() {
     table += '</table>';    
     document.getElementById('game').innerHTML = table;
     setInterval(updateRandomNumber, diffTimer);
+}
+
+
+function playPauseMenuTheme(){
+    let menuTheme = document.getElementById("menuTheme");
+    let menuMusicButton = document.getElementById("menuMusicImage");
+    if (count == 0){
+        menuMusicImage.src = "images/volumeOn.png";
+        count = 1;
+        menuTheme.play();
+    } else {
+        count = 0;
+        menuMusicImage.src = "images/volumeOff.png";
+        menuTheme.pause();
+
+    }
+}
+
+function startGame(){
+    createTable();
 }
