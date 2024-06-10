@@ -82,7 +82,14 @@ footer{
     border: 2px solid black;
     background-image: url(https://i.pinimg.com/474x/93/04/20/93042048067c5d3ca5c33ea93c8c931b.jpg);
 }
-.NombrePersonaContacto{
+
+.developer{
+    display:inline-block;
+    text-align: center;
+    width: 30%;
+}
+
+.developerName{
     margin: 0;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 1em;
@@ -92,14 +99,14 @@ footer{
     font-style: italic;
     background-color: rgba(0, 0, 0, 0.733);
 }
-.CorreoPersonaContacto{
+.developerEmail{
     margin: 0;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 0.7em;
     color: rgb(255, 240, 23);
     background-color: rgba(0, 0, 0, 0.411);
 }
-.GitPersonaContacto{
+.developerUsername{
     margin: 0;
     padding-top: 0.3em;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;

@@ -19,8 +19,7 @@
         </nav>
     </header>
     <main>
-
-        <div id="game"  onmouseover="theme.play()">
+        <div id="game" onmouseover="theme.play()">
         <button onclick="crearTabla()" id="botonJugar">play</button>
         </div>
         <audio id="fireSound" src="sounds/gunFire.MP3" style="display: none;"></audio>
@@ -28,15 +27,24 @@
         <audio id="theme" src="sounds/theme.MP3" style="display: none;"></audio>
     </main>
     <footer>
-        <h2 class="NombrePersonaContacto">Daniel Pérez.</h2>
-        <h3 class = "CorreoPersonaContacto">dperezc@fi.uba.com</h3>
-        <p class = "GitPersonaContacto">ubermasterdp</p>
-        <h2 class="NombrePersonaContacto">Sebastián Bastierra.</h2>
-        <h3 class = "CorreoPersonaContacto">micorreo@bla.com (si fue a propósito el tierra)</h3>
-        <p class = "GitPersonaContacto">cbonchan</p>
-        <h2 class="NombrePersonaContacto">gaby</h2>
-        <h3 class = "CorreoPersonaContacto">gaby.com</h3>
-        <p class = "GitPersonaContacto">gabi.com</p>   
+        <div class="developer">
+            <h2 class="developerName"> Daniel Pérez </h2>
+            <h3 class="developerEmail"> dperezc@fi.uba.ar </h3>
+            <p class="developerUsername"> ubermasterdp </p>
+        </div>
+        
+        <div class="developer">
+            <h2 class="developerName"> Sebastián Basterra </h2>
+            <h3 class="developerEmail"> sebacorreo@fi.uba.ar </h3>
+            <p class="developerUsername"> Cbonchan </p>
+        </div>
+
+        <div class="developer">
+            <h2 class="developerName"> Franco Boggia </h2>
+            <h3 class="developerEmail"> fboggia@fi.uba.ar </h3>
+            <p class="developerUsername"> Gabynose </p> 
+        </div>
+        
     </footer>
     <script src="script.js"></script>
 </body>
