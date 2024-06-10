@@ -46,6 +46,9 @@ function shotLandsOnAValidTarget(fila,columna){
     else{
         return false;
     }
+    /*
+    evaluar los otros tipos de moneda aquí, en caso de existir.
+    */
 }
 
 //Pre:Debe haber algún tipo de variante de moneda en esa fila y columna.
@@ -55,11 +58,11 @@ function setPoints(fila, columna){
     asignar puntos  += 1* multiplicador
     */
     let id = ((7 *(fila-1))) + columna;
-   totalPoints++;
-   updateScore();
-   targetHitted = document.getElementById( id);
-   targetHitted.classList.remove('goldenCoinBase');
-   targetHitted.innerHTML = id;
+    totalPoints++;
+    updateScore();
+    targetHitted = document.getElementById( id);
+    targetHitted.classList.remove('goldenCoinBase');
+    targetHitted.innerHTML = id;
 }
 
 
@@ -91,7 +94,7 @@ function updateRandomNumber() {
 }
 
 function createTable() {
-    let table = '<table id= gameZone>';
+    let table = '<table id= gameZone class="no-select">';
     for (let i = 0; i < 7; i++) {
         table += '<tr>';
         for (let j = 0; j < 7; j++) {
@@ -106,5 +109,5 @@ function createTable() {
     }     
     table += '</table>';    
     document.getElementById('game').innerHTML = table;
-    setInterval(updateRandomNumber, 1000);
+    setInterval(updateRandomNumber, 800);
 }
