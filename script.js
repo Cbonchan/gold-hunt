@@ -30,14 +30,6 @@ function getBalasFalladas() {
     return balas_falladas;
 }
 
-function disparoAciertaAObjetivo(/*Aqui debería recibir la sección de la tabla sobre la que hizo click*/) {
-    /* if( seccion de la tabla es vacío (osea justo ahi nunca hay monedas) ) return false;
-        if( seccion de la tabla es una moneda && esVisible(moneda) ) return true;
-        return false;
-    */
-   return false;
-}
-
 function animarZonaDisparada(fila, columna){
     zonaParaAnimar = document.getElementById( ((7 *(fila-1))) + columna);
     zonaParaAnimar.classList.add('zonaEsDisparada')
@@ -45,6 +37,25 @@ function animarZonaDisparada(fila, columna){
         zonaParaAnimar.classList.remove('zonaEsDisparada');
     }, 50);
 }
+
+
+function disparoAciertaAObjetivo(fila,columna){
+    /* 
+    obtener el elemento segundo la fila y col
+    verificar si la misma tiene la propiedad de "moneda"
+    verificar si la misma tiene la propiedad "visible"
+    si todo eso, return tru, sino, false.
+    */
+   return false;
+}
+
+function asignar_puntos(fila, columna){
+    /*
+    pedirle a la moneda que un multiplicador
+    asignar puntos  += 1* multiplicador
+    */
+}
+
 
 function disparar( fila , columna) {
     reproducirDisparo();
@@ -67,7 +78,9 @@ function crearTabla() {
             tabla += `<td 
             onclick="disparar(${i + 1}, ${j + 1})"
             bordercolor = "black"
-            id = "${i * 7 + j + 1}" >${i * 7 + j + 1}</td>`;
+            id = "${i * 7 + j + 1}" 
+            class="no-select"
+            >${i * 7 + j + 1}</td>`;
         }
         tabla += '</tr>';
     }     
