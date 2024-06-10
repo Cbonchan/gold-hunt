@@ -4,7 +4,7 @@ let totalShotsFired = 0;
 let totalPoints = 0;
 let shotsMissed = 0;
 let diffTimer = 800;
-let count = 1;
+let count = 0;
 let disTimer = 3000;
 
 function playGunShot() {
@@ -76,10 +76,6 @@ function updateScore() {
     scoreElement.textContent = getScore();
 }
 
-function hola(){
-    return;
-}
-
 function shoot( fila , columna) {
     playGunShot();
     giveFireAnimation(fila,columna);
@@ -114,6 +110,18 @@ function updateRandomNumber() {
     disTimer--;
 }
 
+function createIngameScore(){
+    let score = document.createElement("span");
+
+    score.id = "score";
+
+    score.textContent = "0";
+
+    let game = document.getElementById("game");
+    game.appendChild(score);
+
+}
+
 function createTable() {
     let table = '<table id= gameZone class="no-select">';
     for (let i = 0; i < 7; i++) {
@@ -130,9 +138,41 @@ function createTable() {
     }     
     table += '</table>';    
     document.getElementById('game').innerHTML = table;
+    createIngameScore();
+    spawnGun();
     setInterval(updateRandomNumber, diffTimer);
 }
 
+
+function spawnGun(){
+    let gun = document.createElement("img");
+    gun.src = "images/gun.png"
+    gun.classList.add("gun");
+    document.getElementById("game").appendChild(gun);
+
+    // De esta manera agregamos un evento para el movimiento del mouse
+    document.addEventListener("mousemove", (event) => moveGun(event, gun));
+
+}
+
+function moveGun(event, gun) {
+    const game = document.getElementById("game");
+    // Obtenemos el espacio que ocupa el contenedor "gun"
+    const gameSpace = game.getBoundingClientRect(); 
+    //
+    const gunWidth = gun.offsetWidth; 
+
+    let mousePosition = event.clientX - gameSpace.left;
+
+    // Calcular la posición en el eje X dentro del contenedor
+    let gunPosition = mousePosition - (gunWidth / 2);
+
+    // Asegurarse de que el arma no se salga del contenedor
+    let limitedGunPosition = Math.max(0, Math.min(gunPosition, gameSpace.width - gunWidth));
+
+    // Ajustar la posición del arma
+    gun.style.left = `${limitedGunPosition}px`;
+}
 
 function playPauseMenuTheme(){
     let menuTheme = document.getElementById("menuTheme");
@@ -150,5 +190,6 @@ function playPauseMenuTheme(){
 }
 
 function startGame(){
+    createIngameScore();
     createTable();
 }
