@@ -150,3 +150,17 @@ footer{
     width: 50px;
     height:auto;
 }
+
+#scoreboard{
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    background-color: black;
+    margin: auto;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px; 
+    width: 79%; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
