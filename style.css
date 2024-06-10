@@ -73,7 +73,7 @@ main{
 
 .zonaEsDisparada{
     transition: 0.1s;
-    background-color: rgba(242, 255, 126, 0.836);
+    background-color: rgba(247, 255, 177, 0.925);
     color: aliceblue;
     text-decoration: line-through;
 }
@@ -108,7 +108,7 @@ footer{
     background-color: rgba(0, 0, 0, 0.411);
 }
 
-.no-select {
+.no-select{
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
