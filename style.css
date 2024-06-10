@@ -56,7 +56,7 @@ main{
     border: 10px solid rgb(0, 0, 0)
 }
 #gameZone{
-    background-image: url(https://j.gifs.com/vbOqXB.gif);
+    background-image: url(https://i.pinimg.com/originals/c9/e8/ef/c9e8efca356e9fd2263493d78ab3737d.gif);
     background-size: 800px 600px;
     margin: auto;
     width: 800px;
@@ -72,7 +72,7 @@ main{
     cursor: crosshair;
 }
 
-.zonaEsDisparada{
+.zoneIsFired{
     transition: 0.1s;
     background-color: rgba(247, 255, 177, 0.925);
     color: aliceblue;
@@ -87,7 +87,11 @@ footer{
 .developer{
     display:inline-block;
     text-align: center;
-    width: 30%;
+    width: 33%;
+}
+
+.goldenCoinBase{
+    border-color: black;
 }
 
 .developerName{

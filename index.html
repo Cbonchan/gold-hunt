@@ -21,12 +21,13 @@
     </header>
     <main>
         <div id="game" onmouseover="theme.play()">
-        <button onclick="crearTabla()" id="botonJugar">PLAY</button>
+        <button onclick="createTable()" id="botonJugar">PLAY</button>
         </div>
         <audio id="fireSound" src="sounds/gunFire.MP3" style="display: none;"></audio>
         <audio id="fireSoundLastBullet" src="sounds/gunLastBullet.MP3" style="display: none;"></audio>
         <audio id="theme" src="sounds/theme.MP3" style="display: none;"></audio>
     </main>
+    <span class="developerName" id = "score">0</span>
     <footer>
         <div class="developer">
             <h2 class="developerName"> Daniel Pérez </h2>

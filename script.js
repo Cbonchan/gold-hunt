@@ -1,89 +1,110 @@
-const BALAS_ANTES_DE_RECARGAR = 7;
-let balas_disparadas = 0;
-let balas_totales_disparadas = 0;
-let puntos_totales = 0;
-let balas_falladas = 0;
+const bulletsOfMag = 7;
+let bulletsShooted = 0;
+let totalShotsFired = 0;
+let totalPoints = 0;
+let shotsMissed = 0;
 
-function reproducirDisparo() {
+function playGunShot() {
     let audio = document.getElementById('fireSound');
     let audio2 = document.getElementById('fireSoundLastBullet');
-    if (balas_disparadas < BALAS_ANTES_DE_RECARGAR){
+    if (bulletsShooted < bulletsOfMag){
         audio.pause();
         audio.currentTime = 0;
         audio.play();
-        balas_disparadas++;
+        bulletsShooted++;
     }else{
         audio2.play();
-        balas_disparadas = 0;
+        bulletsShooted = 0;
     }
 }
 
-function getBalasTotalesDisparadas() {
-    return balas_totales_disparadas;
+function getShotsFired() {
+    return totalShotsFired;
 }
 
-function getPuntosTotales() {
-    return puntos_totales;
+function getScore() {
+    return totalPoints;
 }
 
-function getBalasFalladas() {
-    return balas_falladas;
+function getShotsMissed() {
+    return shotsMissed;
 }
 
-function animarZonaDisparada(fila, columna){
-    zonaParaAnimar = document.getElementById( ((7 *(fila-1))) + columna);
-    zonaParaAnimar.classList.add('zonaEsDisparada')
+function giveFireAnimation(fila, columna){
+    zoneToAnimate = document.getElementById( ((7 *(fila-1))) + columna);
+    zoneToAnimate.classList.add('zoneIsFired')
     setTimeout(() => {
-        zonaParaAnimar.classList.remove('zonaEsDisparada');
+        zoneToAnimate.classList.remove('zoneIsFired');
     }, 50);
 }
 
 
-function disparoAciertaAObjetivo(fila,columna){
-    /* 
-    obtener el elemento segundo la fila y col
-    verificar si la misma tiene la propiedad de "moneda"
-    verificar si la misma tiene la propiedad "visible"
-    si todo eso, return tru, sino, false.
-    */
-   return false;
+function shotLandsOnAValidTarget(fila,columna){
+    target = document.getElementById( ((7 *(fila-1))) + columna);
+    if( target.classList.contains('goldenCoinBase'))
+        return true;
+    else{
+        return false;
+    }
 }
 
-function asignar_puntos(fila, columna){
+//Pre:Debe haber algún tipo de variante de moneda en esa fila y columna.
+function setPoints(fila, columna){
     /*
     pedirle a la moneda que un multiplicador
     asignar puntos  += 1* multiplicador
     */
+    let id = ((7 *(fila-1))) + columna;
+   totalPoints++;
+   updateScore();
+   targetHitted = document.getElementById( id);
+   targetHitted.classList.remove('goldenCoinBase');
+   targetHitted.innerHTML = id;
 }
 
 
-function disparar( fila , columna) {
-    reproducirDisparo();
-    animarZonaDisparada(fila,columna);
-    if( juego_iniciado){
-        balas_totales_disparadas++;
-        if( disparoAciertaAObjetivo(fila,columna) ){
-            asignar_puntos(fila,columna);
-        }else{
-            balas_falladas++;
-        }
+function updateScore() {
+    const scoreElement = document.getElementById('score');
+    scoreElement.textContent = getScore();
+}
+
+function shoot( fila , columna) {
+    playGunShot();
+    giveFireAnimation(fila,columna);
+    totalShotsFired++;
+    if( shotLandsOnAValidTarget(fila,columna) ){
+        setPoints(fila,columna);
+    }else{
+        shotsMissed++;
     }
 }
 
-function crearTabla() {
-    let tabla = '<table id= gameZone>';
+function getRandomPos() {
+    return Math.floor(Math.random() * 49) + 1;
+}
+
+function updateRandomNumber() {
+    let randNumber = getRandomPos();
+    item = document.getElementById(randNumber.toString());
+    item.classList.add("goldenCoinBase");
+    item.innerHTML = '<img src="https://i.gifer.com/Fw3P.gif" style="width: 15px;">';
+}
+
+function createTable() {
+    let table = '<table id= gameZone>';
     for (let i = 0; i < 7; i++) {
-        tabla += '<tr>';
+        table += '<tr>';
         for (let j = 0; j < 7; j++) {
-            tabla += `<td 
-            onclick="disparar(${i + 1}, ${j + 1})"
+            table += `<td 
+            onclick="shoot(${i + 1}, ${j + 1})"
             bordercolor = "black"
             id = "${i * 7 + j + 1}" 
             class="no-select"
             >${i * 7 + j + 1}</td>`;
         }
-        tabla += '</tr>';
+        table += '</tr>';
     }     
-    tabla += '</table>';    
-    document.getElementById('game').innerHTML = tabla;
+    table += '</table>';    
+    document.getElementById('game').innerHTML = table;
+    setInterval(updateRandomNumber, 1000);
 }
