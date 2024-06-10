@@ -87,4 +87,3 @@ function crearTabla() {
     tabla += '</table>';    
     document.getElementById('game').innerHTML = tabla;
 }
-window.onload = crearTabla;

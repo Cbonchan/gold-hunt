@@ -114,3 +114,17 @@ footer{
     -webkit-user-select: none;
     -ms-user-select: none;
 }
+#botonJugar{
+    background-color: rgba(0, 0, 0, 0.411);
+    color: rgb(255, 255, 255);
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 1em;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 5em auto; 
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
