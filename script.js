@@ -37,6 +37,7 @@ function giveFireAnimation(fila, columna){
     setTimeout(() => {
         zoneToAnimate.classList.remove('zoneIsFired');
     }, 50);
+    //XD
 }
 
 
@@ -71,6 +72,10 @@ function setPoints(fila, columna){
 function updateScore() {
     const scoreElement = document.getElementById('score');
     scoreElement.textContent = getScore();
+}
+
+function hola(){
+    return;
 }
 
 function shoot( fila , columna) {
