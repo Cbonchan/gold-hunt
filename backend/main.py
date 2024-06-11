@@ -2,33 +2,35 @@ from flask import Flask, request, jsonify
 from model import db, Scoreboard
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = ''  #TODO aca va la uri de la base de datos, no se como se consigue aun.
+#creeria que es asi, pero no estoy seguro, para esto, el usuario, la contraseña 
+#y el nombre de la base deben ser postgres, y la base debe estar previamente creada
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost/postgres'  
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 @app.route('/scoreboard', methods=['GET'])
 def get_scoreboard():
-    #? creo que seria algo asi pero falta returnear bien
     scoreboard = Scoreboard.query.order_by(Scoreboard.score.desc()).all()
-    return 
+    scoreboard_json = [{"name": entry.name, "score": entry.score, "datetime": entry.datetime} for entry in scoreboard]
+    return jsonify(scoreboard_json)
+
 
 @app.route('/scoreboard/add', methods=['POST'])
 def add_score():
-    #TODO ver como añadir y ordenar por score
-
-    
+    data = request.get_json()
+    new_score = Scoreboard(name=data['name'], score=data['score'])
+    db.session.add(new_score)
     db.session.commit()
-    return
+    return  jsonify({"message": "Score added successfully"})
 
 @app.route('/scoreboard/top', methods=['GET'])
 def get_top10():
-    #! faltaria returnearlo bien
     top10 = Scoreboard.query.order_by(Scoreboard.score.desc()).limit(10).all()
-    return 
+    top10_json = [{"name": entry.name, "score": entry.score, "datetime": entry.datetime} for entry in top10]
+    return jsonify(top10_json)
 
 
 @app.route('/scoreboard/clear', methods=['DELETE'])
 def clear_scoreboard():
-    #segun lo que googlee para borrar todo de una tabla se hace asi
     Scoreboard.query.delete()
     db.session.commit()
     return jsonify({'message': 'Scoreboard cleared'})
