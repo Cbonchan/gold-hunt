@@ -153,11 +153,12 @@ footer{
 
 
 #scoreboard{
+    position: relative;
+    top: 2em;
     color: white;
     font-family: 'Press Start 2P', cursive;
     background-color: black;
     margin: auto;
-    margin-top: 10px;
     padding: 10px;
     border-radius: 10px; 
     width: 79%; 
