@@ -1,4 +1,4 @@
-const HARD = 500;
+const HARD = 300;
 const NORMAL = 700;
 const EASY = 1500;
 
@@ -48,57 +48,57 @@ function createIngameScore(){
 
 }
 
-function createCoinContainer(){
+function createPropContainer(){
     // Empece creando el contenedor y aplicando propiedades en JS, en un proximo update lo cambio al .css
     let game = document.getElementById("game");
-    let coinContainer = document.createElement("div");
-    coinContainer.id = "coinContainer";
+    let propContainer = document.createElement("div");
+    propContainer.id = "propContainer";
 
-    coinContainer.style.width = "80%"; 
-    coinContainer.style.height = "500px"; 
-    coinContainer.style.position = "absolute";
-    coinContainer.style.backgroundImage = "url('images/backgroundGame.jpg')";
-    coinContainer.style.backgroundSize = "cover";
-    coinContainer.style.marginTop = "100px";
-    coinContainer.style.border = "8px solid";
-    coinContainer.style.borderImage = "linear-gradient(to right, #bdc3c7 0%, #2c3e50 100%)"; // Esto es para simular efecto metalico
-    coinContainer.style.borderImageSlice = "5"; 
+    propContainer.style.width = "80%"; 
+    propContainer.style.height = "500px"; 
+    propContainer.style.position = "absolute";
+    propContainer.style.backgroundImage = "url('images/backgroundGame.jpg')";
+    propContainer.style.backgroundSize = "cover";
+    propContainer.style.marginTop = "100px";
+    propContainer.style.border = "8px solid";
+    propContainer.style.borderImage = "linear-gradient(to right, #bdc3c7 0%, #2c3e50 100%)"; // Esto es para simular efecto metalico
+    propContainer.style.borderImageSlice = "5"; 
     
-    game.appendChild(coinContainer);
+    game.appendChild(propContainer);
 }
 
 function createCoin() {
     console.log("Entraste a la funcion createCoin"); // Debug
-    let coinContainer = document.getElementById("coinContainer");
+    let propContainer = document.getElementById("propContainer");
     let coin = document.createElement("div");
     coin.classList.add("coin");
 
-    coin.style.left = Math.random() * (coinContainer.offsetWidth - 80) + 'px';
+    coin.style.left = Math.random() * (propContainer.offsetWidth - 80) + 'px';
     coin.onclick = () => shoot(coin);
-    coinContainer.appendChild(coin);
+    propContainer.appendChild(coin);
 
     // Aca esta animada la caida de la moneda
     setTimeout(() => {
         coin.style.transform = 'translateY(400px)';
-        coinContainer.removeChild(coin);
+        propContainer.removeChild(coin);
     }, 1300); // Duración de la animación de caída (2s en este caso)
 
     console.log("createCoin finalizada con exito");
 }
 
 function createBomb(){
-    let bombContainer = document.getElementById("coinContainer");
+    let propContainer = document.getElementById("propContainer");
     let bomb = document.createElement("div");
     bomb.classList.add("bomb");
 
-    bomb.style.left = Math.random() * (bombContainer.offsetWidth - 80) + 'px';
+    bomb.style.left = Math.random() * (propContainer.offsetWidth - 80) + 'px';
     bomb.onclick = () => shootBomb(bomb);
-    bombContainer.appendChild(bomb);
+    propContainer.appendChild(bomb);
 
     // Aca esta animada la caida de la moneda
     setTimeout(() => {
         bomb.style.transform = 'translateY(400px)';
-        bombContainer.removeChild(bomb);
+        propContainer.removeChild(bomb);
     }, 1300); // Duración de la animación de caída (2s en este caso)
 
     console.log("createCoin finalizada con exito");
@@ -120,7 +120,7 @@ function shootBomb(bomb){
     setTimeout(() => {
         gun.src = "images/gun.png";
         isShooting = false;
-    }, 300);
+    }, 100);
 
     return;
 }
@@ -141,7 +141,7 @@ function shoot(coin) {
     setTimeout(() => {
         gun.src = "images/gun.png";
         isShooting = false;
-    }, 300);
+    }, 100);
 
     return;
 }
@@ -158,6 +158,10 @@ function playGunShot() {
         audio2.play();
         bulletsShooted = 0;
     }
+}
+
+function playBombSound(){
+    let audio
 }
 
 function updateScore() {
@@ -216,7 +220,7 @@ function playPauseMenuTheme(){
 
 function startGame(){
     createIngameScore();
-    createCoinContainer();
+    createPropContainer();
     spawnGun();
     setInterval(()=>{
         createCoin();

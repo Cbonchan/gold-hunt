@@ -80,6 +80,7 @@ main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4
     background-size: contain;
     background-repeat: no-repeat;
     animation: fall 1.3s ease-in forwards;
+    
 }
 
 .bomb{ background-image: url('/images/bomb.png'); /* URL de la imagen de la moneda */
