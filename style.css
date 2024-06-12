@@ -72,21 +72,21 @@ main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4
     cursor: crosshair;
 }
 
-.coin{ background-image: url('https://i.gifer.com/Fw3P.gif'); /* URL de la imagen de la moneda */
+.coin{ background-image: url('https://i.gifer.com/Fw3P.gif'); 
     position: absolute;
     top: 0;
-    width: 80px; /* Ajusta esto al tamaño de la moneda */
-    height: 80px; /* Ajusta esto al tamaño de la moneda */
+    width: 80px; 
+    height: 80px;
     background-size: contain;
     background-repeat: no-repeat;
     animation: fall 1.3s ease-in forwards;
 }
 
-.bomb{ background-image: url('/images/bomb.png'); /* URL de la imagen de la moneda */
+.bomb{ background-image: url('images/bomb.png');  
     position: absolute;
     top: 0;
-    width: 80px; /* Ajusta esto al tamaño de la moneda */
-    height: 80px; /* Ajusta esto al tamaño de la moneda */
+    width: 80px; 
+    height: 80px; 
     background-size: contain;
     background-repeat: no-repeat;
     animation: fall 1.3s ease-in forwards;
