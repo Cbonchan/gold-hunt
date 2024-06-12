@@ -138,8 +138,7 @@ function createTable() {
     }     
     table += '</table>';    
     document.getElementById('game').innerHTML = table;
-    createIngameScore();
-    spawnGun();
+    
     setInterval(updateRandomNumber, diffTimer);
 }
 
@@ -148,6 +147,7 @@ function spawnGun(){
     let gun = document.createElement("img");
     gun.src = "images/gun.png"
     gun.classList.add("gun");
+   
     document.getElementById("game").appendChild(gun);
 
     // De esta manera agregamos un evento para el movimiento del mouse
@@ -190,6 +190,7 @@ function playPauseMenuTheme(){
 }
 
 function startGame(){
-    createIngameScore();
     createTable();
+    createIngameScore();
+    spawnGun();
 }

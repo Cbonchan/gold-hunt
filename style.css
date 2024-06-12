@@ -177,5 +177,6 @@ img.gun{
     width: 175px;
     height: auto;
     bottom: 0;
+    pointer-events: none; 
 }
 
