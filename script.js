@@ -1,11 +1,150 @@
+const HARD = 500;
+const NORMAL = 700;
+const EASY = 1500;
+
+let isShooting = false;
+
 const bulletsOfMag = 7;
 let bulletsShooted = 0;
 let totalShotsFired = 0;
 let totalPoints = 0;
 let shotsMissed = 0;
 let diffTimer = 800;
-let count = 0;
+let count = 1;
 let disTimer = 3000;
+
+
+
+function getShotsFired() {
+    return totalShotsFired;
+}
+
+function getScore() {
+    return totalPoints;
+}
+
+function getShotsMissed() {
+    return shotsMissed;
+}
+
+function eliminateInTime(time, id){
+    setTimeout(() => {
+        let removed = document.getElementById(id.toString());
+        removed.classList.remove("goldenCoinBase");
+        removed.innerHTML = id;
+    }, time);
+
+}
+
+function createIngameScore(){
+    let score = document.createElement("span");
+
+    score.id = "score";
+
+    score.textContent = "0";
+
+    let game = document.getElementById("game");
+    game.appendChild(score);
+
+}
+
+function createCoinContainer(){
+    // Empece creando el contenedor y aplicando propiedades en JS, en un proximo update lo cambio al .css
+    let game = document.getElementById("game");
+    let coinContainer = document.createElement("div");
+    coinContainer.id = "coinContainer";
+
+    coinContainer.style.width = "80%"; 
+    coinContainer.style.height = "500px"; 
+    coinContainer.style.position = "absolute";
+    coinContainer.style.backgroundImage = "url('images/backgroundGame.jpg')";
+    coinContainer.style.backgroundSize = "cover";
+    coinContainer.style.marginTop = "100px";
+    coinContainer.style.border = "8px solid";
+    coinContainer.style.borderImage = "linear-gradient(to right, #bdc3c7 0%, #2c3e50 100%)"; // Esto es para simular efecto metalico
+    coinContainer.style.borderImageSlice = "5"; 
+    
+    game.appendChild(coinContainer);
+}
+
+function createCoin() {
+    console.log("Entraste a la funcion createCoin"); // Debug
+    let coinContainer = document.getElementById("coinContainer");
+    let coin = document.createElement("div");
+    coin.classList.add("coin");
+
+    coin.style.left = Math.random() * (coinContainer.offsetWidth - 80) + 'px';
+    coin.onclick = () => shoot(coin);
+    coinContainer.appendChild(coin);
+
+    // Aca esta animada la caida de la moneda
+    setTimeout(() => {
+        coin.style.transform = 'translateY(400px)';
+        coinContainer.removeChild(coin);
+    }, 1300); // Duración de la animación de caída (2s en este caso)
+
+    console.log("createCoin finalizada con exito");
+}
+
+function createBomb(){
+    let bombContainer = document.getElementById("coinContainer");
+    let bomb = document.createElement("div");
+    bomb.classList.add("bomb");
+
+    bomb.style.left = Math.random() * (bombContainer.offsetWidth - 80) + 'px';
+    bomb.onclick = () => shootBomb(bomb);
+    bombContainer.appendChild(bomb);
+
+    // Aca esta animada la caida de la moneda
+    setTimeout(() => {
+        bomb.style.transform = 'translateY(400px)';
+        bombContainer.removeChild(bomb);
+    }, 1300); // Duración de la animación de caída (2s en este caso)
+
+    console.log("createCoin finalizada con exito");
+    
+}
+
+function shootBomb(bomb){
+    if (isShooting){
+        return;
+    }
+
+    let gun = document.querySelector(".gun");
+    gun.src = "images/gun2.png"
+    isShooting = true;
+    playGunShot();
+    totalPoints--;
+    updateScore();
+    bomb.remove();
+    setTimeout(() => {
+        gun.src = "images/gun.png";
+        isShooting = false;
+    }, 300);
+
+    return;
+}
+
+function shoot(coin) {
+
+    if (isShooting){
+        return;
+    }
+
+    let gun = document.querySelector(".gun");
+    gun.src = "images/gun2.png"
+    isShooting = true;
+    playGunShot();
+    totalPoints++;
+    updateScore();
+    coin.remove();
+    setTimeout(() => {
+        gun.src = "images/gun.png";
+        isShooting = false;
+    }, 300);
+
+    return;
+}
 
 function playGunShot() {
     let audio = document.getElementById('fireSound');
@@ -21,127 +160,10 @@ function playGunShot() {
     }
 }
 
-function getShotsFired() {
-    return totalShotsFired;
-}
-
-function getScore() {
-    return totalPoints;
-}
-
-function getShotsMissed() {
-    return shotsMissed;
-}
-
-function giveFireAnimation(fila, columna){
-    zoneToAnimate = document.getElementById( ((7 *(fila-1))) + columna);
-    zoneToAnimate.classList.add('zoneIsFired')
-    setTimeout(() => {
-        zoneToAnimate.classList.remove('zoneIsFired');
-    }, 50);
-    //XD
-}
-
-
-function shotLandsOnAValidTarget(fila,columna){
-    target = document.getElementById( ((7 *(fila-1))) + columna);
-    if( target.classList.contains('goldenCoinBase'))
-        return true;
-    else{
-        return false;
-    }
-    /*
-    evaluar los otros tipos de moneda aquí, en caso de existir.
-    */
-   diffTimer--;
-}
-
-//Pre:Debe haber algún tipo de variante de moneda en esa fila y columna.
-function setPoints(fila, columna){
-    /*
-    pedirle a la moneda que un multiplicador
-    asignar puntos  += 1* multiplicador
-    */
-    let id = ((7 *(fila-1))) + columna;
-    totalPoints++;
-    updateScore();
-    targetHitted = document.getElementById( id);
-    targetHitted.classList.remove('goldenCoinBase');
-    targetHitted.innerHTML = id;
-}
-
-
 function updateScore() {
     const scoreElement = document.getElementById('score');
     scoreElement.textContent = getScore();
 }
-
-function shoot( fila , columna) {
-    playGunShot();
-    giveFireAnimation(fila,columna);
-    totalShotsFired++;
-    if( shotLandsOnAValidTarget(fila,columna) ){
-        setPoints(fila,columna);
-    }else{
-        shotsMissed++;
-    }
-}
-
-function getRandomPos() {
-    return Math.floor(Math.random() * 49) + 1;
-}
-
-function eliminateInTime(time, id){
-    setTimeout(() => {
-        let removed = document.getElementById(id.toString());
-        removed.classList.remove("goldenCoinBase");
-        removed.innerHTML = id;
-    }, time);
-
-}
-
-
-function updateRandomNumber() {
-    let randNumber = getRandomPos();
-    item = document.getElementById(randNumber.toString());
-    item.classList.add("goldenCoinBase");
-    item.innerHTML = '<img src="https://i.gifer.com/Fw3P.gif" style="width: 15px;">';
-    eliminateInTime(disTimer,randNumber)
-    disTimer--;
-}
-
-function createIngameScore(){
-    let score = document.createElement("span");
-
-    score.id = "score";
-
-    score.textContent = "0";
-
-    let game = document.getElementById("game");
-    game.appendChild(score);
-
-}
-
-function createTable() {
-    let table = '<table id= gameZone class="no-select">';
-    for (let i = 0; i < 7; i++) {
-        table += '<tr>';
-        for (let j = 0; j < 7; j++) {
-            table += `<td 
-            onclick="shoot(${i + 1}, ${j + 1})"
-            bordercolor = "black"
-            id = "${i * 7 + j + 1}" 
-            class="no-select"
-            >${i * 7 + j + 1}</td>`;
-        }
-        table += '</tr>';
-    }     
-    table += '</table>';    
-    document.getElementById('game').innerHTML = table;
-    
-    setInterval(updateRandomNumber, diffTimer);
-}
-
 
 function spawnGun(){
     let gun = document.createElement("img");
@@ -153,6 +175,7 @@ function spawnGun(){
     // De esta manera agregamos un evento para el movimiento del mouse
     document.addEventListener("mousemove", (event) => moveGun(event, gun));
 
+    
 }
 
 function moveGun(event, gun) {
@@ -189,8 +212,21 @@ function playPauseMenuTheme(){
     }
 }
 
+
+
 function startGame(){
-    createTable();
     createIngameScore();
+    createCoinContainer();
     spawnGun();
+    setInterval(()=>{
+        createCoin();
+        createBomb();
+    }, HARD);
+    document.getElementById("botonJugar").style.display = "none";
+    document.getElementById("volumeContainer").style.display = "none";
+    menuTheme.pause();
+    ingameMusic.play();
+    
 }
+
+

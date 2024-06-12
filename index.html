@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
 </head>
-<body onload="playPauseMenuTheme()">
+<body onload="menuTheme.play()">
     <header>
-        <div id="MainTitle">
+        <div id="mainTitle">
             <h1>Gold Hunt</h1>
         </div>
         <nav>
-            <ul id="NavBar">
+            <ul id="navBar">
                 <li><a href="#">Inicio</a></li>
                 <li><a href="/gold-hunt/scoreboard/index.html">Scoreboard</a></li>
                 <li><a href="#">Créditos</a></li>
@@ -27,15 +27,15 @@
                 <button id="menuMusicButton" onclick="playPauseMenuTheme()"> <img id="menuMusicImage" src="images/volumeOn.png"></button>
             </div>
             
-            <button onclick="startGame()" id="botonJugar" onclick="theme.play()" >PLAY</button>
+            <button onclick="startGame()" id="botonJugar">PLAY</button>
         </div>
 
         <audio id="fireSound" src="sounds/gunFire.MP3" style="display: none;"></audio>
         <audio id="fireSoundLastBullet" src="sounds/gunLastBullet.MP3" style="display: none;"></audio>
         <audio id="theme" src="sounds/theme.MP3" style="display: none;"></audio>
         <audio id= "menuTheme" src="sounds/menuTheme.mp3" style="display: none;"></audio>
+        <audio id= "ingameMusic" src="sounds/ingameMusic.mp3" style="display: none;"></audio>
     </main>
-    
     
     <script src="script.js"></script>
 </body>
