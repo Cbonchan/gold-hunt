@@ -81,10 +81,30 @@ function createCoin() {
     setTimeout(() => {
         coin.style.transform = 'translateY(400px)';
         propContainer.removeChild(coin);
-    }, 1300); // Duración de la animación de caída (2s en este caso)
+    }, 1300); // Duración de la animación de caída (1.3s en este caso)
 
     console.log("createCoin finalizada con exito");
 }
+
+function createEspecialCoin(){
+    console.log("Entraste a la funcion createCoin"); // Debug
+    let propContainer = document.getElementById("propContainer");
+    let coin = document.createElement("div");
+    coin.classList.add("especialCoin");
+
+    coin.style.left = Math.random() * (propContainer.offsetWidth - 80) + 'px';
+    coin.onclick = () => shoot(coin);
+    propContainer.appendChild(coin);
+
+    // Aca esta animada la caida de la moneda
+    setTimeout(() => {
+        coin.style.transform = 'translateY(400px)';
+        propContainer.removeChild(coin);
+    }, 1300); // Duración de la animación de caída (1.3s en este caso)
+
+    console.log("createCoin finalizada con exito");
+}
+
 
 function createBomb(){
     let propContainer = document.getElementById("propContainer");
@@ -99,7 +119,7 @@ function createBomb(){
     setTimeout(() => {
         bomb.style.transform = 'translateY(400px)';
         propContainer.removeChild(bomb);
-    }, 1300); // Duración de la animación de caída (2s en este caso)
+    }, 1300); // Duración de la animación de caída (1.3s en este caso)
 
     console.log("createCoin finalizada con exito");
     
@@ -135,7 +155,12 @@ function shoot(coin) {
     gun.src = "images/gun2.png"
     isShooting = true;
     playGunShot();
-    totalPoints++;
+    if (coin.classList.contains("especialCoin")){
+        totalPoints += 5;
+    }
+    else if (coin.classList.contains("coin")){
+        totalPoints++;
+    }
     updateScore();
     coin.remove();
     setTimeout(() => {
@@ -225,7 +250,10 @@ function startGame(){
     setInterval(()=>{
         createCoin();
         createBomb();
-    }, HARD);
+    }, HARD);  
+    setInterval(() => {
+        createEspecialCoin();
+    }, 5000);
     document.getElementById("botonJugar").style.display = "none";
     document.getElementById("volumeContainer").style.display = "none";
     menuTheme.pause();

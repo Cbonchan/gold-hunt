@@ -72,32 +72,38 @@ main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4
     cursor: crosshair;
 }
 
-.coin{ background-image: url('https://i.gifer.com/Fw3P.gif'); /* URL de la imagen de la moneda */
+.coin{ background-image: url('https://i.gifer.com/Fw3P.gif'); 
     position: absolute;
     top: 0;
-    width: 80px; /* Ajusta esto al tamaño de la moneda */
-    height: 80px; /* Ajusta esto al tamaño de la moneda */
+    width: 80px; 
+    height: 80px;
     background-size: contain;
     background-repeat: no-repeat;
     animation: fall 1.3s ease-in forwards;
     
 }
 
-.bomb{ background-image: url('/images/bomb.png'); /* URL de la imagen de la moneda */
+.especialCoin{ background-image: url('https://i.gifer.com/Fw3P.gif'); 
     position: absolute;
     top: 0;
-    width: 80px; /* Ajusta esto al tamaño de la moneda */
-    height: 80px; /* Ajusta esto al tamaño de la moneda */
+    width: 80px; 
+    height: 80px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: fall 1.3s ease-in forwards;
+    filter: sepia(100%) hue-rotate(190deg) saturate(500%);
+}
+
+.bomb{ background-image: url('images/bomb.png');  
+    position: absolute;
+    top: 0;
+    width: 80px; 
+    height: 80px; 
     background-size: contain;
     background-repeat: no-repeat;
     animation: fall 1.3s ease-in forwards;
 }
 
-
-.bounce-top {
-	-webkit-animation: bounce-top 0.9s both;
-	        animation: bounce-top 0.9s both;
-}
 
 @keyframes fall {
     0% {
@@ -109,20 +115,11 @@ main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4
     }
   }
 
-.bounce-top {
-    animation: bounce-top 1.5s infinite both;
-}
 
 #gameZone:hover{
     cursor: crosshair;
 }
 
-.zoneIsFired{
-    transition: 0.1s;
-    background-color: rgba(247, 255, 177, 0.925);
-    color: aliceblue;
-    text-decoration: line-through;
-}
 
 footer{ background-image: url(https://i.pinimg.com/474x/93/04/20/93042048067c5d3ca5c33ea93c8c931b.jpg);
     border: 2px solid black;
@@ -132,8 +129,6 @@ footer{ background-image: url(https://i.pinimg.com/474x/93/04/20/93042048067c5d3
 .goldenCoinBase{
     border-color: black;
 }
-
-
 
 .no-select{
     user-select: none;
