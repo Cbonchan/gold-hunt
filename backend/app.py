@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)
 #creeria que es asi, pero no estoy seguro, para esto, el usuario, la contraseña 
 #y el nombre de la base deben ser postgres, y la base debe estar previamente creada
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost/postgres'  
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/postgres'  
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 @app.route('/scoreboard', methods=['GET'])
