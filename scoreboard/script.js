@@ -28,11 +28,17 @@
     data.forEach(item => {
       const row = document.createElement('tr');
   
-      Object.values(item).forEach(text => {
-        const cell = document.createElement('td');
-        cell.appendChild(document.createTextNode(text));
-        row.appendChild(cell);
-      });
+      const nameCell = document.createElement('td');
+      nameCell.appendChild(document.createTextNode(item.name));
+      row.appendChild(nameCell);
+  
+      const scoreCell = document.createElement('td');
+      scoreCell.appendChild(document.createTextNode(item.score));
+      row.appendChild(scoreCell);
+  
+      const dateCell = document.createElement('td');
+      dateCell.appendChild(document.createTextNode(item.datetime));
+      row.appendChild(dateCell);
   
       tbody.appendChild(row);
     });
