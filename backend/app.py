@@ -1,11 +1,11 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from sqlalchemy import text
 from model import db, Scoreboard
 
 app = Flask(__name__)
 CORS(app)
-#creeria que es asi, pero no estoy seguro, para esto, el usuario, la contraseña 
-#y el nombre de la base deben ser postgres, y la base debe estar previamente creada
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/postgres'  
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -15,27 +15,32 @@ def get_scoreboard():
     scoreboard_json = [{"name": entry.name, "score": entry.score, "datetime": entry.datetime} for entry in scoreboard]
     return jsonify(scoreboard_json)
 
-#! Esto es para probar la conexion de la API, funciona correctamente, falta configurar la base de datos
+#este endpoint es para ingresar desde la web, agrega puntajes falsos a la base de datos
 @app.route('/scoreboard_prueba', methods=['GET'])
 def return_scoreboard():
     fakeScore = [
-        {"name": "Juan Perez", "score": 85, "datetime": "10/07 14:30" },
-        {"name": "Ana Lopez", "score": 92, "datetime": "15/07 12:45" },
-        {"name": "Carlos Diaz", "score": 78, "datetime": "20/07 16:15" },
-        {"name": "Lucia Gomez", "score": 88, "datetime": "25/07 11:00" },
-        {"name": "Miguel Torres", "score": 95, "datetime": "01/08 09:30" },
-        {"name": "Sofia Ramirez", "score": 82, "datetime": "05/08 14:55" },
-        {"name": "Pedro Fernandez", "score": 76, "datetime": "10/08 13:45" },
-        {"name": "Marta Sanchez", "score": 90, "datetime": "15/08 10:30" },
-        {"name": "Diego Gutierrez", "score": 84, "datetime": "20/08 15:20" },
-        { "name": "Elena Morales", "score": 89, "datetime": "25/08 11:40" }
+        {"name": "Juan Perez", "score": 85},
+        {"name": "Ana Lopez", "score": 92},
+        {"name": "Carlos Diaz", "score": 78},
+        {"name": "Lucia Gomez", "score": 88},
+        {"name": "Miguel Torres", "score": 95},
+        {"name": "Sofia Ramirez", "score": 82},
+        {"name": "Pedro Fernandez", "score": 76},
+        {"name": "Marta Sanchez", "score": 90},
+        {"name": "Diego Gutierrez", "score": 84},
+        { "name": "Elena Morales", "score": 89}
     ]
-    return jsonify(fakeScore)
+    for score in fakeScore:
+        new_score = Scoreboard(name=score['name'], score=score['score'])
+        db.session.add(new_score)
+        db.session.commit()
+    return jsonify({"message": "Scoreboard added successfully"})
 
 
 @app.route('/scoreboard/add', methods=['POST'])
 def add_score():
     data = request.get_json()
+    print(data)
     new_score = Scoreboard(name=data['name'], score=data['score'])
     db.session.add(new_score)
     db.session.commit()
@@ -51,15 +56,20 @@ def get_top10():
 @app.route('/scoreboard/clear', methods=['DELETE'])
 def clear_scoreboard():
     Scoreboard.query.delete()
+    db.session.execute(text("ALTER SEQUENCE scoreboard_id_seq RESTART WITH 1;"))
     db.session.commit()
     return jsonify({'message': 'Scoreboard cleared'})
 
+@app.route('/scoreboard/update', methods=['PUT'])
+def update_last_imput():
+    last_imput = Scoreboard.query.order_by(Scoreboard.id.desc()).first()
+    last_imput.name = request.get_json()['name']
+    db.session.commit()
+    return jsonify({'message': 'Last imput updated'})
 
 
 if __name__ == '__main__':
-    print('Starting server...')
     db.init_app(app)
     with app.app_context():
         db.create_all()
     app.run(host='0.0.0.0', debug=True, port=5000)
-    print('Server started')
