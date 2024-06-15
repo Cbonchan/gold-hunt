@@ -1,5 +1,5 @@
 //el fetch es con informacion de prueba, cuando configuremos base de datos, fetch a otro endpoint
-  fetch('http://localhost:5000/scoreboard_prueba')
+  fetch('http://localhost:5000/scoreboard')
     .then(response => response.json())
     .then(data => {
       console.log(data);
