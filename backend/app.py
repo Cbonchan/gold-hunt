@@ -40,7 +40,6 @@ def return_scoreboard():
 @app.route('/scoreboard/add', methods=['POST'])
 def add_score():
     data = request.get_json()
-    print(data)
     new_score = Scoreboard(name=data['name'], score=data['score'])
     db.session.add(new_score)
     db.session.commit()
@@ -60,12 +59,34 @@ def clear_scoreboard():
     db.session.commit()
     return jsonify({'message': 'Scoreboard cleared'})
 
+#Este enpoint es para actualizar el nombre del ultimo puntaje ingresado (no me gusta esta implementacion de la pagina, es probable que borramos este endpoint)
 @app.route('/scoreboard/update', methods=['PUT'])
 def update_last_imput():
     last_imput = Scoreboard.query.order_by(Scoreboard.id.desc()).first()
     last_imput.name = request.get_json()['name']
     db.session.commit()
     return jsonify({'message': 'Last imput updated'})
+
+@app.route('/scoreboard/update_by_id', methods=['PUT'])
+def update_by_id():
+    data = request.get_json()
+    score = Scoreboard.query.get(data['id'])
+    
+    if 'name' in data and 'score' in data:
+        if data['name'] != "":
+            score.name = data['name']
+        if data['score'] != "":
+            score.score = data['score']
+    db.session.commit()
+    return jsonify({'message': 'Score updated'})
+
+@app.route('/scoreboard/delete_by_id', methods=['DELETE'])
+def delete_by_id():
+    data = request.get_json()
+    score = Scoreboard.query.get(data['id'])
+    db.session.delete(score)
+    db.session.commit()
+    return jsonify({'message': 'Score deleted'})
 
 
 if __name__ == '__main__':
