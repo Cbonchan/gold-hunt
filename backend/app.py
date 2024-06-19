@@ -15,8 +15,14 @@ def get_scoreboard():
     scoreboard_json = [{"name": entry.name, "score": entry.score, "datetime": entry.datetime} for entry in scoreboard]
     return jsonify(scoreboard_json)
 
+@app.route('/scoreboard/admin', methods=['GET'])
+def get_admin_scoreboard():
+    scoreboard = Scoreboard.query.order_by(Scoreboard.score.desc()).all()
+    scoreboard_json = [{"id":entry.id ,"name": entry.name, "score": entry.score, "datetime": entry.datetime} for entry in scoreboard]
+    return jsonify(scoreboard_json)
+
 #este endpoint es para ingresar desde la web, agrega puntajes falsos a la base de datos
-@app.route('/scoreboard_prueba', methods=['GET'])
+@app.route('/scoreboard/test', methods=['GET'])
 def return_scoreboard():
     fakeScore = [
         {"name": "Juan Perez", "score": 85},
@@ -34,7 +40,7 @@ def return_scoreboard():
         new_score = Scoreboard(name=score['name'], score=score['score'])
         db.session.add(new_score)
         db.session.commit()
-    return jsonify({"message": "Scoreboard added successfully"})
+    return jsonify({"message": "Fake data added"})
 
 
 @app.route('/scoreboard/add', methods=['POST'])
@@ -59,19 +65,14 @@ def clear_scoreboard():
     db.session.commit()
     return jsonify({'message': 'Scoreboard cleared'})
 
-#Este enpoint es para actualizar el nombre del ultimo puntaje ingresado (no me gusta esta implementacion de la pagina, es probable que borramos este endpoint)
-@app.route('/scoreboard/update', methods=['PUT'])
-def update_last_imput():
-    last_imput = Scoreboard.query.order_by(Scoreboard.id.desc()).first()
-    last_imput.name = request.get_json()['name']
-    db.session.commit()
-    return jsonify({'message': 'Last imput updated'})
-
 @app.route('/scoreboard/update_by_id', methods=['PUT'])
 def update_by_id():
     data = request.get_json()
     score = Scoreboard.query.get(data['id'])
     
+    if score is None:
+            return jsonify({'error': 'ID not found'})
+
     if 'name' in data and 'score' in data:
         if data['name'] != "":
             score.name = data['name']
@@ -84,6 +85,8 @@ def update_by_id():
 def delete_by_id():
     data = request.get_json()
     score = Scoreboard.query.get(data['id'])
+    if score is None:
+            return jsonify({'error': 'ID not found'})
     db.session.delete(score)
     db.session.commit()
     return jsonify({'message': 'Score deleted'})
