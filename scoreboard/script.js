@@ -47,4 +47,16 @@
     scoreboardDiv.appendChild(table);
   }
 
+  function admin(){
+    let psw = document.getElementById('psw').value;
+    if (psw === 'admin') {
+      window.location.href = 'admin/index.html';
+    }
+    else {
+      document.getElementById('psw').value = '';
+      document.getElementById('psw').placeholder = 'Incorrect password';
+      
+    }
+  }
+
   
