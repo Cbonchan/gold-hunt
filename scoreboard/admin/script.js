@@ -34,7 +34,7 @@ function updateRecord(){
     let idInput = document.getElementById("idUpdate");
     let id = idInput.value;
     if (id === '') {
-        idInput.placeholder = 'ID cannot be empty';
+        idInput.placeholder = 'ID not valid';
         return;
     }
     let scoreInput = document.getElementById("scoreUpdate");
