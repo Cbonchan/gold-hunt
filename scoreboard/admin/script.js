@@ -2,7 +2,7 @@ function removeRecord(){
     let idInput = document.getElementById("idRemove");
     let id = idInput.value;
     if (id === '') {
-        idInput.placeholder = 'ID cannot be empty';
+        idInput.placeholder = 'ID not valid';
         return;
     }
     let dict = {
