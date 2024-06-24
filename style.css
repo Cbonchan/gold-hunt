@@ -74,18 +74,15 @@ main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4
 
 .coin{ background-image: url('https://i.gifer.com/Fw3P.gif'); 
     position: absolute;
-    top: 0;
     width: 80px; 
     height: 80px;
     background-size: contain;
     background-repeat: no-repeat;
     animation: fall 1.3s ease-in forwards;
-    
 }
 
 .especialCoin{ background-image: url('https://i.gifer.com/Fw3P.gif'); 
     position: absolute;
-    top: 0;
     width: 80px; 
     height: 80px;
     background-size: contain;
@@ -94,9 +91,39 @@ main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4
     filter: sepia(100%) hue-rotate(190deg) saturate(500%);
 }
 
+@keyframes fly {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes flap {
+    0% {
+        background-image: url('images/bird.png');
+    }
+    50% {
+        background-image: url('images/bird2.png');
+    }
+    100% {
+        background-image: url('images/bird.png');
+    }
+}
+
+.bird{
+    background-image: url('images/bird.png'); 
+    position: absolute;
+    width: 70px; 
+    height: 70px; 
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: fly 2.15s forwards, flap 0.3s steps(1) infinite;
+}
+
 .bomb{ background-image: url('images/bomb.png');  
     position: absolute;
-    top: 0;
     width: 80px; 
     height: 80px; 
     background-size: contain;

@@ -1,6 +1,6 @@
 import { HARD, NORMAL, EASY } from './constants.js';
 import { gameState } from './variables.js';
-import { createCoin, createEspecialCoin } from './coinInteractions.js';
+import { createCoin, createEspecialCoin, createBird } from './coinInteractions.js';
 import { createBomb } from './bombInteractions.js';
 import { spawnGun, moveGun} from './gunInteractions.js';
 
@@ -58,6 +58,9 @@ function startGame(){
     setInterval(() => {
         createEspecialCoin();
     }, 5000);
+    setInterval(() =>{
+        createBird();
+    }, 9000);
     document.getElementById("botonJugar").style.display = "none";
     document.getElementById("volumeContainer").style.display = "none";
     menuTheme.pause();
