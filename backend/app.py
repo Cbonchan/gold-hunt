@@ -91,6 +91,13 @@ def delete_by_id():
     db.session.commit()
     return jsonify({'message': 'Score deleted'})
 
+@app.route('/adminLog', methods=['POST'])
+def admin_log():
+    data = request.get_json()
+    if data['password'] == 'admin':
+        return jsonify({'message': 'Login successful'})
+    return jsonify({'error': 'Invalid credentials'})
+
 
 if __name__ == '__main__':
     db.init_app(app)
