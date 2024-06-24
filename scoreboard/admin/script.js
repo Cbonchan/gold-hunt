@@ -147,3 +147,32 @@ function createTable(data) {
   
     scoreboardDiv.appendChild(table);
 }
+
+document.getElementById('psw').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        admin(); 
+    }
+});
+
+function admin(){
+    let psw = document.getElementById('psw').value;
+    fetch('http://localhost:5000/adminLog', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({password: psw})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.hasOwnProperty('error')) {
+            document.getElementById('psw').value = '';
+            document.getElementById('psw').placeholder = 'Incorrect password';
+        } else if (data.hasOwnProperty('message')) {
+            console.log('Success:', data.message);
+            document.getElementById('page').classList.remove('none');
+            document.getElementById('password').classList.add('none');
+        }
+    })
+    .catch((error) => {console.error('Error:', error); });
+}
