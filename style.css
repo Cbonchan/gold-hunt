@@ -72,6 +72,10 @@ main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4
     cursor: crosshair;
 }
 
+#timer{
+    font-family: 'Press Start 2P', cursive;
+}
+
 .coin{ background-image: url('https://i.gifer.com/Fw3P.gif'); 
     position: absolute;
     width: 80px; 

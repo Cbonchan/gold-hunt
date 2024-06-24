@@ -2,7 +2,7 @@ export function spawnGun(){
     let gun = document.createElement("img");
     gun.src = "images/gun.png"
     gun.classList.add("gun");
-   
+    gun.id = "gameGun";
     document.getElementById("game").appendChild(gun);
 
     // De esta manera agregamos un evento para el movimiento del mouse
