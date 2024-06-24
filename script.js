@@ -22,7 +22,7 @@ function createIngameTimer(){
     let timer = document.createElement("span");
     timer.id = "timer";
 
-    timer.textContent = "5";
+    timer.textContent = "3";
     const game = document.getElementById("game");
     game.appendChild(timer);
 
@@ -30,7 +30,7 @@ function createIngameTimer(){
 
 function startTimer(){
     let timer = document.getElementById("timer");
-    let duration = 5;
+    let duration = 3;
 
     let countdown = setInterval(() => {
         let minutes = Math.floor(timer / 60);
@@ -65,6 +65,7 @@ function endGame(){
     document.getElementById("gameGun").remove();
     document.getElementById("botonJugar").style.display = "inline-block";
     document.getElementById("volumeContainer").style.display = "inline-block";
+    gameState.totalPoints = 0;
 
     
 }
