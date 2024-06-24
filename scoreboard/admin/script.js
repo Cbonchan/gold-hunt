@@ -154,6 +154,24 @@ document.getElementById('psw').addEventListener('keydown', function(event) {
     }
 });
 
+function saveAuthentication() {
+    const now = new Date().getTime();
+    localStorage.setItem('authentication', now.toString());
+}
+
+
+function checkAuthentication() {
+    const authentication = localStorage.getItem('authentication');
+    if (authentication) {
+        const now = new Date().getTime();
+        const timer = (now - parseInt(authentication)) / (1000 * 60);
+        if (timer < 10) {
+            return true;
+        }
+    }
+    return false;
+}
+
 function admin(){
     let psw = document.getElementById('psw').value;
     fetch('http://localhost:5000/adminLog', {
@@ -172,7 +190,15 @@ function admin(){
             console.log('Success:', data.message);
             document.getElementById('page').classList.remove('none');
             document.getElementById('password').classList.add('none');
+            saveAuthentication();
         }
     })
     .catch((error) => {console.error('Error:', error); });
+}
+
+window.onload = function() {
+    if (checkAuthentication()) {
+        document.getElementById('page').classList.remove('none');
+        document.getElementById('password').classList.add('none');
+    }
 }
