@@ -200,11 +200,22 @@ img.gun{
 }
 
 
-#pswArea{
-    display: inline-block;
+#admin{
+    margin-left: 5em;
+    background-color: rgba(255, 255, 255, 0.678);
+    padding: 1em;
+    border-radius: 10px;
     font-family: 'Press Start 2P', cursive;
-    color:white;
-    font-size: 0.7em;
-    padding-top: 3em;
-    padding-left: 4em;
+    font-size: 0.70em;
+}
+#admin:hover{
+    background-color: rgba(255, 255, 255, 0.911);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+#adminZone{
+    background-color: rgba(0, 0, 0, 0.411);
+    padding: 1em;
+    border-radius: 10px;
 }
