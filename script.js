@@ -7,6 +7,7 @@ import { spawnGun, moveGun} from './gunInteractions.js';
 let coinInterval;
 let especialCoinInterval;
 let bombInterval;
+let birdInterval;
 
 
 function createIngameScore(){
@@ -51,6 +52,7 @@ function endGame(){
     clearInterval(coinInterval);
     clearInterval(especialCoinInterval);
     clearInterval(bombInterval);
+    clearInterval(birdInterval);
     
     let propContainer = document.getElementById("propContainer");
     while (propContainer.firstChild){
@@ -118,7 +120,7 @@ function startGame(){
     especialCoinInterval = setInterval(() => {
         createEspecialCoin();
     }, 5000);
-    setInterval(() =>{
+    birdInterval = setInterval(() =>{
         createBird();
     }, 9000);
     document.getElementById("botonJugar").style.display = "none";
