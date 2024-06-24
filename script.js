@@ -4,6 +4,10 @@ import { createCoin, createEspecialCoin } from './coinInteractions.js';
 import { createBomb } from './bombInteractions.js';
 import { spawnGun, moveGun} from './gunInteractions.js';
 
+let coinInterval;
+let especialCoinInterval;
+let bombInterval;
+
 
 function createIngameScore(){
     let score = document.createElement("span");
@@ -11,6 +15,56 @@ function createIngameScore(){
     score.textContent = "0";
     let game = document.getElementById("game");
     game.appendChild(score);
+}
+
+function createIngameTimer(){
+    let timer = document.createElement("span");
+    timer.id = "timer";
+
+    timer.textContent = "5";
+    const game = document.getElementById("game");
+    game.appendChild(timer);
+
+}
+
+function startTimer(){
+    let timer = document.getElementById("timer");
+    let duration = 5;
+
+    let countdown = setInterval(() => {
+        let minutes = Math.floor(timer / 60);
+        let seconds = duration % 60;
+
+        
+        timer.textContent = `${seconds}`;
+
+        if (--duration < 0) {
+            clearInterval(countdown);
+            endGame();
+        }
+    }, 1000);
+}
+
+function endGame(){
+    ingameMusic.pause();
+   
+    clearInterval(coinInterval);
+    clearInterval(especialCoinInterval);
+    clearInterval(bombInterval);
+    
+    let propContainer = document.getElementById("propContainer");
+    while (propContainer.firstChild){
+        propContainer.removeChild(propContainer.firstChild);
+    }
+    propContainer.remove();
+
+    document.getElementById("score").remove();
+    document.getElementById("timer").remove();
+    document.getElementById("gameGun").remove();
+    document.getElementById("botonJugar").style.display = "inline-block";
+    document.getElementById("volumeContainer").style.display = "inline-block";
+
+    
 }
 
 function createPropContainer(){
@@ -50,18 +104,27 @@ function playPauseMenuTheme(){
 function startGame(){
     createIngameScore();
     createPropContainer();
+    createIngameTimer();
+    startTimer();
     spawnGun();
-    setInterval(()=>{
+    coinInterval = setInterval(()=>{
         createCoin();
-        createBomb();
     }, HARD);  
-    setInterval(() => {
+
+    bombInterval = setInterval(() =>{
+        createBomb();
+    }, HARD)
+    
+    especialCoinInterval = setInterval(() => {
         createEspecialCoin();
     }, 5000);
     document.getElementById("botonJugar").style.display = "none";
     document.getElementById("volumeContainer").style.display = "none";
     menuTheme.pause();
     ingameMusic.play();
+    
+
+    
 }
 
 

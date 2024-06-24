@@ -66,4 +66,5 @@ function shootCoin(coin) {
     }, 100);
 
     return;
+    
 }
