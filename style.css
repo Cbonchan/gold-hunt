@@ -5,7 +5,7 @@
 }
 html{ background-image: url("images/background.jpg");
     background-size: cover; /* Hace que la imagen de fondo cubra todo el fondo */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-repeat: repeat; 
     background-position: center center; /* Centra la imagen de fondo */
     height: 100%; /* Asegura que el html ocupe toda la altura de la ventana */
 }
