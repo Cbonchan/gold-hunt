@@ -99,12 +99,60 @@ fetch('http://localhost:5000/scoreboard/admin')
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      createTable(data);
+      createScoreTable(data);
     })
     .catch((error) => {console.error('Error:', error); });
 
+fetch('http://localhost:5000/achievements')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        createAchievementTable(data);
+    })
+    .catch((error) => {console.error('Error:', error); });
 
-function createTable(data) {
+function createAchievementTable(data) {
+    const achievementDiv = document.getElementById('achievement');
+    const table = document.createElement('table');
+    table.style.width = '100%';
+    table.setAttribute('border', '1');
+
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    const headers = ['Name', 'Description', 'Times Obteined'];
+    headers.forEach(headerText => {
+        const header = document.createElement('th');
+        header.appendChild(document.createTextNode(headerText));
+        headerRow.appendChild(header);
+    });
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    data.forEach(item => {
+        const row = document.createElement('tr');
+
+        const nameCell = document.createElement('td');
+        nameCell.appendChild(document.createTextNode(item.name));
+        row.appendChild(nameCell);
+
+        const descriptionCell = document.createElement('td');
+        descriptionCell.appendChild(document.createTextNode(item.description));
+        row.appendChild(descriptionCell);
+
+        const timesObteinedCell = document.createElement('td');
+        timesObteinedCell.appendChild(document.createTextNode(item.timesObtained));
+        row.appendChild(timesObteinedCell);
+
+        tbody.appendChild(row);
+    });
+    table.appendChild(tbody);
+
+    achievementDiv.appendChild(table);
+
+}
+
+function createScoreTable(data) {
     const scoreboardDiv = document.getElementById('scoreboard');
     const table = document.createElement('table');
     table.style.width = '100%';
@@ -194,6 +242,50 @@ function admin(){
         }
     })
     .catch((error) => {console.error('Error:', error); });
+}
+
+
+function addAchievement(){
+    var option1 = document.querySelector('#duckhunt');
+    var option2 = document.querySelector('#bluegold');
+    var option3 = document.querySelector('#millionaire');
+    var option4 = document.querySelector('#bomberman');
+    var achievementList = [];
+
+    if (option1.checked) {
+        achievementList.push(option1.name);
+    }
+    if (option2.checked) {
+        achievementList.push(option2.name);
+    }
+    if (option3.checked) {
+        achievementList.push(option3.name);
+    }
+    if (option4.checked) {
+        achievementList.push(option4.name);
+    }
+    const requests = achievementList.map(achievement => {
+        return fetch('http://localhost:5000/achievements/update', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: achievement })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.hasOwnProperty('message')) {
+                console.log('Achievement updated:', data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error updating achievement:', error);
+        });
+    });
+
+   
+    Promise.all(requests).then(() => location.reload());
+
 }
 
 window.onload = function() {

@@ -9,14 +9,40 @@
 }
 
 #scoreboard{
-    padding: 2em;
-    
     display: flex;
-    text-align: center;
-    margin: auto;
-    width: 35em;
+    justify-content: center;
+    width: 500px; 
+    margin: 0 auto; 
+    padding: 0px 20px 0px 20px;
+ 
 }
 
 .none{
     display: none;
+}
+
+#achievement{
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    margin: 0 auto;
+    padding: 0px 40px 0px 20px;
+}
+
+th, td {
+    padding: 1px; 
+    text-align: center; 
+    border: 1px solid #ddd; 
+}
+
+#tableLabel{
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    
+}
+
+.checkboxCointainer{
+    width: 550px;
 }

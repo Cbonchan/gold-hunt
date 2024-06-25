@@ -33,6 +33,23 @@
             <input type="text" id="scoreUpdate" placeholder="Enter Score" class="input"></input>
             <button onclick="updateRecord()">Update</button>
         </div>
+        <label for="checkboxDiv" style="padding: 0.5em;">Add Global achievement obtention</label>
+        <div class="inputSector checkboxCointainer" style="padding-bottom: 0.5em;" id="checkboxDiv">
+            <label>Duck-Hunt
+                <input type="checkbox" name="Duck-Hunt" class="opcion" id=duckhunt>
+            </label>
+            <label>Blue Gold?
+                <input type="checkbox" name="Blue Gold?!" class="opcion" id="bluegold">
+            </label>
+            <label>Millionaire
+                <input type="checkbox" name="Millionaire" class="opcion" id="millionaire">
+            </label>
+            <label>Bomber Man
+                <input type="checkbox" name="Bomber Man" class="opcion" id="bomberman">
+            </label>
+            <button onclick="addAchievement()">Add</button>
+        </div>
+    
         <div class="inputSector">
             <label for="deleteAll" style="padding-right: 0.5em; padding-bottom: 0.5em;">Delete All</label>
             <button onclick="deleteAll()">Delete</button>
@@ -41,7 +58,12 @@
             <label for="fakeData" style="padding-bottom: 0.5em; padding-right: 0.5em;">Include Fake data for testing</label>
             <button onclick="fakeData()">Enter</button>
         </div>
-        <div id="scoreboard"></div>
+        <div id="tables">
+            <label for="achievement" id="tableLabel">achievement</label>
+            <div id="achievement"></div>
+            <label for="scoreboard" id="tableLabel">scoreboard</label>
+            <div id="scoreboard"></div>
+        </div>
         <script src="script.js"></script>
     </div>
 </body>
