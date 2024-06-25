@@ -69,7 +69,7 @@ function shootCoin(coin) {
     }
 
     let gun = document.querySelector(".gun");
-    gun.src = "../images/gun2.png"
+    gun.src = "./images/gun2.png";
     gameState.isShooting = true;
     playGunShot();
     if (coin.classList.contains("especialCoin")){
@@ -84,7 +84,7 @@ function shootCoin(coin) {
     updateScore();
     coin.remove();
     setTimeout(() => {
-        gun.src = "../images/gun.png";
+        gun.src = "./images/gun.png";
         gameState.isShooting = false;
     }, 100);
 
