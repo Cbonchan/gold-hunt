@@ -31,10 +31,10 @@ def return_scoreboard():
         {"name": "Lucia Gomez", "score": 88},
         {"name": "Miguel Torres", "score": 95},
         {"name": "Sofia Ramirez", "score": 82},
-        {"name": "Pedro Fernandez", "score": 76},
-        {"name": "Marta Sanchez", "score": 90},
-        {"name": "Diego Gutierrez", "score": 84},
-        { "name": "Elena Morales", "score": 89}
+        {"name": "Pedro Fernandez", "score": 5},
+        {"name": "Marta Sanchez", "score": 9},
+        {"name": "Diego Gutierrez", "score": 20},
+        { "name": "Elena Morales", "score": 10}
     ]
     achievements = Achievement.query.all()
     for score in fakeScore:
@@ -53,10 +53,25 @@ def return_scoreboard():
 @app.route('/scoreboard/add', methods=['POST'])
 def add_score():
     data = request.get_json()
-    new_score = Scoreboard(name=data['name'], score=data['score'])
-    db.session.add(new_score)
-    db.session.commit()
-    return  jsonify({"message": "Score added successfully"})
+
+    name = data['name']
+    new_score = data['score'];
+
+    registered_player = Scoreboard.query.filter_by(name=name).first()
+
+    if registered_player:
+        if new_score > registered_player.score:
+            registered_player.score = new_score;
+            db.session.commit()
+            return jsonify({"message" : f"Puntaje actualizado para {name}"})
+        else:
+            return jsonify({"message" : f"El puntaje nuevo de {name} no es mayor, por lo tanto no se pudo actualizar"})
+
+    else:
+        new_score = Scoreboard(name=data['name'], score=data['score'])
+        db.session.add(new_score)
+        db.session.commit()
+        return  jsonify({"message": "Score added successfully"})
 
 @app.route('/scoreboard/top', methods=['GET'])
 def get_top10():
