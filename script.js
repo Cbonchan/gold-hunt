@@ -62,6 +62,14 @@ function endGame(){
     document.getElementById("gameGun").remove();
     document.getElementById("botonJugar").style.display = "inline-block";
     document.getElementById("volumeContainer").style.display = "inline-block";
+
+    let playerName = prompt("Juego terminado. Ingresa tu nombre:");
+
+    if (!playerName){
+        return;
+    }
+
+    enviarPuntaje(playerName, gameState.totalPoints);
     gameState.totalPoints = 0;
 
     
@@ -125,9 +133,23 @@ function startGame(){
     document.getElementById("volumeContainer").style.display = "none";
     menuTheme.pause();
     ingameMusic.play();
-    
+}
 
-    
+function enviarPuntaje(name, score){
+    fetch('http://localhost:5000/scoreboard/add', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: name, score: score })
+    })
+    .then(response => response.json())
+    .then(data =>{
+        console.log(data.message);
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    })
 }
 
 
