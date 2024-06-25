@@ -1,3 +1,37 @@
+function addRecord(){
+    let scoreInput = document.getElementById("scoreAdd");
+    let nameInput = document.getElementById("nameAdd");
+    let score = scoreInput.value;
+    let name = nameInput.value;
+    if (name === '') {
+        nameInput.placeholder = 'Name not valid';
+        return;
+    }
+    if (score === '' || isNaN(score)) {
+        scoreInput.placeholder = 'Score not valid';
+        return;
+    }
+    let dict = {
+        name: name,
+        score: score
+    };
+    fetch("http://localhost:5000/scoreboard/add", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dict)
+    })
+    .then((response) => response.json())
+    .then(data => {
+        if (data.hasOwnProperty('message')) {
+            console.log('Score added:', data.message);
+            location.reload();
+        }
+    })
+    .catch((error) => console.log("ERROR", error))
+}
+
 function removeRecord(){
     let idInput = document.getElementById("idRemove");
     let id = idInput.value;
@@ -242,6 +276,11 @@ function admin(){
         }
     })
     .catch((error) => {console.error('Error:', error); });
+}
+
+function logOut(){
+    localStorage.removeItem('authentication');
+    location.reload();
 }
 
 
