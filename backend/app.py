@@ -116,7 +116,7 @@ def delete_by_id():
 
 @app.route('/achievements', methods=['GET'])
 def get_achievements():
-    achievements = Achievement.query.all()
+    achievements = Achievement.query.order_by(Achievement.name).all()
     achievements_json = [{"id": entry.id ,"name": entry.name, "description": entry.description, "timesObtained": entry.timesObtained} for entry in achievements]
     return jsonify(achievements_json)
 
