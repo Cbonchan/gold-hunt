@@ -10,18 +10,21 @@ CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/postgres'  
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+#Returns a json with the scoreboard filtered by the score in descending order
 @app.route('/scoreboard', methods=['GET'])
 def get_scoreboard():
     scoreboard = Scoreboard.query.order_by(Scoreboard.score.desc()).all()
     scoreboard_json = [{"name": entry.name, "score": entry.score, "datetime": entry.datetime} for entry in scoreboard]
     return jsonify(scoreboard_json)
 
+#Returns a json with a complete scoreboard filtered by the score in descending order for the admin page
 @app.route('/scoreboard/admin', methods=['GET'])
 def get_admin_scoreboard():
     scoreboard = Scoreboard.query.order_by(Scoreboard.score.desc()).all()
     scoreboard_json = [{"id":entry.id ,"name": entry.name, "score": entry.score, "datetime": entry.datetime} for entry in scoreboard]
     return jsonify(scoreboard_json)
 
+#Put the fake data in the scoreboard table
 @app.route('/scoreboard/test', methods=['GET'])
 def return_scoreboard():
     fakeScore = [
@@ -49,7 +52,7 @@ def return_scoreboard():
 
     return jsonify({"message": "Fake data added"})
 
-
+#Add a new score to the scoreboard table recibing a json with the name and score, updates the score if the player is already registered
 @app.route('/scoreboard/add', methods=['POST'])
 def add_score():
     data = request.get_json()
@@ -73,13 +76,14 @@ def add_score():
         db.session.commit()
         return  jsonify({"message": "Score added successfully"})
 
+#Returns a json with the top 10 scores in the scoreboard table filtered by the score in descending order
 @app.route('/scoreboard/top', methods=['GET'])
 def get_top10():
     top10 = Scoreboard.query.order_by(Scoreboard.score.desc()).limit(10).all()
     top10_json = [{"name": entry.name, "score": entry.score, "datetime": entry.datetime} for entry in top10]
     return jsonify(top10_json)
 
-
+#Delete all data in the scoreboard table
 @app.route('/scoreboard/clear', methods=['DELETE'])
 def clear_scoreboard():
     Scoreboard.query.delete()
@@ -88,6 +92,7 @@ def clear_scoreboard():
     db.session.commit()
     return jsonify({'message': 'Scoreboard cleared'})
 
+#Update the name and/or the score of a player in the scoreboard table by the id
 @app.route('/scoreboard/update_by_id', methods=['PUT'])
 def update_by_id():
     data = request.get_json()
@@ -104,6 +109,7 @@ def update_by_id():
     db.session.commit()
     return jsonify({'message': 'Score updated'})
 
+#Delete a player in the scoreboard table by the id
 @app.route('/scoreboard/delete_by_id', methods=['DELETE'])
 def delete_by_id():
     data = request.get_json()
@@ -114,12 +120,14 @@ def delete_by_id():
     db.session.commit()
     return jsonify({'message': 'Score deleted'})
 
+#Returns a json with the achievements in the achievements table ordered by name
 @app.route('/achievements', methods=['GET'])
 def get_achievements():
     achievements = Achievement.query.order_by(Achievement.name).all()
     achievements_json = [{"id": entry.id ,"name": entry.name, "description": entry.description, "timesObtained": entry.timesObtained} for entry in achievements]
     return jsonify(achievements_json)
 
+#Updates the timesObtained+1 of an achievement by the name
 @app.route('/achievements/update', methods=['PUT'])
 def update_times_obtained():
     data = request.get_json()
@@ -130,6 +138,7 @@ def update_times_obtained():
     db.session.commit()
     return jsonify({'message': 'Achievement updated'})
 
+#Validate the admin password
 @app.route('/adminLog', methods=['POST'])
 def admin_log():
     data = request.get_json()
