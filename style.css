@@ -9,21 +9,69 @@ html{ background-image: url("images/background.jpg");
     background-position: center center; /* Centra la imagen de fondo */
     height: 100%; /* Asegura que el html ocupe toda la altura de la ventana */
 }
-#mainTitle{ background-image: url(https://itaku.ee/api/media_2/gallery_imgs/Orange_wood_planks_QcKMvTH/lg.jpg);
+#mainTitle{ 
+    margin-bottom: 1em;
+    
+
 }
+
+#menuContainer{
+    
+    padding-top: 35%;
+    
+}
+
 #mainTitle h1{
     font-family: 'Press Start 2P', cursive;
-    font-size: 2em;
+    font-size: 4em;
     color: rgb(255, 150, 12);
     
-    background-color: rgba(0, 0, 0, 0.438);
-    padding: 1em;
-    text-align: center;
+    
+    justify-content: center;
+    
 }
-nav{ background-image: url(https://as1.ftcdn.net/v2/jpg/04/93/15/10/1000_F_493151022_FF61vE6JVKl445UiWeJAzxnJYN2YIHkf.jpg);
-    padding-bottom: 0.5em;
-    padding-top: 0.5em;
+
+.focus-in-contract-bck {
+	-webkit-animation: focus-in-contract-bck 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: focus-in-contract-bck 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
+
+ @-webkit-keyframes focus-in-contract-bck {
+    0% {
+      letter-spacing: 1em;
+      -webkit-transform: translateZ(300px);
+              transform: translateZ(300px);
+      -webkit-filter: blur(12px);
+              filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateZ(12px);
+              transform: translateZ(12px);
+      -webkit-filter: blur(0);
+              filter: blur(0);
+      opacity: 1;
+    }
+  }
+  @keyframes focus-in-contract-bck {
+    0% {
+      letter-spacing: 1em;
+      -webkit-transform: translateZ(300px);
+              transform: translateZ(300px);
+      -webkit-filter: blur(12px);
+              filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateZ(12px);
+              transform: translateZ(12px);
+      -webkit-filter: blur(0);
+              filter: blur(0);
+      opacity: 1;
+    }
+  }
+  
+
 #navBar{
     padding-top: 0.8em;
     padding-bottom: 0.8em;
@@ -67,7 +115,8 @@ main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 700px;
+    
+    height: 900px;
     position: relative;
     cursor: crosshair;
 }
@@ -167,6 +216,74 @@ footer{ background-image: url(https://i.pinimg.com/474x/93/04/20/93042048067c5d3
     -webkit-user-select: none;
     -ms-user-select: none;
 }
+
+.jello-horizontal {
+	-webkit-animation: jello-horizontal 1.8s infinite both;
+	        animation: jello-horizontal 1.8s infinite both;
+}
+
+ @-webkit-keyframes jello-horizontal {
+    0% {
+      -webkit-transform: scale3d(1, 1, 1);
+              transform: scale3d(1, 1, 1);
+    }
+    30% {
+      -webkit-transform: scale3d(1.25, 0.75, 1);
+              transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+      -webkit-transform: scale3d(0.75, 1.25, 1);
+              transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+      -webkit-transform: scale3d(1.15, 0.85, 1);
+              transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+      -webkit-transform: scale3d(0.95, 1.05, 1);
+              transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+      -webkit-transform: scale3d(1.05, 0.95, 1);
+              transform: scale3d(1.05, 0.95, 1);
+    }
+    100% {
+      -webkit-transform: scale3d(1, 1, 1);
+              transform: scale3d(1, 1, 1);
+    }
+  }
+  @keyframes jello-horizontal {
+    0% {
+      -webkit-transform: scale3d(1, 1, 1);
+              transform: scale3d(1, 1, 1);
+    }
+    30% {
+      -webkit-transform: scale3d(1.25, 0.75, 1);
+              transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+      -webkit-transform: scale3d(0.75, 1.25, 1);
+              transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+      -webkit-transform: scale3d(1.15, 0.85, 1);
+              transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+      -webkit-transform: scale3d(0.95, 1.05, 1);
+              transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+      -webkit-transform: scale3d(1.05, 0.95, 1);
+              transform: scale3d(1.05, 0.95, 1);
+    }
+    100% {
+      -webkit-transform: scale3d(1, 1, 1);
+              transform: scale3d(1, 1, 1);
+    }
+  }
+  
+
 #botonJugar{
     font-family: 'Press Start 2P', cursive;
     background-color: rgba(0, 0, 0, 0.411);
@@ -175,9 +292,10 @@ footer{ background-image: url(https://i.pinimg.com/474x/93/04/20/93042048067c5d3
     font-weight: bold;
     border-radius: 10px;
     border: 2px solid black;
-
+    
     padding: 1em;
-    margin: auto; 
+    margin-left: 8.5em;
+    
     transition: 0.5s;
 }
 
@@ -188,14 +306,16 @@ footer{ background-image: url(https://i.pinimg.com/474x/93/04/20/93042048067c5d3
 }
 
 #menuMusicButton{
-    display: flex;
+    
     justify-content: center;
     align-items: center;
+    margin-top: 1em;
+    
     
 }
 
 #menuMusicImage {
-    width: 50px;
+    width: 40px;
     height:auto;
 }
 
