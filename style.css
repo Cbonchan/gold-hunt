@@ -195,12 +195,6 @@ main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4
     cursor: crosshair;
 }
 
-
-footer{ background-image: url(https://i.pinimg.com/474x/93/04/20/93042048067c5d3ca5c33ea93c8c931b.jpg);
-    border: 2px solid black;
-}
-
-
 .goldenCoinBase{
     border-color: black;
 }
@@ -287,10 +281,8 @@ footer{ background-image: url(https://i.pinimg.com/474x/93/04/20/93042048067c5d3
     font-weight: bold;
     border-radius: 10px;
     border: 2px solid black;
-    
     padding: 1em;
-    margin-left: 8.5em;
-    
+    margin-left: 8.5em; 
     transition: 0.5s;
 }
 
@@ -301,36 +293,16 @@ footer{ background-image: url(https://i.pinimg.com/474x/93/04/20/93042048067c5d3
 }
 
 #menuMusicButton{
-    
     justify-content: center;
     align-items: center;
     margin-top: 1em;
-    
-    
+
 }
 
 #menuMusicImage {
     width: 40px;
     height:auto;
 }
-
-
-#scoreboard{
-    position: relative;
-    top: 2em;
-    color: white;
-    font-family: 'Press Start 2P', cursive;
-    background-color: black;
-    margin: auto;
-    
-    padding: 10px;
-    border-radius: 10px; 
-    width: 79%; 
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-}
-
 
 #infoContainer{
     margin-top: 200px;
@@ -358,23 +330,3 @@ img.gun{
      
 }
 
-
-#admin{
-    margin-left: 5em;
-    background-color: rgba(255, 255, 255, 0.678);
-    padding: 1em;
-    border-radius: 10px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.70em;
-}
-#admin:hover{
-    background-color: rgba(255, 255, 255, 0.911);
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-#adminZone{
-    background-color: rgba(0, 0, 0, 0.411);
-    padding: 1em;
-    border-radius: 10px;
-}

@@ -1,0 +1,114 @@
+*{
+    max-width: 1000px;
+    margin: 0 auto; /* Esto lo uso para centrar todos los elementos */
+    padding: 0 auto;
+}
+html{ background-image: url("../images/background.jpg");
+    background-size: cover; /* Hace que la imagen de fondo cubra todo el fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center center; /* Centra la imagen de fondo */
+    height: 100%; /* Asegura que el html ocupe toda la altura de la ventana */
+}
+#mainTitle{ background-image: url(https://itaku.ee/api/media_2/gallery_imgs/Orange_wood_planks_QcKMvTH/lg.jpg);
+}
+#mainTitle h1{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2em;
+    color: rgb(255, 150, 12);
+    
+    background-color: rgba(0, 0, 0, 0.438);
+    padding: 1em;
+    text-align: center;
+}
+nav{
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+}
+#navBar{
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    background-color: rgba(32, 32, 32, 0.411);
+
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    
+}
+#navBar li{
+    flex: 1;
+    transition: background-color 0.7s;
+}
+#navBar li:hover{
+    
+    background-color: rgba(7, 4, 0, 0.945);
+}
+#navBar li a{
+    font-family: 'Press Start 2P', cursive;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: rgb(206, 206, 206);
+    padding: 1em;
+    transition: color 1s;
+}
+#navBar li a:hover{
+    color: rgb(255, 217, 0);
+}
+
+main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4cac659968f1cfbaer1-480-480v2_uhq.jpg);
+    min-width: 800px;
+    min-height: 600px;
+}
+
+.no-select{
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+
+
+#scoreboard{
+    position: relative;
+    top: 2em;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    background-color: black;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px; 
+    width: 79%; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+
+#score{
+    font-family: 'Press Start 2P', cursive;
+    color:white;
+}
+
+
+#admin{
+    margin-left: 5em;
+    background-color: rgba(255, 255, 255, 0.678);
+    padding: 1em;
+    border-radius: 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.70em;
+}
+#admin:hover{
+    background-color: rgba(255, 255, 255, 0.911);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+#adminZone{
+    background-color: rgba(0, 0, 0, 0.411);
+    padding: 1em;
+    border-radius: 10px;
+}
