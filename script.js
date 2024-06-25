@@ -43,6 +43,7 @@ function startTimer(){
     }, 1000);
 }
 
+
 function endGame(){
     ingameMusic.pause();
    
@@ -63,14 +64,36 @@ function endGame(){
     document.getElementById("botonJugar").style.display = "inline-block";
     document.getElementById("volumeContainer").style.display = "inline-block";
 
-    let playerName = prompt("Juego terminado. Ingresa tu nombre:");
+    let submitDiv = document.createElement("div");
+    submitDiv.id = "submitDiv";
+    submitDiv.className = "swirl-in-bck";
+    submitDiv.innerHTML = `
+        <form id="scoreForm">
+            <label for="playerName">Name:</label>
+            <input type="text" id="playerName" name="name" required><br><br>
+            <input type="hidden" id="playerScore" name="score" value="${gameState.totalPoints}">
+            <input type="submit" value="Submit score">
+        </form>
+    `;
 
-    if (!playerName){
-        return;
-    }
 
-    enviarPuntaje(playerName, gameState.totalPoints);
-    gameState.totalPoints = 0;
+    document.getElementById("game").appendChild(submitDiv);
+
+    document.getElementById("scoreForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        let formData = new FormData(this);
+        let data = {
+            name: formData.get("name"),
+            score: gameState.totalPoints
+        };
+
+        enviarPuntaje(data.name, data.score);
+        gameState.totalPoints = 0;
+
+        submitDiv.remove();
+        document.getElementById("menuContainer").style.display = "inline-block";
+    });
 
     
 }
@@ -129,8 +152,9 @@ function startGame(){
     birdInterval = setInterval(() =>{
         createBird();
     }, 9000);
-    document.getElementById("botonJugar").style.display = "none";
+    document.getElementById("menuContainer").style.display = "none";
     document.getElementById("volumeContainer").style.display = "none";
+    
     menuTheme.pause();
     ingameMusic.play();
 }

@@ -120,6 +120,51 @@ main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4
     text-align: center;
 }
 
+#submitDiv {
+  height: 100px;
+  width: 200px;
+  position: absolute;
+  top: 45%;
+  left: 37.2%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+}
+
+.swirl-in-bck {
+	-webkit-animation: swirl-in-bck 0.65s ease-out both;
+	        animation: swirl-in-bck 0.65s ease-out both;
+}
+
+ @-webkit-keyframes swirl-in-bck {
+  0% {
+    -webkit-transform: rotate(540deg) scale(5);
+            transform: rotate(540deg) scale(5);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotate(0) scale(1);
+            transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes swirl-in-bck {
+  0% {
+    -webkit-transform: rotate(540deg) scale(5);
+            transform: rotate(540deg) scale(5);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotate(0) scale(1);
+            transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+
+
 .coin{ background-image: url('https://i.gifer.com/Fw3P.gif'); 
     position: absolute;
     width: 80px; 
@@ -305,7 +350,7 @@ main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4
 }
 
 #infoContainer{
-    margin-top: 200px;
+    margin-top: 640px;
 }
 
 #infoContainer span{
