@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from sqlalchemy import text
-from model import db, Scoreboard
+from model import db, Scoreboard, Achievement
+import random
 
 app = Flask(__name__)
 CORS(app)
@@ -21,7 +22,6 @@ def get_admin_scoreboard():
     scoreboard_json = [{"id":entry.id ,"name": entry.name, "score": entry.score, "datetime": entry.datetime} for entry in scoreboard]
     return jsonify(scoreboard_json)
 
-#este endpoint es para ingresar desde la web, agrega puntajes falsos a la base de datos
 @app.route('/scoreboard/test', methods=['GET'])
 def return_scoreboard():
     fakeScore = [
@@ -36,10 +36,17 @@ def return_scoreboard():
         {"name": "Diego Gutierrez", "score": 84},
         { "name": "Elena Morales", "score": 89}
     ]
+    achievements = Achievement.query.all()
     for score in fakeScore:
         new_score = Scoreboard(name=score['name'], score=score['score'])
         db.session.add(new_score)
         db.session.commit()
+        random_achievements = random.sample(achievements, 2)
+        #por cada entry de los fakescores se le asignan 2 logros aleatorios 
+        for achievement in random_achievements:
+            achievement.timesObtained += 1
+    db.session.commit()
+
     return jsonify({"message": "Fake data added"})
 
 
@@ -62,6 +69,7 @@ def get_top10():
 def clear_scoreboard():
     Scoreboard.query.delete()
     db.session.execute(text("ALTER SEQUENCE scoreboard_id_seq RESTART WITH 1;"))
+    Achievement.query.update({Achievement.timesObtained: 0})
     db.session.commit()
     return jsonify({'message': 'Scoreboard cleared'})
 
@@ -91,6 +99,22 @@ def delete_by_id():
     db.session.commit()
     return jsonify({'message': 'Score deleted'})
 
+@app.route('/achievements', methods=['GET'])
+def get_achievements():
+    achievements = Achievement.query.all()
+    achievements_json = [{"id": entry.id ,"name": entry.name, "description": entry.description, "timesObtained": entry.timesObtained} for entry in achievements]
+    return jsonify(achievements_json)
+
+@app.route('/achievements/update', methods=['PUT'])
+def update_times_obtained():
+    data = request.get_json()
+    achievement = Achievement.query.filter_by(name=data['name']).first()
+    if achievement is None:
+        return jsonify({'error': 'Achievement not found'})
+    achievement.timesObtained += 1
+    db.session.commit()
+    return jsonify({'message': 'Achievement updated'})
+
 @app.route('/adminLog', methods=['POST'])
 def admin_log():
     data = request.get_json()
@@ -98,9 +122,21 @@ def admin_log():
         return jsonify({'message': 'Login successful'})
     return jsonify({'error': 'Invalid credentials'})
 
+def initializeAchievement():
+    with app.app_context():
+        achievements = Achievement.query.all()
+        if len(achievements) > 0:
+            return
+        DuckHunter = Achievement(name='Duck-Hunt', description='Shoot the duck!')
+        BlueGold = Achievement(name='Blue Gold?!', description='You shot all the blue coins!')
+        BomberMan = Achievement(name='Bomber Man', description='Shoot at least 5 bombs!')
+        Millionaire = Achievement(name='Millionaire', description='Scored at least 150 points!')
+        db.session.add_all({DuckHunter, BlueGold, BomberMan, Millionaire})
+        db.session.commit()
 
 if __name__ == '__main__':
     db.init_app(app)
     with app.app_context():
         db.create_all()
+    initializeAchievement()
     app.run(host='0.0.0.0', debug=True, port=5000)

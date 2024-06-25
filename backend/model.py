@@ -16,3 +16,14 @@ class Scoreboard(db.Model):
         self.name = name
         self.score = score
         self.datetime = datetime.datetime.now().strftime("%d/%m %H:%M")
+
+class Achievement(db.Model):
+    __tablename__ = 'achievement'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+    description = db.Column(db.String(80), nullable=False)
+    timesObtained = db.Column(db.Integer, nullable=False, default=0)
+
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description
