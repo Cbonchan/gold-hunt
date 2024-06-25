@@ -6,5 +6,6 @@ export const gameState = {
     bulletsShooted: 0,
     bulletsOfMag: 7,
     totalShotsFired: 0,
-    shotsMissed: 0
+    shotsMissed: 0,
+    gameDuration: 7
 };

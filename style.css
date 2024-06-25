@@ -11,22 +11,16 @@ html{ background-image: url("images/background.jpg");
 }
 #mainTitle{ 
     margin-bottom: 1em;
-    
-
 }
 
 #menuContainer{
-    
     padding-top: 35%;
-    
 }
 
 #mainTitle h1{
     font-family: 'Press Start 2P', cursive;
     font-size: 4em;
     color: rgb(255, 150, 12);
-    
-    
     justify-content: center;
     
 }
@@ -76,7 +70,6 @@ html{ background-image: url("images/background.jpg");
     padding-top: 0.8em;
     padding-bottom: 0.8em;
     background-color: rgba(32, 32, 32, 0.411);
-
     display: flex;
     justify-content: space-around;
     list-style-type: none;
@@ -123,6 +116,8 @@ main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4
 
 #timer{
     font-family: 'Press Start 2P', cursive;
+    color: white;
+    text-align: center;
 }
 
 .coin{ background-image: url('https://i.gifer.com/Fw3P.gif'); 
@@ -327,6 +322,7 @@ footer{ background-image: url(https://i.pinimg.com/474x/93/04/20/93042048067c5d3
     font-family: 'Press Start 2P', cursive;
     background-color: black;
     margin: auto;
+    
     padding: 10px;
     border-radius: 10px; 
     width: 79%; 
@@ -336,10 +332,22 @@ footer{ background-image: url(https://i.pinimg.com/474x/93/04/20/93042048067c5d3
 }
 
 
+#infoContainer{
+    margin-top: 200px;
+}
+
+#infoContainer span{
+    display: block;    
+}
+
+
 #score{
+    text-align: center;
     font-family: 'Press Start 2P', cursive;
     color:white;
+    padding-bottom: 1em;
 }
+
 
 img.gun{
     position: absolute;

@@ -13,32 +13,29 @@ let birdInterval;
 function createIngameScore(){
     let score = document.createElement("span");
     score.id = "score";
-    score.textContent = "0";
-    let game = document.getElementById("game");
-    game.appendChild(score);
+    score.textContent = "Score:" + gameState.totalPoints;
+    let infoContainer = document.getElementById("infoContainer");
+    infoContainer.appendChild(score);
 }
 
 function createIngameTimer(){
     let timer = document.createElement("span");
     timer.id = "timer";
 
-    timer.textContent = "3";
-    const game = document.getElementById("game");
-    game.appendChild(timer);
+    timer.textContent = "Time:" + gameState.gameDuration;
+    const infoContainer = document.getElementById("infoContainer");
+    infoContainer.appendChild(timer);
 
 }
 
 function startTimer(){
     let timer = document.getElementById("timer");
-    let duration = 3;
+    let duration = gameState.gameDuration;
 
     let countdown = setInterval(() => {
-        let minutes = Math.floor(timer / 60);
-        let seconds = duration % 60;
-
         
-        timer.textContent = `${seconds}`;
-
+        let seconds = duration % 60;
+        timer.textContent = "Time:" + seconds;
         if (--duration < 0) {
             clearInterval(countdown);
             endGame();
@@ -105,8 +102,8 @@ function playPauseMenuTheme(){
 }
 
 function startGame(){
-    createIngameScore();
     createPropContainer();
+    createIngameScore();
     createIngameTimer();
     startTimer();
     spawnGun();
