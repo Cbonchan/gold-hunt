@@ -104,6 +104,24 @@ main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4
     min-height: 600px;
 }
 
+.achievement-notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 1000;
+  transition: opacity 1s ease-out;
+}
+
+.achievement-notification.fade-out {
+  opacity: 0;
+}
+
 #game{
     display: flex;
     flex-direction: column;
@@ -341,12 +359,20 @@ main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4
     justify-content: center;
     align-items: center;
     margin-top: 1em;
+    mix-blend-mode: multiply;
+    border: none;
+    image-rendering: pixelated;
 
+}
+
+.pixelated-image {
+  filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="pixelate"><feFlood flood-color="black" result="BLACK"/><feMorphology operator="dilate" radius="4" in="SourceGraphic" result="SOURCE"/><feComposite operator="in" in="BLACK" in2="SOURCE"/><feColorMatrix type="matrix" values="25" result="RESULT"/><feComposite operator="out" in="RESULT"/><feBlend mode="normal" in2="SourceGraphic"/></filter></svg>#pixelate');
 }
 
 #menuMusicImage {
     width: 40px;
     height:auto;
+    mix-blend-mode: multiply;
 }
 
 #infoContainer{

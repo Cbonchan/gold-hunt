@@ -1,5 +1,5 @@
 import { HARD, NORMAL, EASY } from './constants.js';
-import { gameState } from './variables.js';
+import { gameState, gameAchievements} from './variables.js';
 import { createCoin, createEspecialCoin, createBird } from './coinInteractions.js';
 import { createBomb } from './bombInteractions.js';
 import { spawnGun, moveGun} from './gunInteractions.js';
@@ -95,6 +95,9 @@ function endGame(){
         document.getElementById("menuContainer").style.display = "inline-block";
     });
 
+    gameAchievements.bomberMan = false;
+    gameState.bombsShooted = 0;
+
     
 }
 
@@ -174,6 +177,24 @@ function enviarPuntaje(name, score){
     .catch(error => {
         console.error("Error:", error);
     })
+}
+
+export function showAchievementNotification(title, description){
+    let notification = document.createElement("div");
+    notification.classList.add("achievement-notification");
+    notification.innerHTML = `
+    <h2>NEW ACHIEVEMENT</h2>
+    <p>${title}</p>
+    <small> ${description}</small>`;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.classList.add('fade-out');
+        notification.addEventListener('transitionend', () => {
+            notification.remove();
+        });
+    }, 3000);
 }
 
 

@@ -1,6 +1,7 @@
 import { gameState } from './variables.js';
 import { playGunShot } from './soundInteractions.js';
-import { updateScore } from './updateInfo.js';
+import { updateScore, verifyObtainedAchievements } from './updateInfo.js';
+
 
 export function createBomb(){
     let propContainer = document.getElementById("propContainer");
@@ -30,7 +31,12 @@ function shootBomb(bomb){
     gun.src = "images/gun2.png"
     gameState.isShooting = true;
     playGunShot();
-    gameState.totalPoints--;
+    if (gameState.totalPoints > 0){
+        gameState.totalPoints--;
+    }
+    
+    gameState.bombsShooted++;
+    verifyObtainedAchievements();
     updateScore();
     bomb.remove();
     setTimeout(() => {
