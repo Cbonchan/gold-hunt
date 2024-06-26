@@ -5,7 +5,7 @@ import { playGunShot } from './soundInteractions.js';
 import { updateScore } from './updateInfo.js';
 
 export function createCoin() {
-    console.log("Entraste a la funcion createCoin"); // Debug
+    
     let propContainer = document.getElementById("propContainer");
     let coin = document.createElement("div");
     coin.classList.add("coin");
@@ -20,11 +20,11 @@ export function createCoin() {
         propContainer.removeChild(coin);
     }, 1300); // Duración de la animación de caída (1.3s en este caso)
 
-    console.log("createCoin finalizada con exito");
+    
 }
 
 export function createEspecialCoin(){
-    console.log("Entraste a la funcion createCoin"); // Debug
+    
     let propContainer = document.getElementById("propContainer");
     let coin = document.createElement("div");
     coin.classList.add("especialCoin");
@@ -39,11 +39,11 @@ export function createEspecialCoin(){
         propContainer.removeChild(coin);
     }, 1300); // Duración de la animación de caída (1.3s en este caso)
 
-    console.log("createCoin finalizada con exito");
+    
 }
 
 export function createBird(){
-    console.log("Entraste a la funcion createCoin"); // Debug
+    
     let propContainer = document.getElementById("propContainer");
     let coin = document.createElement("div");
     coin.style.left = '0px';
@@ -59,7 +59,7 @@ export function createBird(){
         propContainer.removeChild(coin);
     }, 1300); 
 
-    console.log("createCoin finalizada con exito");
+    
 }
 
 function shootCoin(coin) {

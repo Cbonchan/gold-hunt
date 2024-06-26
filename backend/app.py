@@ -133,7 +133,7 @@ def get_achievements():
 def get_achievement_by_name(name):
     achievement = Achievement.query.filter_by(name=name).first()
     achievement_data = {
-        "name": achievement.name,
+        "name" : achievement.name,
         "description": achievement.description
     }
     return jsonify(achievement_data)
