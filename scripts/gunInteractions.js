@@ -7,6 +7,7 @@ export function spawnGun(){
 
     // De esta manera agregamos un evento para el movimiento del mouse
     document.addEventListener("mousemove", (event) => moveGun(event, gun));
+    
 }
 
 export function moveGun(event, gun) {

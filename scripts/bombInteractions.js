@@ -18,8 +18,6 @@ export function createBomb(){
         propContainer.removeChild(bomb);
     }, 1300); // Duración de la animación de caída (1.3s en este caso)
 
-    
-    
 }
 
 function shootBomb(bomb){

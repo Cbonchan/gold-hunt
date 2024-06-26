@@ -391,6 +391,12 @@ main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4
     padding-bottom: 1em;
 }
 
+@keyframes shake {
+  0% { transform: translateX(-3px); }
+  50% { transform: translateX(1px); }
+  100% { transform: translateX(-3px); }
+}
+
 
 img.gun{
     position: absolute;
@@ -398,6 +404,9 @@ img.gun{
     height: auto;
     bottom: 0;
     pointer-events: none;
+    animation: shake 0.1s infinite; /* Aplica la animación shake */
      
 }
+
+
 
