@@ -10,7 +10,21 @@ export function verifyObtainedAchievements(){
     if (gameState.bombsShooted >= gameAchievements.minimunBombs){
         if (!gameAchievements.bomberMan){
             gameAchievements.bomberMan = true;
-            showAchievementNotification("Bomber Man", "¿Are you stupid?");
+            fetch("http://localhost:5000/achievements/Bomber%20Man")
+            .then (response =>{
+                if (!response.ok){
+                    throw Error("Error in network response" + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data =>{
+                if (data.error){
+                    console.error("Error:", data.error);
+                } else{
+                    showAchievementNotification(data.name, data.description);
+                }
+            })
+            
         }
     }
 }

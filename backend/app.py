@@ -127,6 +127,17 @@ def get_achievements():
     achievements_json = [{"id": entry.id ,"name": entry.name, "description": entry.description, "timesObtained": entry.timesObtained} for entry in achievements]
     return jsonify(achievements_json)
 
+
+#Returns json with one achievement 
+@app.route('/achievements/<name>', methods=['GET'])
+def get_achievement_by_name(name):
+    achievement = Achievement.query.filter_by(name=name).first()
+    achievement_data = {
+        "name": achievement.name,
+        "description": achievement.description
+    }
+    return jsonify(achievement_data)
+
 #Updates the timesObtained+1 of an achievement by the name
 @app.route('/achievements/update', methods=['PUT'])
 def update_times_obtained():
