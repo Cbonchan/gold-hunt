@@ -23,7 +23,9 @@ class Achievement(db.Model):
     name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(80), nullable=False)
     timesObtained = db.Column(db.Integer, nullable=False, default=0)
+    logo = db.Column(db.String(80), nullable=False)
 
-    def __init__(self, name, description):
+    def __init__(self, name, description, logo):
         self.name = name
         self.description = description
+        self.logo = logo
