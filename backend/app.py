@@ -163,8 +163,8 @@ def initializeAchievement():
         achievements = Achievement.query.all()
         if len(achievements) > 0:
             return
-        DuckHunter = Achievement(name='Duck-Hunt', description='Shoot the duck!', logo='./images/duckLogo.gif')
-        BlueGold = Achievement(name='Blue Gold?!', description='You shot all the blue coins!', logo='./images/blueGoldLogo.png')
+        DuckHunter = Achievement(name='Duck-Hunt', description='Kill the duck!', logo='./images/duckLogo.gif')
+        BlueGold = Achievement(name='Blue Gold?!', description='Shoot at least 5 blue coins!', logo='./images/blueGoldLogo.png')
         BomberMan = Achievement(name='Bomber Man', description='Shoot at least 5 bombs!', logo='./images/bombLogo.png')
         Millionaire = Achievement(name='Millionaire', description='Scored at least 150 points!', logo='./images/millionaireLogo.png')
         db.session.add_all({DuckHunter, BlueGold, BomberMan, Millionaire})

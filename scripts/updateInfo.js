@@ -48,5 +48,53 @@ export async function verifyObtainedAchievements(){
             
         }
     }
+
+    if (gameState.blueCoinsShooted >= gameAchievements.minimunBlueGold){
+        if (!gameAchievements.blueGold){
+            gameAchievements.blueGold = true;
+
+            fetch("http://localhost:5000/achievements/Blue%20Gold%3F%21",)
+                .then (response => {
+                    if (!response.ok){
+                        throw Error ("Error in network response" + response.statusText)
+                    }
+                    return response.json();
+                })
+                .then (data => {
+                    if (data.error){
+                        console.error("Error:", data.error);
+                    } else{
+                        showAchievementNotification(data.name, data.description);
+                        const achievementAudio = new Audio("./sounds/achievementSound.mp3");
+                        achievementAudio.play();
+                    }
+                })
+
+        
+        }
+    }
+
+    if (gameState.ducksShooted >= 1){
+        if (!gameAchievements.duckHunt){
+            gameAchievements.duckHunt = true;
+            fetch("http://localhost:5000/achievements/Duck-Hunt",)
+                .then (response => {
+                    if (!response.ok){
+                        throw Error ("Error in network response" + response.status);
+                    }
+                    return response.json()
+                })
+                .then (data => {
+                    if (data.error){
+                        console.error("Error:", data.error);
+                    } else{
+                        showAchievementNotification(data.name), data.description;
+                        const achievementAudio = new Audio("./sounds/achievementSound.mp3");
+                        achievementAudio.play();
+                    }
+                })
+        }
+    }
 }
+
 

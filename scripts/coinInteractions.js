@@ -1,8 +1,8 @@
-import { gameState } from './variables.js';
+import { gameAchievements, gameState } from './variables.js';
 
 import { playGunShot } from './soundInteractions.js';
 
-import { updateScore } from './updateInfo.js';
+import { updateScore, verifyObtainedAchievements } from './updateInfo.js';
 
 export function createCoin() {
     
@@ -74,12 +74,18 @@ function shootCoin(coin) {
     playGunShot();
     if (coin.classList.contains("especialCoin")){
         gameState.totalPoints += 5;
+        gameState.blueCoinsShooted++;
+        verifyObtainedAchievements();
     }
     else if (coin.classList.contains("coin")){
         gameState.totalPoints++;
+        let coinSound = new Audio("./sounds/coinSound.mp3");
+        coinSound.play();
     }
     if (coin.classList.contains("bird")){
         gameState.totalPoints += 10;
+        gameState.ducksShooted++;
+        verifyObtainedAchievements();
     }
     updateScore();
     coin.remove();

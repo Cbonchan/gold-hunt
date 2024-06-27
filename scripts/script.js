@@ -96,7 +96,11 @@ function endGame(){
     });
 
     gameAchievements.bomberMan = false;
+    gameAchievements.blueGold = false;
+    gameAchievements.duckHunt = false;
+    gameState.blueCoinsShooted = 0;
     gameState.bombsShooted = 0;
+    gameState.ducksShooted = 0;
 
     
 }
