@@ -22,7 +22,7 @@ export async function verifyObtainedAchievements(){
                 if (data.error){
                     console.error("Error:", data.error);
                 } else{
-                    showAchievementNotification(data.name, data.description);
+                    showAchievementNotification(data.name, data.description, data.logo);
                     const achievementAudio = new Audio ("./sounds/achievementSound.mp3");
                     achievementAudio.play();
                 }
@@ -64,7 +64,7 @@ export async function verifyObtainedAchievements(){
                     if (data.error){
                         console.error("Error:", data.error);
                     } else{
-                        showAchievementNotification(data.name, data.description);
+                        showAchievementNotification(data.name, data.description, data.logo);
                         const achievementAudio = new Audio("./sounds/achievementSound.mp3");
                         achievementAudio.play();
                     }
@@ -88,7 +88,7 @@ export async function verifyObtainedAchievements(){
                     if (data.error){
                         console.error("Error:", data.error);
                     } else{
-                        showAchievementNotification(data.name), data.description;
+                        showAchievementNotification(data.name, data.description, data.logo);
                         const achievementAudio = new Audio("./sounds/achievementSound.mp3");
                         achievementAudio.play();
                     }

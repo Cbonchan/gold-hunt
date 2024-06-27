@@ -11,11 +11,13 @@ class Scoreboard(db.Model):
     name = db.Column(db.String(80), nullable=False)
     score = db.Column(db.Integer, nullable=False)
     datetime = db.Column(db.String(16), nullable=False)
+    achievementId = db.Column(db.String(32), nullable=False)
 
-    def __init__(self, name, score):
+    def __init__(self, name, score, achievementId):
         self.name = name
         self.score = score
         self.datetime = datetime.datetime.now().strftime("%d/%m %H:%M")
+        self.achievementId = achievementId if achievementId else ""
 
 class Achievement(db.Model):
     __tablename__ = 'achievement'

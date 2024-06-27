@@ -1,8 +1,10 @@
 function addRecord(){
     let scoreInput = document.getElementById("scoreAdd");
     let nameInput = document.getElementById("nameAdd");
+    let achievementIdInput = document.getElementById("achievementIdAdd");
     let score = scoreInput.value;
     let name = nameInput.value;
+    let achievementId = achievementIdInput.value;
     if (name === '') {
         nameInput.placeholder = 'Name not valid';
         return;
@@ -11,9 +13,16 @@ function addRecord(){
         scoreInput.placeholder = 'Score not valid';
         return;
     }
+
+    if (achievementIdInput === '' || isNaN(achievementIdInput)){
+        achievementIdInput.placeholder = 'Achievement not valid'
+    }
+    
     let dict = {
         name: name,
-        score: score
+        score: score,
+        achievementId: achievementId
+
     };
     fetch("http://localhost:5000/scoreboard/add", {
         method: "POST",

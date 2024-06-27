@@ -183,13 +183,14 @@ function enviarPuntaje(name, score){
     })
 }
 
-export function showAchievementNotification(title, description){
+export function showAchievementNotification(title, description, logo){
     let notification = document.createElement("div");
     notification.classList.add("achievement-notification");
     notification.innerHTML = `
     <h2>NEW ACHIEVEMENT</h2>
+    <img src="${logo}" alt="Achievement Logo" />
     <p>${title}</p>
-    <small> ${description}</small>`;
+    <small>${description}</small>`;
 
     document.body.appendChild(notification);
 

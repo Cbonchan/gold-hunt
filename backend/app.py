@@ -14,34 +14,34 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 @app.route('/scoreboard', methods=['GET'])
 def get_scoreboard():
     scoreboard = Scoreboard.query.order_by(Scoreboard.score.desc()).all()
-    scoreboard_json = [{"name": entry.name, "score": entry.score, "datetime": entry.datetime} for entry in scoreboard]
+    scoreboard_json = [{"name": entry.name, "score": entry.score, "datetime": entry.datetime, "achievementId": entry.achievementId} for entry in scoreboard]
     return jsonify(scoreboard_json)
 
 #Returns a json with a complete scoreboard filtered by the score in descending order for the admin page
 @app.route('/scoreboard/admin', methods=['GET'])
 def get_admin_scoreboard():
     scoreboard = Scoreboard.query.order_by(Scoreboard.score.desc()).all()
-    scoreboard_json = [{"id":entry.id ,"name": entry.name, "score": entry.score, "datetime": entry.datetime} for entry in scoreboard]
+    scoreboard_json = [{"id":entry.id ,"name": entry.name, "score": entry.score, "datetime": entry.datetime, "achievementId": entry.achievementId} for entry in scoreboard]
     return jsonify(scoreboard_json)
 
 #Put the fake data in the scoreboard table
 @app.route('/scoreboard/test', methods=['GET'])
 def return_scoreboard():
     fakeScore = [
-        {"name": "Juan Perez", "score": 85},
-        {"name": "Ana Lopez", "score": 92},
-        {"name": "Carlos Diaz", "score": 78},
-        {"name": "Lucia Gomez", "score": 88},
-        {"name": "Miguel Torres", "score": 95},
-        {"name": "Sofia Ramirez", "score": 82},
-        {"name": "Pedro Fernandez", "score": 5},
-        {"name": "Marta Sanchez", "score": 9},
-        {"name": "Diego Gutierrez", "score": 20},
-        { "name": "Elena Morales", "score": 10}
+        {"name": "Juan Perez", "score": 85, "achievementId": "1"},
+        {"name": "Ana Lopez", "score": 92,"achievementId": "1"},
+        {"name": "Carlos Diaz", "score": 78, "achievementId": "1"},
+        {"name": "Lucia Gomez", "score": 88, "achievementId": "1"},
+        {"name": "Miguel Torres", "score": 95, "achievementId": "1"},
+        {"name": "Sofia Ramirez", "score": 82, "achievementId": "1"},
+        {"name": "Pedro Fernandez", "score": 5, "achievementId": "1"},
+        {"name": "Marta Sanchez", "score": 9, "achievementId": "1"},
+        {"name": "Diego Gutierrez", "score": 20, "achievementId": "1"},
+        { "name": "Elena Morales", "score": 10, "achievementId": "1"}
     ]
     achievements = Achievement.query.all()
     for score in fakeScore:
-        new_score = Scoreboard(name=score['name'], score=score['score'])
+        new_score = Scoreboard(name=score['name'], score=score['score'], achievementId=score['achievementId'])
         db.session.add(new_score)
         db.session.commit()
         random_achievements = random.sample(achievements, 2)
@@ -58,20 +58,25 @@ def add_score():
     data = request.get_json()
 
     name = data['name']
-    new_score = data['score'];
-
+    new_score = data['score']
+    achievementId = data['achievementId']
+    
     registered_player = Scoreboard.query.filter_by(name=name).first()
 
     if registered_player:
         if new_score > registered_player.score:
             registered_player.score = new_score;
+            registered_player.achievementId = achievementId
             db.session.commit()
             return jsonify({"message" : f"Puntaje actualizado para {name}"})
         else:
             return jsonify({"message" : f"El puntaje nuevo de {name} no es mayor, por lo tanto no se pudo actualizar"})
 
     else:
-        new_score = Scoreboard(name=data['name'], score=data['score'])
+        
+        
+
+        new_score = Scoreboard(name=data['name'], score=data['score'], achievementId=data["achievementId"])
         db.session.add(new_score)
         db.session.commit()
         return  jsonify({"message": "Score added successfully"})
@@ -164,8 +169,8 @@ def initializeAchievement():
         if len(achievements) > 0:
             return
         DuckHunter = Achievement(name='Duck-Hunt', description='Kill the duck!', logo='./images/duckLogo.gif')
-        BlueGold = Achievement(name='Blue Gold?!', description='Shoot at least 5 blue coins!', logo='./images/blueGoldLogo.png')
-        BomberMan = Achievement(name='Bomber Man', description='Shoot at least 5 bombs!', logo='./images/bombLogo.png')
+        BlueGold = Achievement(name='Blue Gold?!', description='Shoot at least 5 blue coins!', logo='./images/blueGoldLogo.gif')
+        BomberMan = Achievement(name='Bomber Man', description='Shoot at least 5 bombs!', logo='./images/bombLogo.gif')
         Millionaire = Achievement(name='Millionaire', description='Scored at least 150 points!', logo='./images/millionaireLogo.png')
         db.session.add_all({DuckHunter, BlueGold, BomberMan, Millionaire})
         db.session.commit()
