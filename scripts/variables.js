@@ -11,7 +11,8 @@ export const gameState = {
 
     bombsShooted: 0,
     blueCoinsShooted: 0,
-    ducksShooted: 0
+    ducksShooted: 0,
+    obtainedAchievements: []
 };
 
 export const gameAchievements = {
