@@ -100,6 +100,7 @@ function endGame(){
     gameAchievements.bomberMan = false;
     gameAchievements.blueGold = false;
     gameAchievements.duckHunt = false;
+    gameAchievements.d
     gameState.blueCoinsShooted = 0;
     gameState.bombsShooted = 0;
     gameState.ducksShooted = 0;
@@ -191,7 +192,6 @@ export function showAchievementNotification(title, description, logo){
     notification.classList.add("achievement-notification");
     notification.innerHTML = `
     <h2>NEW ACHIEVEMENT</h2>
-    <img src="${logo}" alt="Achievement Logo" />
     <p>${title}</p>
     <small>${description}</small>`;
 
