@@ -46,7 +46,8 @@ function startTimer(){
 
 function endGame(){
     ingameMusic.pause();
-   
+    let victoryMusic = new Audio("./sounds/victoryMusic.mp3");
+    victoryMusic.play(); 
     clearInterval(coinInterval);
     clearInterval(especialCoinInterval);
     clearInterval(bombInterval);
