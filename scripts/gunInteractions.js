@@ -2,6 +2,7 @@ export function spawnGun(){
     let gun = document.createElement("img");
     gun.src = "images/gun.png"
     gun.classList.add("gun");
+    gun.classList.add("no-select")
     gun.id = "gameGun";
     document.getElementById("game").appendChild(gun);
 
