@@ -100,7 +100,7 @@ function endGame(){
     gameAchievements.bomberMan = false;
     gameAchievements.blueGold = false;
     gameAchievements.duckHunt = false;
-    gameAchievements.d
+    gameAchievements.millionare = false;
     gameState.blueCoinsShooted = 0;
     gameState.bombsShooted = 0;
     gameState.ducksShooted = 0;
