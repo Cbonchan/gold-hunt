@@ -112,7 +112,7 @@ function createPropContainer(){
     let game = document.getElementById("game");
     let propContainer = document.createElement("div");
     propContainer.id = "propContainer";
-    propContainer.draggable = "False";
+    propContainer.setAttribute("draggable", "False");
     propContainer.style.width = "80%"; 
     propContainer.style.height = "500px"; 
     propContainer.style.position = "absolute";
