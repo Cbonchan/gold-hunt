@@ -1,6 +1,6 @@
 import { gameState } from './variables.js';
 import { playGunShot } from './soundInteractions.js';
-import { updateScore, verifyObtainedAchievements } from './updateInfo.js';
+import { updateScore, checkObtainedAchievements } from './updateInfo.js';
 
 
 export function createBomb(){
@@ -34,7 +34,7 @@ function shootBomb(bomb){
     }
     
     gameState.bombsShooted++;
-    verifyObtainedAchievements();
+    checkObtainedAchievements();
     updateScore();
     bomb.remove();
     setTimeout(() => {

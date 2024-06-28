@@ -136,6 +136,7 @@ def get_achievements():
 #Returns json with one achievement 
 @app.route('/achievements/<name>', methods=['GET'])
 def get_achievement_by_name(name):
+    print (f"Buscando achievement con el nombre: {name}")
     achievement = Achievement.query.filter_by(name=name).first()
     achievement_data = {
         "name" : achievement.name,

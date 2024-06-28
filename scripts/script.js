@@ -85,10 +85,11 @@ function endGame(){
         let formData = new FormData(this);
         let data = {
             name: formData.get("name"),
-            score: gameState.totalPoints
+            score: gameState.totalPoints,
+            achievementId: "1"
         };
 
-        enviarPuntaje(data.name, data.score);
+        sendScore(data.name, data.score, data.achievementId);
         gameState.totalPoints = 0;
 
         submitDiv.remove();
@@ -166,13 +167,13 @@ function startGame(){
     ingameMusic.play();
 }
 
-function enviarPuntaje(name, score){
+function sendScore(name, score, achievementId){
     fetch('http://localhost:5000/scoreboard/add', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name: name, score: score })
+        body: JSON.stringify({ name: name, score: score , achievementId: achievementId})
     })
     .then(response => response.json())
     .then(data =>{
