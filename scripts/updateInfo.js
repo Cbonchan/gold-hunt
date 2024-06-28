@@ -10,26 +10,30 @@ export function updateScore() {
 export async function checkObtainedAchievements(){
     if (!gameAchievements.bomberMan && gameState.bombsShooted >= gameAchievements.minimunBombs ){
         gameAchievements.bomberMan = true;
-        saveObtainedAchievements("Bomber Man");
+        saveObtainedAchievements("Bomber Man", 2);
     }
     if (!gameAchievements.blueGold && gameState.blueCoinsShooted >= gameAchievements.minimunBlueGold){
         gameAchievements.blueGold = true;
-        saveObtainedAchievements("Blue Gold?!");
+        saveObtainedAchievements("Blue Gold?!", 4);
     }
     if (!gameAchievements.duckHunt && gameState.ducksShooted >= 1){
         gameAchievements.duckHunt = true;
-        saveObtainedAchievements("Duck-Hunt");
+        saveObtainedAchievements("Duck-Hunt", 1);
     }
 
     if (!gameAchievements.millionare && gameState.totalPoints >= 100){
         gameAchievements.millionare = true;
-        saveObtainedAchievements("Millionaire");
+        saveObtainedAchievements("Millionaire", 3);
     }
 }
 
 
-export async function saveObtainedAchievements(achievementName){
+export async function saveObtainedAchievements(achievementName, achievementId){
 
+    gameState.obtainedAchievements.push(achievementId);
+
+    console.log("Logros obtenidos hasta ahora:", gameState.obtainedAchievements);
+    
     // Este fetch es para updatear el achievement seleccionado
     fetch(`http://localhost:5000/achievements/update`, {
         method: "PUT",

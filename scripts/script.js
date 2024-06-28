@@ -83,13 +83,14 @@ function endGame(){
         event.preventDefault();
 
         let formData = new FormData(this);
+        
         let data = {
             name: formData.get("name"),
             score: gameState.totalPoints,
-            achievementId: "1"
+            
         };
 
-        sendScore(data.name, data.score, data.achievementId);
+        sendScore(data.name, data.score);
         gameState.totalPoints = 0;
 
         submitDiv.remove();
@@ -102,8 +103,7 @@ function endGame(){
     gameState.blueCoinsShooted = 0;
     gameState.bombsShooted = 0;
     gameState.ducksShooted = 0;
-
-    
+  
 }
 
 function createPropContainer(){
@@ -167,13 +167,15 @@ function startGame(){
     ingameMusic.play();
 }
 
-function sendScore(name, score, achievementId){
+function sendScore(name, score){
+
+    let achievementsString  = gameState.obtainedAchievements.join(";");
     fetch('http://localhost:5000/scoreboard/add', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name: name, score: score , achievementId: achievementId})
+        body: JSON.stringify({ name: name, score: score , achievementId: achievementsString})
     })
     .then(response => response.json())
     .then(data =>{
