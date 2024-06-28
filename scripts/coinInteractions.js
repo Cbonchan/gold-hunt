@@ -75,18 +75,20 @@ function shootCoin(coin) {
     if (coin.classList.contains("especialCoin")){
         gameState.totalPoints += 5;
         gameState.blueCoinsShooted++;
-        checkObtainedAchievements();
+        
     }
     else if (coin.classList.contains("coin")){
         gameState.totalPoints++;
         let coinSound = new Audio("./sounds/coinSound.mp3");
         coinSound.play();
+        
     }
     if (coin.classList.contains("bird")){
         gameState.totalPoints += 10;
         gameState.ducksShooted++;
-        checkObtainedAchievements();
+        
     }
+    checkObtainedAchievements();
     updateScore();
     coin.remove();
     setTimeout(() => {

@@ -20,6 +20,11 @@ export async function checkObtainedAchievements(){
         gameAchievements.duckHunt = true;
         saveObtainedAchievements("Duck-Hunt");
     }
+
+    if (!gameAchievements.millionare && gameState.totalPoints >= 100){
+        gameAchievements.millionare = true;
+        saveObtainedAchievements("Millionaire");
+    }
 }
 
 
