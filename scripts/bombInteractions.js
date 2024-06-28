@@ -1,5 +1,5 @@
 import { gameState } from './variables.js';
-import { playGunShot } from './soundInteractions.js';
+import { playGunShot, playBombSound } from './soundInteractions.js';
 import { updateScore, checkObtainedAchievements } from './updateInfo.js';
 
 
@@ -29,6 +29,7 @@ function shootBomb(bomb){
     gun.src = "images/gun2.png"
     gameState.isShooting = true;
     playGunShot();
+    playBombSound();
     if (gameState.totalPoints > 0){
         gameState.totalPoints--;
     }
