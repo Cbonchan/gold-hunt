@@ -15,5 +15,8 @@ export function playGunShot() {
 }
 
 export function playBombSound(){
-    // Hacer bombSound // 
+    let audio = document.getElementById('bombSound');
+        audio.pause();
+        audio.currentTime = 0;
+        audio.play();
 }
