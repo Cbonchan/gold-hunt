@@ -20,7 +20,7 @@ html{ background-image: url("images/background.jpg");
 #mainTitle h1{
   font-family: 'Press Start 2P', cursive;
   font-size: 4em;
-  color: rgb(255, 150, 12);
+  color: rgb(73, 44, 5);
   justify-content: center;
   
 }
@@ -431,6 +431,21 @@ filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><fi
 0% { transform: translateX(-3px); }
 50% { transform: translateX(1px); }
 100% { transform: translateX(-3px); }
+}
+
+@keyframes goldGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFC700, 0 0 30px #FFB700, 0 0 40px #FFA700, 0 0 50px #FF9700, 0 0 60px #FF8700, 0 0 70px #FF7700;
+  }
+  50% {
+    text-shadow: 0 0 20px #FFD700, 0 0 30px #FFC700, 0 0 40px #FFB700, 0 0 50px #FFA700, 0 0 60px #FF9700, 0 0 70px #FF8700, 0 0 80px #FF7700;
+  }
+}
+
+.glowTitle {
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+  animation: goldGlow 1.5s infinite;
 }
 
 
