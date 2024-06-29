@@ -129,7 +129,7 @@ def delete_by_id():
 @app.route('/achievements', methods=['GET'])
 def get_achievements():
     achievements = Achievement.query.order_by(Achievement.name).all()
-    achievements_json = [{"id": entry.id ,"name": entry.name, "description": entry.description, "timesObtained": entry.timesObtained, "logo": entry.logo } for entry in achievements]
+    achievements_json = [{"id": entry.id ,"name": entry.name, "description": entry.description, "timesObtained": entry.timesObtained} for entry in achievements]
     return jsonify(achievements_json)
 
 
@@ -140,8 +140,7 @@ def get_achievement_by_name(name):
     achievement = Achievement.query.filter_by(name=name).first()
     achievement_data = {
         "name" : achievement.name,
-        "description": achievement.description,
-        "logo": achievement.logo
+        "description": achievement.description
     }
     return jsonify(achievement_data)
 
@@ -169,10 +168,10 @@ def initializeAchievement():
         achievements = Achievement.query.all()
         if len(achievements) > 0:
             return
-        DuckHunter = Achievement(name='Duck-Hunt', description='Kill the duck!', logo='./images/duckLogo.gif')
-        BlueGold = Achievement(name='Blue Gold?!', description='Shoot at least 5 blue coins!', logo='./images/blueGoldLogo.gif')
-        BomberMan = Achievement(name='Bomber Man', description='Shoot at least 5 bombs!', logo='./images/bombLogo.gif')
-        Millionaire = Achievement(name='Millionaire', description='Scored at least 150 points!', logo='./images/millionaireLogo.png')
+        DuckHunter = Achievement(name='Duck-Hunt', description='Kill the duck!')
+        BlueGold = Achievement(name='Blue Gold?!', description='Shoot at least 5 blue coins!')
+        BomberMan = Achievement(name='Bomber Man', description='Shoot at least 5 bombs!')
+        Millionaire = Achievement(name='Millionaire', description='Scored at least 100 points!')
         db.session.add_all({DuckHunter, BlueGold, BomberMan, Millionaire})
         db.session.commit()
 
