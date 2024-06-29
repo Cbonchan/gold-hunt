@@ -100,7 +100,7 @@ html{ background-image: url("images/background.jpg");
   color: rgb(255, 217, 0);
 }
 
-main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4cac659968f1cfbaer1-480-480v2_uhq.jpg);
+main{ background-image: url("images/backgroundBrick.jpg");
   min-width: 800px;
   min-height: 600px;
 }
