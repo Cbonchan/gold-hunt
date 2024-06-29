@@ -9,6 +9,10 @@ html{ background-image: url("images/background.jpg");
   background-position: center center; /* Centra la imagen de fondo */
   height: 100%; /* Asegura que el html ocupe toda la altura de la ventana */
 }
+
+body {
+  overflow-y: hidden;
+}
 #mainTitle{ 
   margin-bottom: 1em;
 }
@@ -143,28 +147,33 @@ opacity: 0;
   font-family: 'Press Start 2P', cursive;
   color: white;
   text-align: center;
-
 }
 
 #submitDiv {
-height: 260px;
-width: 360px;
+/* height: 260px;
+width: 360px; */
 position: absolute;
-top: 60%;
+bottom: 20%;
 transform: translate(-50%, -50%);
 background-color: rgba(0, 0, 0, 0.7);
-padding: 20px;
+padding: 1em;
 border-radius: 10px;
 color: white;
 text-align: center;
 }
 
 #scoreForm{
-width: 200px;
-height: 100px;
-padding-top: 10%;
 font-family: 'Press Start 2P', cursive;
+display: flex;
+gap: 1em;
+align-items: flex-end;
 }
+
+#scoreForm-Name{
+  display: flex;
+  flex-direction: column;
+}
+
 #scoreForm input{
 font-family: 'Press Start 2P', cursive;
 width: 200px;
@@ -175,8 +184,8 @@ transition: 1s;
 #playerName{
 font-family: 'Press Start 2P', cursive;
 color: black;
-width: 200px;
-height: 100px;
+width: 150px;
+height: 75px;
 margin-top: 15px;
 transition: 1s;
 }
@@ -185,6 +194,10 @@ transition: 1s;
 transition: 1s;
 color: rgb(255, 217, 0);
 background-color: black;
+}
+
+.desaparecida{
+  display: none;
 }
 
 .swirl-in-bck {
