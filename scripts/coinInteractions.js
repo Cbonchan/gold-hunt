@@ -75,6 +75,8 @@ function shootCoin(coin) {
     if (coin.classList.contains("especialCoin")){
         gameState.totalPoints += 5;
         gameState.blueCoinsShooted++;
+        let blueCoinSound = new Audio("./sounds/blueCoinSound.mp3");
+        blueCoinSound.play();
         
     }
     else if (coin.classList.contains("coin")){
