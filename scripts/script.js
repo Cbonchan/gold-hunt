@@ -71,10 +71,14 @@ function endGame(){
     submitDiv.className = "swirl-in-bck";
     submitDiv.innerHTML = `
         <form id="scoreForm">
-            <label for="playerName">Name:</label>
-            <input type="text" id="playerName" name="name" required><br><br>
-            <input type="hidden" id="playerScore" name="score" value="${gameState.totalPoints}">
+            <div id="scoreForm-Name"> 
+                <label for="playerName">Name:</label>
+                <input type="text" id="playerName" name="name" required>
+                <input type="hidden" id="playerScore" name="score" value="${gameState.totalPoints}">
+            </div>
+            
             <input type="submit" value="Submit score">
+    
         </form>
     `;
 
@@ -233,7 +237,7 @@ function startGame(){
 async function sendScore(name, score){
 
     let achievementsString  = gameState.obtainedAchievements.join(";");
-    
+    document.getElementById("topScoreboard").classList.toggle("desaparecida");
     try{
         await fetch ('http://localhost:5000/scoreboard/add',{
            method: 'POST',
@@ -249,13 +253,12 @@ async function sendScore(name, score){
         })
         
         .catch(error => {
-            console.error("Error:", error);
+            console.error("Error:", error);   
         })
     }
     catch{
         console.log(error);
     }
-
     location.reload();
 }
 
