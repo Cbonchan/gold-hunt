@@ -162,7 +162,7 @@ function createAchievementTable(data) {
 
     const thead = document.createElement('thead');
     const headerRow = document.createElement('tr');
-    const headers = ['Name', 'Description', 'Times Obteined'];
+    const headers = ['Id','Name', 'Description', 'Times Obteined'];
     headers.forEach(headerText => {
         const header = document.createElement('th');
         header.appendChild(document.createTextNode(headerText));
@@ -174,6 +174,10 @@ function createAchievementTable(data) {
     const tbody = document.createElement('tbody');
     data.forEach(item => {
         const row = document.createElement('tr');
+
+        const idCell = document.createElement('td');
+        idCell.appendChild(document.createTextNode(item.id));
+        row.appendChild(idCell);
 
         const nameCell = document.createElement('td');
         nameCell.appendChild(document.createTextNode(item.name));
@@ -203,7 +207,7 @@ function createScoreTable(data) {
   
     const thead = document.createElement('thead');
     const headerRow = document.createElement('tr');
-    const headers = ['id','Name', 'Score', 'Date'];
+    const headers = ['id','Name', 'Score', 'Achievement','Date'];
     headers.forEach(headerText => {
       const header = document.createElement('th');
       header.appendChild(document.createTextNode(headerText));
@@ -228,9 +232,14 @@ function createScoreTable(data) {
         scoreCell.appendChild(document.createTextNode(item.score));
         row.appendChild(scoreCell);
 
+        const achievementCell = document.createElement('td');
+        achievementCell.appendChild(document.createTextNode(item.achievementId));
+        row.appendChild(achievementCell);
+
         const dateCell = document.createElement('td');
         dateCell.appendChild(document.createTextNode(item.datetime));
         row.appendChild(dateCell);
+
 
         tbody.appendChild(row);
     });
