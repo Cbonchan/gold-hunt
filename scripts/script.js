@@ -45,6 +45,7 @@ function startTimer(){
 
 
 function endGame(){
+    showTopScoreboard();
     ingameMusic.pause();
     let victoryMusic = new Audio("./sounds/victoryMusic.mp3");
     victoryMusic.play(); 
@@ -91,13 +92,14 @@ function endGame(){
             
         };
 
-        sendScore(data.name, data.score);
-        gameState.totalPoints = 0;
 
+        sendScore(data.name, data.score);
+        
+        gameState.totalPoints = 0;
         submitDiv.remove();
         document.getElementById("menuContainer").style.display = "inline-block";
     });
-
+    
     gameAchievements.bomberMan = false;
     gameAchievements.blueGold = false;
     gameAchievements.duckHunt = false;
@@ -105,11 +107,12 @@ function endGame(){
     gameState.blueCoinsShooted = 0;
     gameState.bombsShooted = 0;
     gameState.ducksShooted = 0;
-  
+    
 }
 
 function createPropContainer(){
-    // Empece creando el contenedor y aplicando propiedades en JS, en un proximo update lo cambio al .css
+    // Empece creando el contenedor y aplicando propiedades en JS, en un proximo update lo cambio al .css 
+    // Nota: 29/6 al final no lo termine updateando XD 
     let game = document.getElementById("game");
     let propContainer = document.createElement("div");
     propContainer.id = "propContainer";
@@ -126,6 +129,64 @@ function createPropContainer(){
     
     game.appendChild(propContainer);
 }
+
+function showTopScoreboard(){
+    fetch('http://localhost:5000/scoreboard/top')
+    .then (response => response.json()) // Transformamos primero a json
+    .then(data =>{
+        createTopScoreboard(data);
+    })
+    .catch((error) => {console.error('Error:', error); });
+}
+
+function createTopScoreboard(data){
+    let topScoreboardContainer = document.createElement('div');
+    topScoreboardContainer.id = 'topScoreboard';
+
+    let table = document.createElement('table');
+    table.classList.add('topScoreboardTable');
+
+    let thead = document.createElement('thead');
+    let headerRow = document.createElement('tr');
+    let headers = ['Name', 'Score'];
+
+    headers.forEach(headerText => {
+        let th = document.createElement('th');
+        th.textContent = headerText;
+        headerRow.appendChild(th);
+    })
+
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    let tbody = document.createElement('tbody');
+
+    data.forEach(player => {
+        let row = document.createElement('tr');
+
+        let nameCell = document.createElement('td');
+        nameCell.textContent = player.name;
+        row.appendChild(nameCell);
+
+        let scoreCell = document.createElement('td');
+        scoreCell.textContent = player.score;
+        row.appendChild(scoreCell);
+
+        tbody.appendChild(row);
+    });
+
+    table.appendChild(tbody);
+    topScoreboardContainer.appendChild(table);
+
+    // agregamos la nueva tabla al contenedor del juego
+    let gameContainer = document.getElementById('game');
+    gameContainer.appendChild(topScoreboardContainer);
+    
+}
+
+
+
+
 
 function playPauseMenuTheme(){
     let menuTheme = document.getElementById("menuTheme");
@@ -169,23 +230,33 @@ function startGame(){
     ingameMusic.play();
 }
 
-function sendScore(name, score){
+async function sendScore(name, score){
 
     let achievementsString  = gameState.obtainedAchievements.join(";");
-    fetch('http://localhost:5000/scoreboard/add', {
-        method: 'POST',
-        headers: {
+    
+    try{
+        await fetch ('http://localhost:5000/scoreboard/add',{
+           method: 'POST',
+           headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name: name, score: score , achievementId: achievementsString})
-    })
-    .then(response => response.json())
-    .then(data =>{
-        console.log(data.message);
-    })
-    .catch(error => {
-        console.error("Error:", error);
-    })
+           },
+           body: JSON.stringify({ name: name, score: score , achievementId: achievementsString})
+        })
+        
+        .then (response => response.json())
+        .then (data => {
+            console.log(data.message);
+        })
+        
+        .catch(error => {
+            console.error("Error:", error);
+        })
+    }
+    catch{
+        console.log(error);
+    }
+
+    location.reload();
 }
 
 export function showAchievementNotification(title, description, logo){

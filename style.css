@@ -105,6 +105,10 @@ main{ background-image: url(https://pm1.narvii.com/7096/a44f28d043453a63f142ada4
   min-height: 600px;
 }
 
+#topScoreboardContainer{
+  background: black;
+}
+
 .achievement-notification {
 position: fixed;
 width: 400px;
@@ -146,7 +150,7 @@ opacity: 0;
 height: 260px;
 width: 360px;
 position: absolute;
-top: 45%;
+top: 60%;
 transform: translate(-50%, -50%);
 background-color: rgba(0, 0, 0, 0.7);
 padding: 20px;
@@ -440,7 +444,62 @@ img.gun{
    
 }
 
+/* Estilos para el contenedor del top scoreboard */
+#topScoreboard {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo negro transparente oscuro */
+  border: 2px solid #444;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  font-family: 'Press Start 2P', cursive;
+}
 
+
+.topScoreboardTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+
+.topScoreboardTable thead th {
+  background-color: rgba(51, 51, 51, 0.8); /* Fondo gris oscuro transparente */
+  color: #FFFFFF;
+  padding: 10px;
+  border-bottom: 2px solid #555555;
+  font-size: 16px;
+}
+
+
+.topScoreboardTable tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #555555;
+  font-size: 14px;
+}
+
+
+.topScoreboardTable tbody tr:nth-child(even) {
+  background-color: rgba(34, 34, 34, 0.8); /* Fondo gris oscuro transparente */
+}
+
+.topScoreboardTable tbody tr:hover {
+  background-color: rgba(68, 68, 68, 0.8); /* Fondo gris más claro transparente */
+}
+
+.topScoreboardTable tbody td:first-child {
+  width: 10%;
+}
+
+.topScoreboardTable tbody td:nth-child(2) {
+  width: 45%;
+}
+
+.topScoreboardTable tbody td:last-child {
+  width: 45%;
+}
 
 
 
