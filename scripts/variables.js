@@ -24,6 +24,7 @@ export const gameAchievements = {
     minimunPoints: 150,
     minimunBlueGold: 15,
     minimunTimeCoins: 2,
+    minimunDucks: 1,
     
     duckHunt: false,
     bomberMan: false,

@@ -32,22 +32,22 @@ export async function checkObtainedAchievements(){
             gameAchievements.blueGold = true;
             saveObtainedAchievements("Blue Gold?!", blueGoldAchievement.id);
         }
-        if (!gameAchievements.duckHunt && gameState.ducksShooted >= 1){
+        if (!gameAchievements.duckHunt && gameState.ducksShooted >= gameAchievements.minimunDucks){
             const duckHuntAchievement = achievements.find(achievement => achievement.name === "Duck-Hunt");
             gameAchievements.duckHunt = true;
             saveObtainedAchievements("Duck-Hunt", duckHuntAchievement.id);
         }
-        if (!gameAchievements.millionare && gameState.totalPoints >= 100){
+        if (!gameAchievements.millionare && gameState.totalPoints >= gameAchievements.minimunPoints){
             const millionareAchievement = achievements.find(achievement => achievement.name === "Millionaire");
             if(!gameAchievements.millionare){
                 gameAchievements.millionare = true;
                 saveObtainedAchievements("Millionaire", millionareAchievement.id); 
             }
         }
-        if (!gameAchievements.timeTraveler && gameState.timeCoinShooted >= 2){
+        if (!gameAchievements.timeTraveler && gameState.timeCoinShooted >= gameAchievements.minimunTimeCoins){
             const timeTravelerAchievement = achievements.find(achievement => achievement.name === "Time Traveler");
             gameAchievements.timeTraveler = true;
-            saveObtainedAchievements("Time traveler", timeTravelerAchievement.id);
+            saveObtainedAchievements("Time Traveler", timeTravelerAchievement.id);
         }  
     })
     .catch(error => {
