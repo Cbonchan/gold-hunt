@@ -99,13 +99,26 @@ body{
     font-size: smaller;
     font-family: 'Press Start 2P';
     background-color: rgba(0, 0, 0, 0.712);
+    padding-bottom: 2em;
 }
+
 .contentInfo img{
     padding-bottom: 2em;
     padding-top: 2em;
-    padding-left: 30%;
-    align-self: center;
-    align-items: center;
+    padding-left: 20%;
+    height: 20em;
+    width: 40em;
+}
+.contentInfo .prop{
+    height: 50px;
+    width: 8em;
+}
+.contentInfo .prop{
+    cursor: crosshair;
+}
+
+footer{
+    padding-top: 2em;
 }
 
 .dev{
