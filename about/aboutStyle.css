@@ -79,6 +79,17 @@ body{
     -ms-user-select: none;
 }
 
+.contentTitle{
+
+}
+.contentInfo{
+
+}
+.contentInfo img{
+    align-self: center;
+    align-items: center;
+}
+
 .dev{
     background-size: cover;
     font-family: 'Press Start 2P', cursive;
