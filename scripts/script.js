@@ -8,7 +8,8 @@ let coinInterval;
 let specialCoinInterval;
 let bombInterval;
 let birdInterval;
-
+let duration;
+let countdown;
 
 function createIngameScore(){
     let score = document.createElement("span");
@@ -30,11 +31,16 @@ function createIngameTimer(){
 
 }
 
-function startTimer(){
-    let timer = document.getElementById("timer");
-    let duration = gameState.gameDuration;
 
-    let countdown = setInterval(() => {
+function startTimer(){
+    duration = gameState.gameDuration;
+    runTimer(duration);
+}
+
+
+function runTimer(){
+    let timer = document.getElementById("timer");
+    countdown = setInterval(() => {
         
         let seconds = duration % 60;
         timer.textContent = "Time:" + seconds;
@@ -43,6 +49,53 @@ function startTimer(){
             endGame();
         }
     }, 1000);
+}
+
+function stopTimer(){
+    clearInterval(countdown);
+}
+
+function resumeTimer(){
+    runTimer();
+}
+
+export function startBonusMode(){
+    clearInterval(coinInterval);
+    clearInterval(bombInterval);
+    clearInterval(birdInterval);
+
+    stopTimer();
+
+    specialCoinInterval = setInterval(()=>{
+        createSpecialCoin();
+    }, 300);
+
+    let bonusDuration = 10;
+
+    setTimeout(() => {
+        endBonusMode();
+    }, bonusDuration * 1000);
+}
+
+function endBonusMode(){
+    clearInterval(specialCoinInterval);
+
+    resumeTimer();
+
+    coinInterval = setInterval(() => {
+        createCoin();
+    }, 300);
+
+    bombInterval = setInterval(() =>{
+        createBomb();
+    }, 300);
+
+    birdInterval = setInterval(() => {
+        createBird();
+    }, 9000);
+
+    gameState.inBonusMode = false;
+    gameState.bonusModeIndex = 0;
 }
 
 

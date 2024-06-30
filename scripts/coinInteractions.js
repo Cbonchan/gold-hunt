@@ -63,17 +63,16 @@ export function createBird(){
 }
 
 function shootCoin(coin) {
-
     if (gameState.isShooting){
         return;
     }
-
     let gun = document.querySelector(".gun");
     gun.src = "./images/gun2.png";
     gameState.isShooting = true;
     playGunShot();
     if (coin.classList.contains("especialCoin")){
         gameState.totalPoints += 5;
+        gameState.bonusModeIndex += 5;
         gameState.blueCoinsShooted++;
         let blueCoinSound = new Audio("./sounds/blueCoinSound.mp3");
         blueCoinSound.play();
@@ -81,12 +80,14 @@ function shootCoin(coin) {
     }
     else if (coin.classList.contains("coin")){
         gameState.totalPoints++;
+        gameState.bonusModeIndex++;
         let coinSound = new Audio("./sounds/coinSound.mp3");
         coinSound.play();
         
     }
     if (coin.classList.contains("bird")){
         gameState.totalPoints += 10;
+        gameState.bonusModeIndex += 10;
         gameState.ducksShooted++;
         let duckSound = new Audio("./sounds/duckSound.mp3");
         duckSound.play();

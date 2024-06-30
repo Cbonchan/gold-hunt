@@ -8,11 +8,14 @@ export const gameState = {
     totalShotsFired: 0,
     shotsMissed: 0,
     gameDuration: 40,
-
     bombsShooted: 0,
     blueCoinsShooted: 0,
+    bonusModeIndex: 0,
+    bonusModeMinToActivate: 30,
     ducksShooted: 0,
-    obtainedAchievements: []
+    obtainedAchievements: [],
+
+    inBonusMode: false
 };
 
 export const gameAchievements = {

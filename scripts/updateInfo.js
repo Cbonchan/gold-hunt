@@ -1,10 +1,19 @@
 import { gameState, gameAchievements } from './variables.js';
-import { showAchievementNotification } from './script.js';
+import { showAchievementNotification, startBonusMode } from './script.js';
 
 
 export function updateScore() {
     const scoreElement = document.getElementById('score');
     scoreElement.textContent = "Score:" + gameState.totalPoints;
+
+    if (gameState.bonusModeIndex >= gameState.bonusModeMinToActivate && !gameState.inBonusMode){
+        gameState.inBonusMode = true;
+        ingameMusic.pause();
+        ingameMusic.src = "./sounds/bonusModeMusic.mp3";
+        ingameMusic.play();
+        gameState.bonusModeMinToActivate = Math.ceil(gameState.bonusModeMinToActivate * 1.5);
+        startBonusMode();
+    }
 }
 
 export async function checkObtainedAchievements(){
