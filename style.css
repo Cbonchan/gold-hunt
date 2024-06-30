@@ -3,11 +3,17 @@
   margin: 0 auto; /* Esto lo uso para centrar todos los elementos */
   padding: 0 auto;
 }
+
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('PressStart2P-Regular.ttf') format('truetype'); 
+}
+
 html{ background-image: url("images/background.jpg");
-  background-size: cover; /* Hace que la imagen de fondo cubra todo el fondo */
+  background-size: cover;
   background-repeat: repeat; 
-  background-position: center center; /* Centra la imagen de fondo */
-  height: 100%; /* Asegura que el html ocupe toda la altura de la ventana */
+  background-position: center center;
+  height: 100%;
 }
 
 body {

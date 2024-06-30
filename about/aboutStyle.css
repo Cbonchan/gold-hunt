@@ -2,6 +2,12 @@
     margin: 0 auto; /* Esto lo uso para centrar todos los elementos */
     padding: 0 auto;
 }
+
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url('../PressStart2P-Regular.ttf') format('truetype'); 
+}
+
 html{ background-image: url("../images/background.jpg");
     background-position: center center; /* Centra la imagen de fondo */
     background-repeat: no-repeat;
@@ -80,12 +86,24 @@ body{
 }
 
 .contentTitle{
-
+    padding-top: 3em;
+    padding-bottom: 2em;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    color: rgb(255, 217, 0);
+    font-size: large;
 }
 .contentInfo{
-
+    color: rgb(255, 204, 108);
+    padding-top: 3em;
+    font-size: smaller;
+    font-family: 'Press Start 2P';
+    background-color: rgba(0, 0, 0, 0.712);
 }
 .contentInfo img{
+    padding-bottom: 2em;
+    padding-top: 2em;
+    padding-left: 30%;
     align-self: center;
     align-items: center;
 }
