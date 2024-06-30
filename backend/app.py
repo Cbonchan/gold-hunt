@@ -172,7 +172,8 @@ def initializeAchievement():
         BlueGold = Achievement(name='Blue Gold?!', description='Shoot at least 5 blue coins!')
         BomberMan = Achievement(name='Bomber Man', description='Shoot at least 5 bombs!')
         Millionaire = Achievement(name='Millionaire', description='Scored at least 100 points!')
-        db.session.add_all({DuckHunter, BlueGold, BomberMan, Millionaire})
+        TimeTraveler = Achievement(name='Time Traveler', description='shoot 2 clocks!')
+        db.session.add_all({DuckHunter, BlueGold, BomberMan, Millionaire, TimeTraveler})
         db.session.commit()
 
 if __name__ == '__main__':
