@@ -144,11 +144,15 @@ def get_achievement_by_name(name):
     }
     return jsonify(achievement_data)
 
-#Updates the timesObtained+1 of an achievement by the name
+#Updates the timesObtained+1 of an achievement by the name or id
 @app.route('/achievements/update', methods=['PUT'])
 def update_times_obtained():
     data = request.get_json()
-    achievement = Achievement.query.filter_by(name=data['name']).first()
+    achievement = None
+    if 'name' in data:
+        achievement = Achievement.query.filter_by(name=data['name']).first()
+    elif 'id' in data:
+        achievement = Achievement.query.get(data['id'])
     if achievement is None:
         return jsonify({'error': 'Achievement not found'})
     achievement.timesObtained += 1
