@@ -123,28 +123,23 @@ footer{
 
 .dev{
     background-size: cover;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P';
     
 }
 .devTitle{
     padding: 5px;
-    font-size: small;
+    font-size: medium;
     background-color: rgba(0, 0, 0, 0.811);
     color: rgb(206, 206, 206);
 }
 .devInfo{
     padding-top: 1em;
-    font-size: 8px;
-    color: rgb(255, 150, 12);
+    padding-bottom: 2em;
+    font-size: 12px;
+    color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0.711);
 }
-
-#devDaniel{
-    background-image: url(https://wallpapercave.com/wp/wp3116816.jpg);
-}
-#devGaby{
-    background-image: url(https://c4.wallpaperflare.com/wallpaper/341/91/656/sonic-the-hedgehog-video-games-sega-retro-games-1920x1080-video-games-sonic-hd-art-wallpaper-preview.jpg);
-}
-#devSeba{
-    background-image: url(https://www.esports.net/wp-content/uploads/2023/10/Dust-2-CS2-1.jpg);
+a{
+    color: aquamarine;
+    text-decoration: none;
 }
