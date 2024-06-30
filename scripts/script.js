@@ -207,6 +207,24 @@ function playPauseMenuTheme(){
     }
 }
 
+function clickOnStartButton(){
+    let clickSound = new Audio("./sounds/clickSound.mp3");
+    let startButton = document.getElementById("botonJugar");
+    let mainTitle = document.getElementById("mainTitle");
+    
+
+    startButton.disabled = true;
+    startButton.style.cursor = 'not-allowed';
+    startButton.classList.add("puff-out-center");
+
+    mainTitle.classList.add('slide-out-blurred-top');
+
+    clickSound.play()
+    setTimeout( () =>{
+        startGame();
+    }, 1400);
+}
+
 function startGame(){
     createPropContainer();
     createIngameScore();
@@ -281,6 +299,7 @@ export function showAchievementNotification(title, description, logo){
 }
 
 
+window.clickOnStartButton = clickOnStartButton;
 window.startGame = startGame;
 window.playPauseMenuTheme = playPauseMenuTheme;
 window.moveGun = moveGun;
