@@ -88,6 +88,8 @@ function shootCoin(coin) {
     if (coin.classList.contains("bird")){
         gameState.totalPoints += 10;
         gameState.ducksShooted++;
+        let duckSound = new Audio("./sounds/duckSound.mp3");
+        duckSound.play();
         
     }
     checkObtainedAchievements();
