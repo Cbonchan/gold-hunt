@@ -307,6 +307,7 @@ function addAchievement(){
     var option2 = document.querySelector('#bluegold');
     var option3 = document.querySelector('#millionaire');
     var option4 = document.querySelector('#bomberman');
+    var option5 = document.querySelector('#timetraveler');
     var achievementList = [];
 
     if (option1.checked) {
@@ -320,6 +321,9 @@ function addAchievement(){
     }
     if (option4.checked) {
         achievementList.push(option4.name);
+    }
+    if (option5.checked) {
+        achievementList.push(option5.name);
     }
     const requests = achievementList.map(achievement => {
         return fetch('http://localhost:5000/achievements/update', {

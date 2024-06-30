@@ -28,24 +28,24 @@ def get_admin_scoreboard():
 @app.route('/scoreboard/test', methods=['GET'])
 def return_scoreboard():
     fakeScore = [
-        {"name": "Juan Perez", "score": 85, "achievementId": "1"},
-        {"name": "Ana Lopez", "score": 92,"achievementId": "1"},
-        {"name": "Carlos Diaz", "score": 78, "achievementId": "1"},
-        {"name": "Lucia Gomez", "score": 88, "achievementId": "1"},
-        {"name": "Miguel Torres", "score": 95, "achievementId": "1"},
-        {"name": "Sofia Ramirez", "score": 82, "achievementId": "1"},
-        {"name": "Pedro Fernandez", "score": 5, "achievementId": "1"},
-        {"name": "Marta Sanchez", "score": 9, "achievementId": "1"},
-        {"name": "Diego Gutierrez", "score": 20, "achievementId": "1"},
-        { "name": "Elena Morales", "score": 10, "achievementId": "1"}
+        {"name": "Juan Perez", "score": 85, "achievementId": ""},
+        {"name": "Ana Lopez", "score": 92,"achievementId": ""},
+        {"name": "Carlos Diaz", "score": 78, "achievementId": ""},
+        {"name": "Lucia Gomez", "score": 88, "achievementId": ""},
+        {"name": "Miguel Torres", "score": 95, "achievementId": ""},
+        {"name": "Sofia Ramirez", "score": 82, "achievementId": ""},
+        {"name": "Pedro Fernandez", "score": 5, "achievementId": ""},
+        {"name": "Marta Sanchez", "score": 9, "achievementId": ""},
+        {"name": "Diego Gutierrez", "score": 20, "achievementId": ""},
+        { "name": "Elena Morales", "score": 10, "achievementId": ""}
     ]
     achievements = Achievement.query.all()
     for score in fakeScore:
-        new_score = Scoreboard(name=score['name'], score=score['score'], achievementId=score['achievementId'])
-        db.session.add(new_score)
-        db.session.commit()
         random_achievements = random.sample(achievements, 2)
-        #por cada entry de los fakescores se le asignan 2 logros aleatorios 
+        achievement_ids = [str(achievement.id) for achievement in random_achievements]
+        achievement_id_str = ";".join(achievement_ids)
+        new_score = Scoreboard(name=score['name'], score=score['score'], achievementId=achievement_id_str)
+        db.session.add(new_score)
         for achievement in random_achievements:
             achievement.timesObtained += 1
     db.session.commit()
@@ -172,7 +172,8 @@ def initializeAchievement():
         BlueGold = Achievement(name='Blue Gold?!', description='Shoot at least 5 blue coins!')
         BomberMan = Achievement(name='Bomber Man', description='Shoot at least 5 bombs!')
         Millionaire = Achievement(name='Millionaire', description='Scored at least 100 points!')
-        db.session.add_all({DuckHunter, BlueGold, BomberMan, Millionaire})
+        TimeTraveler = Achievement(name='Time Traveler', description='shoot 2 clocks!')
+        db.session.add_all({DuckHunter, BlueGold, BomberMan, Millionaire, TimeTraveler})
         db.session.commit()
 
 if __name__ == '__main__':

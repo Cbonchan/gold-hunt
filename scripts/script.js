@@ -1,38 +1,53 @@
-import { HARD, NORMAL, EASY } from './constants.js';
 import { gameState, gameAchievements} from './variables.js';
-import { createCoin, createEspecialCoin, createBird } from './coinInteractions.js';
+import { createCoin, createBird, createSpecialCoin, createTimeCoin } from './coinInteractions.js';
 import { createBomb } from './bombInteractions.js';
 import { spawnGun, moveGun} from './gunInteractions.js';
 
 let coinInterval;
-let especialCoinInterval;
+let specialCoinInterval;
 let bombInterval;
 let birdInterval;
-
+let timeCoinInterval;
+export let duration;
+let countdown;
 
 function createIngameScore(){
     let score = document.createElement("span");
     score.id = "score";
     score.textContent = "Score:" + gameState.totalPoints;
+    score.classList.add("slide-in-blurred-right");
     let infoContainer = document.getElementById("infoContainer");
     infoContainer.appendChild(score);
+
 }
 
 function createIngameTimer(){
     let timer = document.createElement("span");
     timer.id = "timer";
-
+    timer.classList.add("slide-in-blurred-left");
     timer.textContent = "Time:" + gameState.gameDuration;
     const infoContainer = document.getElementById("infoContainer");
     infoContainer.appendChild(timer);
 
 }
 
-function startTimer(){
+export function increaseTimer(time){
+    duration += time;
     let timer = document.getElementById("timer");
-    let duration = gameState.gameDuration;
+    let updatedSeconds = duration % 60;
+    timer.textContent = "Time:" + updatedSeconds;
+    
+}
 
-    let countdown = setInterval(() => {
+function startTimer(){
+    duration = gameState.gameDuration;
+    runTimer(duration);
+}
+
+
+function runTimer(){
+    let timer = document.getElementById("timer");
+    countdown = setInterval(() => {
         
         let seconds = duration % 60;
         timer.textContent = "Time:" + seconds;
@@ -43,6 +58,62 @@ function startTimer(){
     }, 1000);
 }
 
+function stopTimer(){
+    clearInterval(countdown);
+}
+
+function resumeTimer(){
+    runTimer();
+}
+
+export function startBonusMode(){
+    clearInterval(coinInterval);
+    clearInterval(bombInterval);
+    clearInterval(birdInterval);
+    clearInterval(timeCoinInterval);
+
+    stopTimer();
+
+    specialCoinInterval = setInterval(()=>{
+        createSpecialCoin();
+    }, 300);
+
+    timeCoinInterval = setInterval(() =>{
+        createTimeCoin();
+    },5000)
+
+    let bonusDuration = 10;
+
+    setTimeout(() => {
+        endBonusMode();
+    }, bonusDuration * 1000);
+}
+
+function endBonusMode(){
+    clearInterval(specialCoinInterval);
+    clearInterval(timeCoinInterval);
+    resumeTimer();
+
+    coinInterval = setInterval(()=>{
+        createCoin();
+    }, 300);  
+
+    bombInterval = setInterval(() =>{
+        createBomb();
+    }, 300)
+
+    birdInterval = setInterval(() =>{
+        createBird();
+    }, 9000);
+
+    timeCoinInterval = setInterval(() =>{
+        createTimeCoin();
+    }, 15000)
+
+    gameState.inBonusMode = false;
+    gameState.bonusModeIndex = 0;
+}
+
 
 function endGame(){
     showTopScoreboard();
@@ -50,7 +121,7 @@ function endGame(){
     let victoryMusic = new Audio("./sounds/victoryMusic.mp3");
     victoryMusic.play(); 
     clearInterval(coinInterval);
-    clearInterval(especialCoinInterval);
+    clearInterval(specialCoinInterval);
     clearInterval(bombInterval);
     clearInterval(birdInterval);
     
@@ -104,13 +175,6 @@ function endGame(){
         document.getElementById("menuContainer").style.display = "inline-block";
     });
     
-    gameAchievements.bomberMan = false;
-    gameAchievements.blueGold = false;
-    gameAchievements.duckHunt = false;
-    gameAchievements.millionare = false;
-    gameState.blueCoinsShooted = 0;
-    gameState.bombsShooted = 0;
-    gameState.ducksShooted = 0;
     
 }
 
@@ -130,6 +194,7 @@ function createPropContainer(){
     propContainer.style.border = "8px solid";
     propContainer.style.borderImage = "linear-gradient(to right, #bdc3c7 0%, #2c3e50 100%)"; // Esto es para simular efecto metalico
     propContainer.style.borderImageSlice = "5"; 
+    propContainer.classList.add("slide-in-blurred-bottom");
     
     game.appendChild(propContainer);
 }
@@ -207,31 +272,70 @@ function playPauseMenuTheme(){
     }
 }
 
-function startGame(){
-    createPropContainer();
-    createIngameScore();
-    createIngameTimer();
-    startTimer();
-    spawnGun();
-    coinInterval = setInterval(()=>{
-        createCoin();
-    }, HARD);  
-
-    bombInterval = setInterval(() =>{
-        createBomb();
-    }, HARD)
+function clickOnStartButton(){
+    let clickSound = new Audio("./sounds/clickSound.mp3");
+    let startButton = document.getElementById("botonJugar");
+    let mainTitle = document.getElementById("mainTitle");
     
-    especialCoinInterval = setInterval(() => {
-        createEspecialCoin();
-    }, 5000);
-    birdInterval = setInterval(() =>{
-        createBird();
-    }, 9000);
+
+    startButton.disabled = true;
+    startButton.style.cursor = 'not-allowed';
+    startButton.classList.add("puff-out-center");
+
+    mainTitle.classList.add('slide-out-blurred-top');
+
+    clickSound.play()
+    setTimeout( () =>{
+        startGame();
+    }, 1400);
+}
+
+function startGame(){
+
+    setTimeout(() =>{
+        createIngameScore();
+    }, 0)
+
+    setTimeout(() => {
+        createIngameTimer();
+    }, 600)
+
+
+    setTimeout(() => {
+        createPropContainer();
+    }, 1200)
+
+
+    setTimeout(() => {
+        startTimer();
+        spawnGun();
+        coinInterval = setInterval(()=>{
+            createCoin();
+        }, 300);  
+    
+        bombInterval = setInterval(() =>{
+            createBomb();
+        }, 300)
+
+        specialCoinInterval = setInterval(() => {
+            createSpecialCoin();
+        }, 3000);
+        birdInterval = setInterval(() =>{
+            createBird();
+        }, 9000);
+
+        timeCoinInterval = setInterval(() =>{
+            createTimeCoin();
+        }, 15000)
+        menuTheme.pause();
+        ingameMusic.play();
+    },1800)
+    
+    
     document.getElementById("menuContainer").style.display = "none";
     document.getElementById("volumeContainer").style.display = "none";
     
-    menuTheme.pause();
-    ingameMusic.play();
+    
 }
 
 async function sendScore(name, score){
@@ -281,6 +385,7 @@ export function showAchievementNotification(title, description, logo){
 }
 
 
+window.clickOnStartButton = clickOnStartButton;
 window.startGame = startGame;
 window.playPauseMenuTheme = playPauseMenuTheme;
 window.moveGun = moveGun;
