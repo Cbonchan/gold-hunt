@@ -240,6 +240,15 @@ background-color: black;
   animation: fall 1.3s ease-in forwards;
 }
 
+.timeCoin{ background-image: url('./images/timeCoin.webp'); 
+  position: absolute;
+  width: 80px; 
+  height: 80px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: fall 1.3s ease-in forwards;
+}
+
 .especialCoin{ background-image: url('https://i.gifer.com/Fw3P.gif'); 
   position: absolute;
   width: 80px; 

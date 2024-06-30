@@ -31,8 +31,8 @@ function shootBomb(bomb){
     playGunShot();
     playBombSound();
     if (gameState.totalPoints > 0){
-        gameState.totalPoints--;
-        gameState.bonusModeIndex--;
+        gameState.totalPoints-=10;
+        gameState.bonusModeIndex-=10;
     }
     
     gameState.bombsShooted++;

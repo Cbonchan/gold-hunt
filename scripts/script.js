@@ -1,6 +1,5 @@
-import { HARD, NORMAL, EASY } from './constants.js';
 import { gameState, gameAchievements} from './variables.js';
-import { createCoin, createBird, createSpecialCoin } from './coinInteractions.js';
+import { createCoin, createBird, createSpecialCoin, createTimeCoin } from './coinInteractions.js';
 import { createBomb } from './bombInteractions.js';
 import { spawnGun, moveGun} from './gunInteractions.js';
 
@@ -8,7 +7,8 @@ let coinInterval;
 let specialCoinInterval;
 let bombInterval;
 let birdInterval;
-let duration;
+let timeCoinInterval;
+export let duration;
 let countdown;
 
 function createIngameScore(){
@@ -31,6 +31,13 @@ function createIngameTimer(){
 
 }
 
+export function increaseTimer(time){
+    duration += time;
+    let timer = document.getElementById("timer");
+    let updatedSeconds = duration % 60;
+    timer.textContent = "Time:" + updatedSeconds;
+    
+}
 
 function startTimer(){
     duration = gameState.gameDuration;
@@ -63,12 +70,17 @@ export function startBonusMode(){
     clearInterval(coinInterval);
     clearInterval(bombInterval);
     clearInterval(birdInterval);
+    clearInterval(timeCoinInterval);
 
     stopTimer();
 
     specialCoinInterval = setInterval(()=>{
         createSpecialCoin();
     }, 300);
+
+    timeCoinInterval = setInterval(() =>{
+        createTimeCoin();
+    },5000)
 
     let bonusDuration = 10;
 
@@ -79,20 +91,24 @@ export function startBonusMode(){
 
 function endBonusMode(){
     clearInterval(specialCoinInterval);
-
+    clearInterval(timeCoinInterval);
     resumeTimer();
 
-    coinInterval = setInterval(() => {
+    coinInterval = setInterval(()=>{
         createCoin();
-    }, 300);
+    }, 300);  
 
     bombInterval = setInterval(() =>{
         createBomb();
-    }, 300);
+    }, 300)
 
-    birdInterval = setInterval(() => {
+    birdInterval = setInterval(() =>{
         createBird();
     }, 9000);
+
+    timeCoinInterval = setInterval(() =>{
+        createTimeCoin();
+    }, 15000)
 
     gameState.inBonusMode = false;
     gameState.bonusModeIndex = 0;
@@ -307,12 +323,17 @@ function startGame(){
         bombInterval = setInterval(() =>{
             createBomb();
         }, 300)
+
         specialCoinInterval = setInterval(() => {
             createSpecialCoin();
-        }, 5000);
+        }, 3000);
         birdInterval = setInterval(() =>{
             createBird();
         }, 9000);
+
+        timeCoinInterval = setInterval(() =>{
+            createTimeCoin();
+        }, 15000)
         menuTheme.pause();
         ingameMusic.play();
     },1800)

@@ -2,6 +2,8 @@ import { gameState } from './variables.js';
 
 import { playGunShot } from './soundInteractions.js';
 
+import {increaseTimer } from './script.js'
+
 import { checkObtainedAchievements, updateScore} from './updateInfo.js';
 
 export function createCoin() {
@@ -18,9 +20,23 @@ export function createCoin() {
     setTimeout(() => {
         coin.style.transform = 'translateY(400px)';
         propContainer.removeChild(coin);
-    }, 1300); // Duración de la animación de caída (1.3s en este caso)
+    }, 1300); // Duración de la animación de caída (1.3s en este caso)   
+}
 
-    
+export function createTimeCoin(){
+    let propContainer = document.getElementById("propContainer");
+    let timeCoin = document.createElement("div");
+    timeCoin.classList.add("timeCoin");
+
+    timeCoin.style.left = Math.random() * (propContainer.offsetWidth - 80) + 'px';
+    timeCoin.onclick = () => shootCoin(timeCoin);
+    propContainer.appendChild(timeCoin);
+
+    setTimeout(() => {
+        timeCoin.style.transform = 'translateY(400px)';
+        propContainer.removeChild(timeCoin);
+    }, 1300); 
+
 }
 
 export function createSpecialCoin(){
@@ -92,6 +108,12 @@ function shootCoin(coin) {
         let duckSound = new Audio("./sounds/duckSound.mp3");
         duckSound.play();
         
+    }
+
+    if (coin.classList.contains("timeCoin")){
+        increaseTimer(5);
+        let timeCoinSound = new Audio("./sounds/timeCoinSound.mp3");
+        timeCoinSound.play();
     }
     checkObtainedAchievements();
     updateScore();
