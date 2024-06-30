@@ -17,23 +17,42 @@ export function updateScore() {
 }
 
 export async function checkObtainedAchievements(){
-    if (!gameAchievements.bomberMan && gameState.bombsShooted >= gameAchievements.minimunBombs ){
-        gameAchievements.bomberMan = true;
-        saveObtainedAchievements("Bomber Man", 2);
-    }
-    if (!gameAchievements.blueGold && gameState.blueCoinsShooted >= gameAchievements.minimunBlueGold){
-        gameAchievements.blueGold = true;
-        saveObtainedAchievements("Blue Gold?!", 4);
-    }
-    if (!gameAchievements.duckHunt && gameState.ducksShooted >= 1){
-        gameAchievements.duckHunt = true;
-        saveObtainedAchievements("Duck-Hunt", 1);
-    }
 
-    if (!gameAchievements.millionare && gameState.totalPoints >= 100){
-        gameAchievements.millionare = true;
-        saveObtainedAchievements("Millionaire", 3);
-    }
+    fetch(`http://localhost:5000/achievements`)
+    .then(response => response.json())
+    .then(data => {
+        const achievements = data;
+        if (!gameAchievements.bomberMan && gameState.bombsShooted >= gameAchievements.minimunBombs ){
+            const bomberManAchievement = achievements.find(achievement => achievement.name === "Bomber Man");
+            gameAchievements.bomberMan = true;
+            saveObtainedAchievements("Bomber Man", bomberManAchievement.id);
+        }
+        if (!gameAchievements.blueGold && gameState.blueCoinsShooted >= gameAchievements.minimunBlueGold){
+            const blueGoldAchievement = achievements.find(achievement => achievement.name === "Blue Gold?!");
+            gameAchievements.blueGold = true;
+            saveObtainedAchievements("Blue Gold?!", blueGoldAchievement.id);
+        }
+        if (!gameAchievements.duckHunt && gameState.ducksShooted >= 1){
+            const duckHuntAchievement = achievements.find(achievement => achievement.name === "Duck-Hunt");
+            gameAchievements.duckHunt = true;
+            saveObtainedAchievements("Duck-Hunt", duckHuntAchievement.id);
+        }
+        if (!gameAchievements.millionare && gameState.totalPoints >= 100){
+            const millionareAchievement = achievements.find(achievement => achievement.name === "Millionaire");
+            if(!gameAchievements.millionare){
+                gameAchievements.millionare = true;
+                saveObtainedAchievements("Millionaire", millionareAchievement.id); 
+            }
+        }
+        if (!gameAchievements.timeTraveler && gameState.timeCoinShooted >= 2){
+            const timeTravelerAchievement = achievements.find(achievement => achievement.name === "Time Traveler");
+            gameAchievements.timeTraveler = true;
+            saveObtainedAchievements("Time traveler", timeTravelerAchievement.id);
+        }  
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
 }
 
 

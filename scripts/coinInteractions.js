@@ -112,6 +112,7 @@ function shootCoin(coin) {
 
     if (coin.classList.contains("timeCoin")){
         increaseTimer(5);
+        gameState.timeCoinShooted++;
         let timeCoinSound = new Audio("./sounds/timeCoinSound.mp3");
         timeCoinSound.play();
     }

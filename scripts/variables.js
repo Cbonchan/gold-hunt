@@ -13,6 +13,7 @@ export const gameState = {
     bonusModeIndex: 0,
     bonusModeMinToActivate: 30,
     ducksShooted: 0,
+    timeCoinShooted: 0,
     obtainedAchievements: [],
 
     inBonusMode: false
@@ -21,11 +22,13 @@ export const gameState = {
 export const gameAchievements = {
     minimunBombs: 5,
     minimunPoints: 150,
-    minimunBlueGold: 1,
+    minimunBlueGold: 15,
+    minimunTimeCoins: 2,
     
     duckHunt: false,
     bomberMan: false,
     blueGold: false,
     millionare: false,
+    timeTraveler: false,
     
 }

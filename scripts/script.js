@@ -175,13 +175,6 @@ function endGame(){
         document.getElementById("menuContainer").style.display = "inline-block";
     });
     
-    gameAchievements.bomberMan = false;
-    gameAchievements.blueGold = false;
-    gameAchievements.duckHunt = false;
-    gameAchievements.millionare = false;
-    gameState.blueCoinsShooted = 0;
-    gameState.bombsShooted = 0;
-    gameState.ducksShooted = 0;
     
 }
 
