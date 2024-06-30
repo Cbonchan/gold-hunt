@@ -23,7 +23,7 @@ export function createCoin() {
     
 }
 
-export function createEspecialCoin(){
+export function createSpecialCoin(){
     
     let propContainer = document.getElementById("propContainer");
     let coin = document.createElement("div");
