@@ -1,10 +1,11 @@
-function addRecord(){
+function addRecord() {
     let scoreInput = document.getElementById("scoreAdd");
     let nameInput = document.getElementById("nameAdd");
     let achievementIdInput = document.getElementById("achievementIdAdd");
     let score = scoreInput.value;
     let name = nameInput.value;
     let achievementId = achievementIdInput.value;
+
     if (name === '') {
         nameInput.placeholder = 'Name not valid';
         return;
@@ -14,31 +15,60 @@ function addRecord(){
         return;
     }
 
-    if (achievementIdInput === '' || isNaN(achievementIdInput)){
-        achievementIdInput.placeholder = 'Achievement not valid'
-    }
-    
-    let dict = {
-        name: name,
-        score: score,
-        achievementId: achievementId
+    let updatePromises = [];
 
-    };
-    fetch("http://localhost:5000/scoreboard/add", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(dict)
-    })
-    .then((response) => response.json())
-    .then(data => {
-        if (data.hasOwnProperty('message')) {
-            console.log('Score added:', data.message);
-            location.reload();
-        }
-    })
-    .catch((error) => console.log("ERROR", error))
+    if (achievementId !== '') {
+        updatePromises = updateIdRecord(achievementId);
+    }
+
+    Promise.all(updatePromises)
+        .then(() => {
+            let dict = {
+                name: name,
+                score: score,
+                achievementId: achievementId
+            };
+
+            return fetch("http://localhost:5000/scoreboard/add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(dict)
+            });
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.hasOwnProperty('message')) {
+                console.log('Score added:', data.message);
+                location.reload();
+            }
+        })
+        .catch(error => console.log("ERROR", error));
+}
+
+function updateIdRecord(achievementId) {
+    let ids = achievementId.split(';');
+    let updatePromises = ids.map(id => {
+        return fetch(`http://localhost:5000/achievements/update`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ id: id })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.hasOwnProperty('message')) {
+                console.log('Achievement updated:', data.message);
+            } else if (data.hasOwnProperty('error')) {
+                console.error('Achievement not found:', data.error);
+            }
+        })
+        .catch(error => console.log("ERROR", error));
+    });
+
+    return updatePromises;
 }
 
 function removeRecord(){
