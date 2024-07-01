@@ -16,11 +16,11 @@ export function createCoin() {
     coin.onclick = () => shootCoin(coin);
     propContainer.appendChild(coin);
 
-    // Aca esta animada la caida de la moneda
+    
     setTimeout(() => {
         coin.style.transform = 'translateY(400px)';
         propContainer.removeChild(coin);
-    }, 1300); // Duración de la animación de caída (1.3s en este caso)   
+    }, 1300); 
 }
 
 export function createTimeCoin(){
@@ -49,11 +49,11 @@ export function createSpecialCoin(){
     coin.onclick = () => shootCoin(coin);
     propContainer.appendChild(coin);
 
-    // Aca esta animada la caida de la moneda
+    // Aca esta animamos la caida de la moneda
     setTimeout(() => {
         coin.style.transform = 'translateY(400px)';
         propContainer.removeChild(coin);
-    }, 1300); // Duración de la animación de caída (1.3s en este caso)
+    }, 1300); 
 
     
 }

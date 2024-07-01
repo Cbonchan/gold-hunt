@@ -12,11 +12,11 @@ export function createBomb(){
     bomb.onclick = () => shootBomb(bomb);
     propContainer.appendChild(bomb);
 
-    // Aca esta animada la caida de la moneda
+    // Aca esta animada la caida de la bomba
     setTimeout(() => {
         bomb.style.transform = 'translateY(400px)';
         propContainer.removeChild(bomb);
-    }, 1300); // Duración de la animación de caída (1.3s en este caso)
+    }, 1300); 
 
 }
 

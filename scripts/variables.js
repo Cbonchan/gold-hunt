@@ -1,4 +1,4 @@
-// variables.js
+
 export const gameState = {
     isShooting: false,
     totalPoints: 0,
