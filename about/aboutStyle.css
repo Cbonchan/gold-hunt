@@ -1,0 +1,155 @@
+*{
+    margin: 0 auto; /* Esto lo uso para centrar todos los elementos */
+    padding: 0 auto;
+}
+
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url('../PressStart2P-Regular.ttf') format('truetype'); 
+}
+
+html{ background-image: url("../images/background.jpg");
+    background-position: center center; /* Centra la imagen de fondo */
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100%;
+}
+#mainTitle{ background-image: url(https://itaku.ee/api/media_2/gallery_imgs/Orange_wood_planks_QcKMvTH/lg.jpg);
+}
+#mainTitle h1{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2em;
+    color: rgb(255, 150, 12);
+    
+    background-color: rgba(0, 0, 0, 0.438);
+    padding: 1em;
+    text-align: center;
+}
+nav{
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+}
+#navBar{
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    background-color: rgba(32, 32, 32, 0.411);
+
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    
+}
+#navBar li{
+    flex: 1;
+    transition: background-color 0.7s;
+}
+#navBar li:hover{
+    
+    background-color: rgba(7, 4, 0, 0.945);
+}
+#navBar li a{
+    font-family: 'Press Start 2P', cursive;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: rgb(206, 206, 206);
+    padding: 1em;
+    transition: color 1s;
+}
+#navBar li a:hover{
+    color: rgb(255, 217, 0);
+}
+
+header{
+    margin: 0;
+}
+
+main{ 
+    background-image: url("../images/backgroundBrick.jpg");
+    min-width: 800px;
+    min-height: 752px;
+    padding-bottom: 1em ;
+    padding: 1em;
+    background-color: rgba(0, 0, 0, 0.712);
+    line-height: 1.5;
+}
+
+body{
+    max-width: 1000px;
+    height: 100%;
+}
+
+.no-select{
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.contentTitle{
+    padding-top: 3em;
+    padding-bottom: 2em;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    color: rgb(255, 217, 0);
+    font-size: large;
+}
+.contentInfo{
+    color: rgb(255, 204, 108);
+    padding-top: 3em;
+    font-size: smaller;
+    font-family: 'Press Start 2P';
+    background-color: rgba(0, 0, 0, 0.712);
+    padding-bottom: 2em;
+    border-radius: 10px;
+    padding-left: 1em;
+}
+
+.contentInfo img{
+    padding-bottom: 2em;
+    padding-top: 2em;
+    padding-left: 20%;
+    height: 20em;
+    width: 40em;
+}
+.contentInfo .prop{
+    height: 50px;
+    width: 8em;
+}
+.contentInfo .prop{
+    cursor: crosshair;
+}
+
+footer{
+    padding-top: 2em;
+}
+
+.dev{
+    background-size: cover;
+    font-family: 'Press Start 2P';
+    
+}
+.devTitle{
+    padding: 5px;
+    font-size: medium;
+    background-color: rgba(0, 0, 0, 0.811);
+    color: rgb(206, 206, 206);
+    padding-left: 1em;
+    padding-top: 0.5em;
+    
+}
+.devInfo{
+    padding-top: 1em;
+    padding-bottom: 2em;
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.711);
+    padding-left: 3em;
+    
+}
+a{
+    color: aquamarine;
+    text-decoration: none;
+}

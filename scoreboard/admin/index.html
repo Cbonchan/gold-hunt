@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Admin</title>
+</head>
+<body>
+    <div id="password">
+        <label for="psw">Administrator password</label>
+        <input type="password" id="psw" placeholder="..."></input>
+        <button onclick="admin()">Go</button>
+        <div>
+            <a href="../index.html" style="color: black; text-decoration: none;"> ⭠ Go Back</a>
+        </div>
+        
+    </div>
+    <div id="page" class="none">
+        <header>
+            <h1>Administrator Mode</h1>
+            <div style="display: flex; justify-content: space-between;">
+                <a href="../index.html" style="color: black; text-decoration: none;"> ⭠ Go Back</a>
+                <button onclick="logOut()">Log out</button>
+            </div>
+            <h3 style="color: red">Warning, using any of these options may ruin the legitimacy of the database </h2>
+        </header>  
+        <div class="inputSector" style="padding-top: 1em; padding-bottom: 0.5em;">
+            <label for="nameAdd"  style="padding-right: 0.5em;">Add record</label>
+            <input type="text" id="nameAdd" placeholder="Enter name" class="input" style="width: 13em;"> </input>
+            <input type="text" id="scoreAdd" placeholder="Enter score" class="input"> </input>
+            <input type="text" id="achievementIdAdd" placeholder="Enter achievementId" class="input"> </input>
+            <button onclick="addRecord()">Add</button>
+        </div>     
+        <div class="inputSector" style=" padding-bottom: 0.5em;">
+            <label for="idRemove"  style="padding-right: 0.5em;">Delete record</label>
+            <input type="text" id="idRemove" placeholder="Enter ID" class="input"> </input>
+            <button onclick="removeRecord()">Delete</button>
+        </div>
+        <div class="inputSector" style="padding-bottom: 0.5em;">
+            <label for="idUpdate" style="padding-right: 0.5em;">Update record</label>
+            <input type="text" id="idUpdate" placeholder="Enter ID" class="input"></input>
+            <input type="text" id="nameUpdate" placeholder="Enter name" class="inputName"></input>
+            <input type="text" id="scoreUpdate" placeholder="Enter Score" class="input"></input>
+            <button onclick="updateRecord()">Update</button>
+        </div>
+        
+        <div class="inputSector">
+            <label for="deleteAll" style="padding-right: 0.5em; padding-bottom: 0.5em;">Delete All</label>
+            <button onclick="deleteAll()">Delete</button>
+        </div>
+        <div id="">
+            <label for="checkboxDiv" style=" font-size: 1.5em;">Add Global achievement obtention</label>
+            <div class="checkboxCointainer" style="padding-bottom: 0.5em;" id="checkboxDiv">
+                <label>Blue Gold?
+                    <input type="checkbox" name="Blue Gold?!" class="opcion" id="bluegold">
+                </label>
+                <label>Bomber Man
+                    <input type="checkbox" name="Bomber Man" class="opcion" id="bomberman">
+                </label>
+                <label>Duck-Hunt
+                    <input type="checkbox" name="Duck-Hunt" class="opcion" id=duckhunt>
+                </label>
+                <label>Millionaire
+                    <input type="checkbox" name="Millionaire" class="opcion" id="millionaire">
+                </label>
+                <label>Time Traveler
+                    <input type="checkbox" name="Time Traveler" class="opcion" id="timetraveler">
+                </label>
+                <button onclick="addAchievement()">Add</button>
+            </div>
+        
+            <div class="inputSector">
+                <label for="fakeData" style="padding-bottom: 0.5em; padding-right: 0.5em;">Include Fake data for testing</label>
+                <button onclick="fakeData()">Enter</button>
+            </div>
+        </div>
+        <div id="tables">
+            <label for="achievement" id="tableLabel">achievement</label>
+            <div id="achievement"></div>
+            <label for="scoreboard" id="tableLabel">scoreboard</label>
+            <div id="scoreboard"></div>
+        </div>
+        <script src="script.js"></script>
+    </div>
+</body>
+</html>

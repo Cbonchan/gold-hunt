@@ -1,0 +1,46 @@
+.input{
+    width: 6.5em;
+}
+
+.inputSector{
+    font-size: 1.5em;
+    display: flex;
+    justify-content:flex-start;
+}
+
+#scoreboard{
+    display: flex;
+    justify-content: center;
+    width: 500px; 
+    margin: 0 auto; 
+    padding: 0px 20px 0px 20px;
+ 
+}
+
+.none{
+    display: none;
+}
+
+#achievement{
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    width: 350px;
+    margin: 0 auto;
+    padding: 0px 40px 0px 20px;
+}
+
+th, td {
+    padding: 1px; 
+    text-align: center; 
+    border: 1px solid #ddd; 
+}
+
+#tableLabel{
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    
+}
+
